@@ -1,79 +1,77 @@
 	.file	"c_01.c"
-	.intel_syntax noprefix
-	.def	__main;	.scl	2;	.type	32;	.endef
-	.section .rdata,"dr"
+	.section	.rodata
 	.align 8
 .LC0:
-	.ascii "Enter lenghts of the base and hight of the trapezoid: \0"
+	.string	"Enter lenghts of the base and hight of the trapezoid: "
 .LC1:
-	.ascii "%f%f%f\0"
+	.string	"%f%f%f"
 	.align 8
 .LC4:
-	.ascii "Perimeter of trapezoid is : %f \12\0"
+	.string	"Perimeter of trapezoid is : %f \n"
 	.text
 	.globl	main
-	.def	main;	.scl	2;	.type	32;	.endef
-	.seh_proc	main
+	.type	main, @function
 main:
-	push	rbp
-	.seh_pushreg	rbp
-	mov	rbp, rsp
-	.seh_setframe	rbp, 0
-	sub	rsp, 96
-	.seh_stackalloc	96
-	movaps	XMMWORD PTR -32[rbp], xmm6
-	.seh_savexmm	xmm6, 64
-	movaps	XMMWORD PTR -16[rbp], xmm7
-	.seh_savexmm	xmm7, 80
-	.seh_endprologue
-	call	__main
-	lea	rcx, .LC0[rip]
+.LFB0:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$48, %rsp
+	movq	%fs:40, %rax
+	movq	%rax, -8(%rbp)
+	xorl	%eax, %eax
+	movl	$.LC0, %edi
+	movl	$0, %eax
 	call	printf
-	lea	rcx, -44[rbp]
-	lea	rdx, -40[rbp]
-	lea	rax, -36[rbp]
-	mov	r9, rcx
-	mov	r8, rdx
-	mov	rdx, rax
-	lea	rcx, .LC1[rip]
-	call	scanf
-	movss	xmm1, DWORD PTR -36[rbp]
-	movss	xmm0, DWORD PTR -40[rbp]
-	addss	xmm0, xmm1
-	cvtss2sd	xmm6, xmm0
-	movss	xmm0, DWORD PTR -36[rbp]
-	movss	xmm1, DWORD PTR -40[rbp]
-	subss	xmm0, xmm1
-	movss	xmm1, DWORD PTR .LC2[rip]
-	divss	xmm0, xmm1
-	cvtss2sd	xmm0, xmm0
-	movsd	xmm1, QWORD PTR .LC3[rip]
+	leaq	-16(%rbp), %rcx
+	leaq	-20(%rbp), %rdx
+	leaq	-24(%rbp), %rax
+	movq	%rax, %rsi
+	movl	$.LC1, %edi
+	movl	$0, %eax
+	call	__isoc99_scanf
+	movss	-24(%rbp), %xmm0
+	movss	-20(%rbp), %xmm1
+	subss	%xmm1, %xmm0
+	movss	.LC2(%rip), %xmm1
+	divss	%xmm1, %xmm0
+	cvtss2sd	%xmm0, %xmm0
+	movsd	.LC3(%rip), %xmm1
 	call	pow
-	movapd	xmm7, xmm0
-	movss	xmm0, DWORD PTR -44[rbp]
-	cvtss2sd	xmm0, xmm0
-	movsd	xmm1, QWORD PTR .LC3[rip]
+	movsd	%xmm0, -40(%rbp)
+	movss	-16(%rbp), %xmm0
+	cvtss2sd	%xmm0, %xmm0
+	movsd	.LC3(%rip), %xmm1
 	call	pow
-	addsd	xmm0, xmm7
+	addsd	-40(%rbp), %xmm0
 	call	sqrt
-	addsd	xmm0, xmm0
-	addsd	xmm0, xmm6
-	movq	rax, xmm0
-	mov	rdx, rax
-	mov	QWORD PTR -56[rbp], rdx
-	movsd	xmm0, QWORD PTR -56[rbp]
-	movapd	xmm1, xmm0
-	mov	rdx, rax
-	lea	rcx, .LC4[rip]
+	addsd	%xmm0, %xmm0
+	cvtsd2ss	%xmm0, %xmm3
+	movss	%xmm3, -12(%rbp)
+	movss	-24(%rbp), %xmm1
+	movss	-20(%rbp), %xmm0
+	addss	%xmm1, %xmm0
+	addss	-12(%rbp), %xmm0
+	cvtss2sd	%xmm0, %xmm0
+	movl	$.LC4, %edi
+	movl	$1, %eax
 	call	printf
-	mov	eax, 0
-	movaps	xmm6, XMMWORD PTR -32[rbp]
-	movaps	xmm7, XMMWORD PTR -16[rbp]
-	add	rsp, 96
-	pop	rbp
+	movl	$0, %eax
+	movq	-8(%rbp), %rsi
+	xorq	%fs:40, %rsi
+	je	.L3
+	call	__stack_chk_fail
+.L3:
+	leave
+	.cfi_def_cfa 7, 8
 	ret
-	.seh_endproc
-	.section .rdata,"dr"
+	.cfi_endproc
+.LFE0:
+	.size	main, .-main
+	.section	.rodata
 	.align 4
 .LC2:
 	.long	1073741824
@@ -81,8 +79,5 @@ main:
 .LC3:
 	.long	0
 	.long	1073741824
-	.ident	"GCC: (Rev1, Built by MSYS2 project) 6.3.0"
-	.def	printf;	.scl	2;	.type	32;	.endef
-	.def	scanf;	.scl	2;	.type	32;	.endef
-	.def	pow;	.scl	2;	.type	32;	.endef
-	.def	sqrt;	.scl	2;	.type	32;	.endef
+	.ident	"GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609"
+	.section	.note.GNU-stack,"",@progbits
