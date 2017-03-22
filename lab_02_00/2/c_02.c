@@ -5,11 +5,11 @@ float main(void)
 {
 	float x_a, x_b, x_c, y_a, y_b, y_c, s1, s2, s3;
 	printf("Pervuiu vershinu treugolinika: ");
-	scanf("%f%f%f", &x_a, &y_a);
+	scanf("%f%f", &x_a, &y_a);
 	printf("Vtoruiu vershinu treugolinika: ");
-	scanf("%f%f%f", &x_b, &y_b);
+	scanf("%f%f", &x_b, &y_b);
 	printf("Tretiu vershinu treugolinika: ");
-	scanf("%f%f%f", &x_c, &y_c);
+	scanf("%f%f", &x_c, &y_c);
 	
 	s1 = abs(sqrt(pow((x_b - x_a),2)) + sqrt(pow((y_b - y_a), 2) ));
 	s2 = abs(sqrt(pow((x_c - x_a),2)) + sqrt(pow((y_c - y_a), 2) ));
