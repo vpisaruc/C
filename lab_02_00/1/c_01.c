@@ -11,8 +11,10 @@ float main(void)
 	//Объявление переменных
 	float a,res;
 	int n;
-	a = 15.5;
-	n = 2;
+	printf("Vvedite chislo a: \n\n");
+	scanf("%f",&a);
+	printf("Vvedite stepeni chisla a: \n\n");
+	scanf("%d",&n);
 	//Возвожу в степень 
 	res = pow(a,n);
 	//Вывожу результат

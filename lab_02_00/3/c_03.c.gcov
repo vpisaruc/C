@@ -1,0 +1,47 @@
+        -:    0:Source:c_03.c
+        -:    0:Graph:c_03.gcno
+        -:    0:Data:c_03.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <stdio.h>
+        -:    2:#include <math.h>
+        -:    3:
+        -:    4:static float
+        5:    5:factorial (int n)
+        -:    6:{
+        -:    7:  float r;
+        5:    8:  for (r = 1; n > 1; r *= (n--));
+        5:    9:  return r;
+        -:   10:}
+        -:   11:
+        -:   12:
+        -:   13:
+        1:   14:float main(void)
+        -:   15:{
+        -:   16:    float x, eps, s, z, k, f, ab, otn;
+        1:   17:    printf("\n\nInput X: ");
+        1:   18:    scanf("%f", &x);
+        1:   19:    printf("\n\nInput epsilion: ");
+        1:   20:    scanf("%f", &eps);
+        1:   21:    s = 1;
+        1:   22:    z = x;
+        1:   23:    k = 1;
+        7:   24:    while (z > eps)
+        -:   25:    {
+        5:   26:	z = pow(x, k)/factorial(k);
+        5:   27:	s += z;
+        5:   28:	k += 1;
+        -:   29:    }
+        -:   30:
+        1:   31:    printf("\n\nSumma reada s tocinostiu %f ravna %f", eps, s);	
+        1:   32:    f = exp(x);
+        1:   33:    printf("\n\ne ^ x = %f ", f);
+        1:   34:    ab = fabs(f - s);
+        1:   35:    otn = fabs((f - s)/f);
+        1:   36:    printf("\n\nAbsoliutnaia oshibka: %f", ab);
+        1:   37:    printf("\n\nOtnositelinaia oshibka: %f", otn);
+        1:   38:    printf("\n\n");	
+        -:   39:	
+        1:   40:    return 0;
+        -:   41:
+        -:   42:}
