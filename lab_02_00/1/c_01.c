@@ -8,16 +8,16 @@
 
 float main(void)
 {
-	//Объявление переменных
-	float a,res;
-	int n;
-	printf("Vvedite chislo a: \n\n");
-	scanf("%f",&a);
-	printf("Vvedite stepeni chisla a: \n\n");
-	scanf("%d",&n);
-	//Возвожу в степень 
-	res = pow(a,n);
-	//Вывожу результат
+    //Объявление переменных
+    float a,res;
+    int n;
+    printf("Vvedite chislo a: \n\n");
+    scanf("%f",&a);
+    printf("Vvedite stepeni chisla a: \n\n");
+    scanf("%d",&n);
+    //Возвожу в степень 
+    res = pow(a,n);
+    //Вывожу результат
     printf("А в степени n  : %f \n",res);
 }
     
