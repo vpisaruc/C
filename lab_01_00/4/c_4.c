@@ -4,7 +4,7 @@
 
 int main(void)
 {
-    int a, p;
+    int a;
     printf("Enter how much coins do you have: ");
     scanf("%d", &a);
     printf("\n\nYou can buy %d botles\n", BOTLE_COUNT(a));
