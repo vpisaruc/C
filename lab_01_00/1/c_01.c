@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <math.h>
 
-//Вычисляю периметр трапеции
+
 #define SUM(a, b) (a + b)
 
 int main(void)
