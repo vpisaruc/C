@@ -1,1 +1,4 @@
-out_z.txt
+1) Empty file
+2) IO error
+3) Not enought data
+4) 4
