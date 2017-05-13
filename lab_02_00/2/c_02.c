@@ -18,8 +18,8 @@ float triangle(float x_a, float x_b, float x_c, float y_a, float y_b, float y_c)
     int n;
     //Находим квадраты сторон	
     s1_2 = pow((x_a - x_b), 2) + pow((y_a - y_b), 2);
-	s2_2 = pow((x_b - x_c), 2) + pow((y_b - y_c), 2);
-	s3_2 = pow((x_c - x_a), 2) + pow((y_c - y_a), 2);
+    s2_2 = pow((x_b - x_c), 2) + pow((y_b - y_c), 2);
+    s3_2 = pow((x_c - x_a), 2) + pow((y_c - y_a), 2);
 	
 	
 
