@@ -35,10 +35,7 @@ float sum(int x,float eps)
 }
 
 
-float ex(int x)
-{
-    return exp(x);
-}
+
 
 
 int main(void)
@@ -58,8 +55,8 @@ int main(void)
 	}
     printf("\n\nSumma reada s tocinostiu %f ravna %f", eps, sum(x,eps));	
     printf("\n\ne ^ x = %f ", ex(x));
-    ab = fabs(ex(x) - sum(x,eps));
-    otn = fabs((ex(x) - sum(x,eps))/ex(x));
+    ab = fabs(exp(x) - sum(x,eps));
+    otn = fabs((exp(x) - sum(x,eps))/exp(x));
     printf("\n\nAbsoliutnaia oshibka: %f", ab);
     printf("\n\nOtnositelinaia oshibka: %f", otn);
     printf("\n\n");	
