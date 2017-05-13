@@ -3,7 +3,7 @@
 
 
 #define WRONG_INPUT_1 -1 
-#define WRONG_INPUT_2 -1 
+#define WRONG_POWER -1 
 
 
 int step(int a, int n) 
@@ -18,7 +18,7 @@ int step(int a, int n)
 int main(void) 
 {
     int a,n;
-    printf("Введите число a и степень n: \n");
+    printf("Input number a and power n: \n");
     if(scanf ("%d %d", &a, &n) != 2)
 	{
 		printf("I/O error\n\n");
@@ -26,8 +26,8 @@ int main(void)
 	}
     if(n<0)
     {
-        printf("Введите положительную степень \n");
-		return WRONG_INPUT_1;
+        printf("Input positive power \n");
+		return WRONG_POWER;
     }
     printf("%d\n", step (a, n));
 }
