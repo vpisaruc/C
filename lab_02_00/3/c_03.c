@@ -17,7 +17,10 @@ float step(float a, float n)
 
 int fac(int n) 
 {
-   return n<=1 ? 1 : n * fac(n-1);
+   float fact;
+   fact = 1;
+   for (int i = 1; i <= k; f *= (i++));
+   return fact;
 }
 
 float sum(int x,float eps)
