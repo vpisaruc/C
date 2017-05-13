@@ -1,0 +1,14 @@
+Входные:                                              Выходные:
+Pervuiu vershinu treugolinika: 0 0         This is rectangular triangle
+Vtoruiu vershinu treugolinika: 5 0
+Tretiu vershinu treugolinika: 0 2.5
+________________________________________________________________________________
+Pervuiu vershinu treugolinika: 0 0                This is obtuse triangle
+Vtoruiu vershinu treugolinika: 3 3
+Tretiu vershinu treugolinika: 2 1
+________________________________________________________________________________
+Pervuiu vershinu treugolinika: 1 1                  This is acute triangle
+Vtoruiu vershinu treugolinika: 2 1
+Tretiu vershinu treugolinika: 1.25 3
+________________________________________________________________________________
+
