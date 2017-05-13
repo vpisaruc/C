@@ -3,6 +3,7 @@
 #define WRONG_INPUT_1 -1 
 #define WRONG_INPUT_2 -2
 #define OK 0
+#define NEGATIVE_EPS -3
 
 
 float step(float a, float n) 
@@ -52,6 +53,11 @@ int main(void)
 	{
 		printf("I/O error\n");
 		return WRONG_INPUT_2;
+	}
+	if (eps <= 0)
+	{
+	    printf("Eps could't be 0 or negative");
+	    return NEGATIVE_EPS;
 	}
     printf("\n\nSumma reada s tocinostiu %f ravna %f", eps, sum(x,eps));	
     printf("\n\ne ^ x = %f ", ex(x));
