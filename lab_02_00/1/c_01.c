@@ -6,7 +6,8 @@
 #define WRONG_INPUT_2 -1 
 
 
-int step(int a, int n) {
+int step(int a, int n) 
+{
     if(n == 0) 
     {
         return 1;
@@ -14,7 +15,8 @@ int step(int a, int n) {
     return a * step(a, n - 1);
  }
  
-int main(void) {
+int main(void) 
+{
     int a,n;
     printf("Введите число a и степень n: \n");
     if(scanf ("%d %d", &a, &n) != 2)
