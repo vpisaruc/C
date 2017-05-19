@@ -6,38 +6,23 @@
 #define NEGATIVE_EPS -3
 
 
-float step(float a, float n) 
-{
-    if(n == 0) 
-    {
-        return 1;
-    }
-    return a * step(a, n - 1);
-}
 
-int fac(int n) 
+float sum(int x,  float eps)
 {
-   float fact;
-   fact = 1;
-   for (int i = 1; i <= k; f *= (i++));
-   return fact;
-}
-
-float sum(int x,float eps)
-{
-    float s,z,k;
+    float s,z;
+    int i = 1;
+    
     s = 1;
-    z = x;
-    k = 1;
-    while (fabs(z) > eps)
+    z = 1;
+    
+    while (z > eps)
     {
-	    z = step(x, k)/fac(k);
+	    z = z * x/i;
 	    s += z;
-	    k += 1;
+	    i += 1;
     }
     return s;
 }
-
 
 
 
@@ -63,7 +48,7 @@ int main(void)
 	    return NEGATIVE_EPS;
 	}
     printf("\n\nSumma reada s tocinostiu %f ravna %f", eps, sum(x,eps));	
-    printf("\n\ne ^ x = %f ", ex(x));
+    printf("\n\ne ^ x = %f ", exp(x));
     ab = fabs(exp(x) - sum(x,eps));
     otn = fabs((exp(x) - sum(x,eps))/exp(x));
     printf("\n\nAbsoliutnaia oshibka: %f", ab);
