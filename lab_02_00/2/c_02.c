@@ -83,23 +83,23 @@ int main(void)
                 
             }
 			else
-            {
+			{
 				printf("I/O error\n");
 				return WRONG_INPUT_1;
-            }
-        }
+			}
+		}
 		else
-        {
+		{
 			printf("I/O error\n");
 			return WRONG_INPUT_2;
-        }
-    }
+		}
+	}
 
     else
-    {
+	{
 			printf("I/O error\n");
 			return WRONG_INPUT_3;
-    }
+	}
 
 
 }
