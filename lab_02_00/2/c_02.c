@@ -56,13 +56,13 @@ int main(void)
     //Ввод координат вершин
     printf("Pervuiu vershinu treugolinika: \n");
     if(scanf("%f %f", &x_a, &y_a) == 2)
-	{	
+    {	
 		printf("Vtoruiu vershinu treugolinika: \n");
         if (scanf("%f %f", &x_b, &y_b) == 2)
-		{
+        {
 			printf("Tretiu vershinu treugolinika: \n");
             if(scanf("%f %f", &x_c, &y_c) == 2)
-			{
+            {
 				n = triangle(x_a, x_b, x_c, y_a, y_b, y_c);
 				if (n == TRIANGLE_ERROR)
                 {
@@ -81,25 +81,25 @@ int main(void)
                     printf("This is obtuse triangle \n");
                 }
                 
-			}
+            }
 			else
-			{
+            {
 				printf("I/O error\n");
 				return WRONG_INPUT_1;
-			}
-		}
+            }
+        }
 		else
-		{
+        {
 			printf("I/O error\n");
 			return WRONG_INPUT_2;
-		}
-	}
+        }
+    }
 
     else
-	{
+    {
 			printf("I/O error\n");
 			return WRONG_INPUT_3;
-	}
+    }
 
 
 }
