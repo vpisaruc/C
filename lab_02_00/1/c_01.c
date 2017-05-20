@@ -20,14 +20,14 @@ int main(void)
     int a,n;
     printf("Input number a and power n: \n");
     if(scanf ("%d %d", &a, &n) != 2)
-	{
-		printf("I/O error\n\n");
-		return WRONG_INPUT_2;
-	}
+    {
+        printf("I/O error\n\n");
+        return WRONG_INPUT_2;
+    }
     if(n<0)
     {
         printf("Input positive power \n");
-		return WRONG_POWER;
+        return WRONG_POWER;
     }
     printf("%d\n", step (a, n));
 }
