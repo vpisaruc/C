@@ -3,8 +3,8 @@
 
 
 #define INPUT_ERROR -1
-#define NON_NEGATIVE -1
-#define EMPTY -1
+#define NON_NEGATIVE -2
+#define EMPTY -3
 #define OK 0
 
 
@@ -12,7 +12,7 @@
 
 int maxfind(FILE*f, int *mx)
 {
-    bool flag_1 = false;
+    bool flag_1 = false, flag_2 = false;
     int number;
     if (fscanf(f,"%d",mx) == 1)
     {
@@ -22,7 +22,7 @@ int maxfind(FILE*f, int *mx)
             {
                 flag_1 = true;
             }
-            if (flag_1 && number > *mx)
+            if (number > *mx)
             {
                 *mx = number;
             }
