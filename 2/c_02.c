@@ -81,13 +81,13 @@ int main(int argc, char **argv)
 
 
 
-    if (average_value(file, &middle) == 0)
+    if (average_value(file, &middle) == OK)
     {
 
         md = middle;
         printf("Average value is %f\n", md);
         rewind(file);
-        if ((number_near_middle(file, &true_number, &md)) == 0)
+        if ((number_near_middle(file, &true_number, &md)) == OK)
         {
             printf("The nearest number to the average value is %f\n",true_number);
             fclose(file);
