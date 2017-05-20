@@ -31,7 +31,7 @@ int maxfind(FILE*f, int *mx)
         {
             return OK;
         }
-        else
+        elses
         {
             return NON_NEGATIVE;
         }
