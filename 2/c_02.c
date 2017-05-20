@@ -95,7 +95,7 @@ int main(int argc, char **argv)
         }
         else
         {
-            printf("Wrong data")
+            printf("Wrong data");
         }
     }
     else
