@@ -20,11 +20,11 @@ float triangle(float x_a, float x_b, float x_c, float y_a, float y_b, float y_c)
     s1_2 = pow((x_a - x_b), 2) + pow((y_a - y_b), 2);
     s2_2 = pow((x_b - x_c), 2) + pow((y_b - y_c), 2);
     s3_2 = pow((x_c - x_a), 2) + pow((y_c - y_a), 2);
-	
-	
+
+
 
     //Проверка на существование треугольника	
-    if (((s1_2 + s2_2) > s3_2) & ((s1_2 + s3_2) > s2_2) & ((s2_2 + s3_2) > s1_2))
+    if (((s1_2 + s2_2) > s3_2) || ((s1_2 + s3_2) > s2_2) || ((s2_2 + s3_2) > s1_2))
     {
         //Проверка является ли треугольник прямоугольным
         if ((s3_2 == s1_2 + s2_2) || (s2_2 == s1_2 + s3_2) || (s1_2 == s3_2 + s2_2))
@@ -56,15 +56,15 @@ int main(void)
     //Ввод координат вершин
     printf("Pervuiu vershinu treugolinika: \n");
     if(scanf("%f %f", &x_a, &y_a) == 2)
-	{	
-		printf("Vtoruiu vershinu treugolinika: \n");
+    {
+        printf("Vtoruiu vershinu treugolinika: \n");
         if (scanf("%f %f", &x_b, &y_b) == 2)
-		{
-			printf("Tretiu vershinu treugolinika: \n");
+        {
+            printf("Tretiu vershinu treugolinika: \n");
             if(scanf("%f %f", &x_c, &y_c) == 2)
-			{
-				n = triangle(x_a, x_b, x_c, y_a, y_b, y_c);
-				if (n == TRIANGLE_ERROR)
+            {
+                n = triangle(x_a, x_b, x_c, y_a, y_b, y_c);
+                if (n == TRIANGLE_ERROR)
                 {
                     printf("This is not triangle \n");
                 }
@@ -81,25 +81,25 @@ int main(void)
                     printf("This is obtuse triangle \n");
                 }
                 
-			}
-			else
-			{
-				printf("I/O error\n");
-				return WRONG_INPUT_1;
-			}
-		}
-		else
-		{
-			printf("I/O error\n");
-			return WRONG_INPUT_2;
-		}
-	}
+            }
+            else
+            {
+                printf("I/O error\n");
+                return WRONG_INPUT_1;
+            }
+        }
+        else
+        {
+            printf("I/O error\n");
+            return WRONG_INPUT_2;
+        }
+    }
 
     else
-	{
-			printf("I/O error\n");
-			return WRONG_INPUT_3;
-	}
+    {
+            printf("I/O error\n");
+            return WRONG_INPUT_3;
+    }
 
 
 }
