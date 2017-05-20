@@ -5,6 +5,7 @@
 #define INPUT_ERROR -1
 #define NON_NEGATIVE -1
 #define EMPTY -1
+#define OK 0
 
 
 
@@ -28,7 +29,7 @@ int maxfind(FILE*f, int *mx)
         }
         if (flag_1 ==true)
         {
-            return 0;
+            return OK;
         }
         else
         {
@@ -45,7 +46,7 @@ int main(void)
 
 {
     int mx;
-    if (maxfind(stdin, &mx) != 0)
+    if (maxfind(stdin, &mx) != OK)
     {
         printf("File is empty or there are not enought information  \n\n");
         return EMPTY;
@@ -54,5 +55,5 @@ int main(void)
     {
         printf("Maximum after minus number is %d \n\n", mx);
     }
-    return 0;
+    return OK;
 }
