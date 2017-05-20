@@ -33,7 +33,6 @@ int maxfind(FILE*f, int *mx)
         }
         else
         {
-            printf("All numbers are positive or empty input \n\n");
             return NON_NEGATIVE;
         }
     }
