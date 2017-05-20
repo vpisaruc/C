@@ -13,7 +13,7 @@ int step(int a, int n)
         return 1;
     }
     return a * step(a, n - 1);
- }
+}
  
 int main(void) 
 {
