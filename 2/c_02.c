@@ -3,8 +3,8 @@
 
 
 #define OK 0
-#define WRONG_INPUT_1 -1
-#define WRONG_INPUT_2 -2
+#define ERROR_DATA_1 -1
+#define ERROR_DATA_2 -2
 #define FILE_ERROR -3
 #define EMPTY_FILE -4
 
@@ -30,7 +30,7 @@ float average_value(FILE *file, float *middle)
         return OK;
     
     }
-    return WRONG_INPUT_1;
+    return ERROR_DATA_1;
 }
 
 
@@ -57,7 +57,7 @@ float number_near_middle(FILE *file, float *true_number, float *md )
         }
         return OK;
     }
-    return WRONG_INPUT_2;
+    return ERROR_DATA_2;
 }
 
 
@@ -92,6 +92,10 @@ int main(int argc, char **argv)
             printf("The nearest number to the average value is %f\n",true_number);
             fclose(file);
             return OK;
+        }
+        else
+        {
+            printf("Wrong data")
         }
     }
     else
