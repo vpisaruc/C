@@ -13,30 +13,53 @@
 int maxfind(FILE*f, int *mx)
 {
     bool flag_1 = false, flag_2 = false;
-    int number;
-    if (fscanf(f,"%d",mx) == 1)
-    {
-        while (fscanf(f,"%d",&number) == 1)
-        {
-            if (number < 0)
-            {
-                flag_1 = true;
-            }
-            if (number > *mx)
-            {
-                *mx = number;
-            }
-        }
-        if (flag_1 ==true)
-        {
-            return OK;
-        }
-        elses
-        {
-            return NON_NEGATIVE;
-        }
-    }
-    return INPUT_ERROR;
+    int number,  number_old = -1;
+	
+    
+	while (fscanf(f,"%d",&number) == 1)
+	{
+		if (number < 0)
+		{
+			if (flag_1)
+			{
+				// Вывод результата
+				printf("\n%d\n",number_old);
+			}
+			else
+			{
+				flag_1 = true;
+			}
+			number_old = -1;
+		}
+		else
+	    {
+			if (number > number_old && flag_1)
+			{
+				number_old = number;
+			}
+		}
+	}
+	
+	// последний результат
+	if (number_old != -1)
+	{
+		// Вывод результата
+		printf("\n%d\n",number_old);		
+		
+		return OK;
+	}
+	else
+	{
+		if (flag_1) 
+		{
+			return NON_NEGATIVE;
+		}
+		else
+		{
+			return INPUT_ERROR;		
+		}
+	}
+   
 }
 
 
