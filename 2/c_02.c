@@ -12,12 +12,14 @@
 float average_value(FILE *file, float *middle)
 {
     float num_1,s,k;
-    k = 0;
+    k = 1;
     
     if (fscanf(file, "%f", middle) == 1)
     {
+        s = *middle;
         while (fscanf(file, "%f", &num_1) == 1)
         {
+            
             s += num_1;
             k += 1;
             
