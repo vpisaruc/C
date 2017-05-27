@@ -1,0 +1,116 @@
+        -:    0:Source:c_01.c
+        -:    0:Graph:c_01.gcno
+        -:    0:Data:c_01.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <stdio.h>
+        -:    2:#include <assert.h>
+        -:    3:#define True 1
+        -:    4:#define OK 1
+        -:    5:#define ERROR_1 -1
+        -:    6:#define OUT_1 2
+        -:    7:#define in 0
+        -:    8:
+        2:    9:int fill_arrays(FILE *file,int *size_a, int *a)
+        -:   10:{
+        -:   11:    int num_1,s,t;
+        2:   12:    int i = 0 ;
+        2:   13:    int j = 0;
+        2:   14:    int k = 0;
+        -:   15:
+        2:   16:    if (fscanf(file, "%d", size_a) == 1)
+        -:   17:    {
+        2:   18:        s = *size_a;
+       12:   19:        while (fscanf(file, "%d", &a[i]) == 1)
+        -:   20:        {
+        8:   21:            i++;
+        -:   22:        }
+        2:   23:        printf("\n\n");
+        2:   24:        printf("Ishodnii massiv: ");
+       10:   25:        for (int i = 0; i < s; i++)
+        -:   26:        {
+        8:   27:            printf("%4d", a[i]);
+        -:   28:        }
+        4:   29:        return i;
+        -:   30:    }
+        -:   31:
+    #####:   32:}
+        -:   33:
+        -:   34:
+        4:   35:int check(int num, int *a, int size) 
+        -:   36:{
+        4:   37:    int numArray = OUT_1; 
+        4:   38:    int *p = a;
+       24:   39:    while (p - a < size)
+        -:   40:    {
+       16:   41:        if (*p == num)
+        -:   42:        {
+    #####:   43:            numArray = in; 
+    #####:   44:            break;
+        -:   45:        }
+       16:   46:        p++;
+        -:   47:    }
+        4:   48:    return numArray;
+        -:   49:}
+        -:   50:
+    #####:   51:int fill(FILE *file, int *a, int size)
+        -:   52:{
+    #####:   53:    int func_state = OK;
+    #####:   54:    int *p = a;
+        -:   55:    while (True)
+    #####:   56:        if ((fscanf(file, "%d", &*p)) == EOF)
+        -:   57:        {
+    #####:   58:            func_state = ERROR_1;
+    #####:   59:            break;
+        -:   60:        }
+    #####:   61:        else if (p - a < 100)
+    #####:   62:            p++;
+    #####:   63:    return func_state;
+        -:   64:}
+        -:   65:
+        1:   66:int max(int a, int b)
+        -:   67:{
+        -:   68:    int result;
+        1:   69:    if (a >= b)
+        1:   70:        result = a;
+        -:   71:    else
+    #####:   72:        result = b;
+        1:   73:    return result;
+        -:   74:}
+        -:   75:
+        -:   76:
+        -:   77:
+        1:   78:int main(int argc, char **argv) 
+        1:   79:{
+        -:   80:    FILE *file;
+        -:   81:    FILE *file1;
+        -:   82:    int a[100];
+        -:   83:    int b[100];
+        -:   84:    int size_a, size_b;
+        1:   85:    file = fopen(argv[1], "r");  
+        1:   86:    file1 = fopen(argv[2], "r");  
+        1:   87:    size_a = fill_arrays(file,&size_a,a);
+        1:   88:    size_b = fill_arrays(file1,&size_b,b);
+        1:   89:    printf("\nsize a: %d \n size_b:  %d\n",size_a,size_b);
+        1:   90:    int maxSize = max(size_a, size_b);
+        1:   91:    printf("\nMax size: %d\n",maxSize);
+        1:   92:    int differ[maxSize];
+        1:   93:    int i = 0;
+        1:   94:    int k = 0;
+        5:   95:    for(i=0;i<size_a;i++)
+        -:   96:    {
+        4:   97:        if (check(a[i],b,size_b))
+        -:   98:        {
+        4:   99:            differ[k] = a[i];
+        4:  100:            k++;
+        -:  101:        }
+        -:  102:    }
+        1:  103:    i = 0;
+        1:  104:    printf("\nRaznosti massivov: ");
+        5:  105:    for(i=0;i<k;i++)
+        4:  106:        printf("%d ",differ[i]);
+        1:  107:    printf("\n\n");
+        1:  108:    return 0;
+        -:  109:}
+        -:  110:
+        -:  111:
