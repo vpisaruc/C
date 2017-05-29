@@ -1,3 +1,5 @@
+
+
 #include <stdio.h>
 #include <math.h>
 
@@ -12,10 +14,9 @@
 #define TRIANGLE_ERROR -5
 #define OK 0
 
-float triangle(float x_a, float x_b, float x_c, float y_a, float y_b, float y_c)
+int triangle(float x_a, float x_b, float x_c, float y_a, float y_b, float y_c)
 {
-    float s1, s2, s3, s1_2, s2_2, s3_2;
-    int n;
+    float s1_2, s2_2, s3_2;
     //Находим квадраты сторон	
     s1_2 = pow((x_a - x_b), 2) + pow((y_a - y_b), 2);
     s2_2 = pow((x_b - x_c), 2) + pow((y_b - y_c), 2);
@@ -24,15 +25,15 @@ float triangle(float x_a, float x_b, float x_c, float y_a, float y_b, float y_c)
 
 
     //Проверка на существование треугольника	
-    if (((s1_2 + s2_2) > s3_2) && ((s1_2 + s3_2) > s2_2) && ((s2_2 + s3_2) > s1_2))
+    if (((s1_2 + s2_2) > s3_2) || ((s1_2 + s3_2) > s2_2) || ((s2_2 + s3_2) > s1_2))
     {
         //Проверка является ли треугольник прямоугольным
-        if ((s3_2 == s1_2 + s2_2) || (s2_2 == s1_2 + s3_2) || (s1_2 == s3_2 + s2_2))
+        if ((s3_2 == (s1_2 + s2_2)) || (s2_2 == (s1_2 + s3_2)) || (s1_2 == (s3_2 + s2_2)))
         {
             return RECTAGULAR;
         }
         //Проверка является ли треугольник остроугольным
-        else if ((s1_2 + s2_2) > s3_2) || ((s1_2 + s3_2) > s2_2) || ((s3_2 + s2_2) > s1_2))
+        if (((s1_2 + s2_2) > s3_2) && ((s1_2 + s3_2) > s2_2) && ((s3_2 + s2_2) > s1_2))
         {
             return ACUTE;
         }
@@ -103,3 +104,4 @@ int main(void)
 
 
 }
+
