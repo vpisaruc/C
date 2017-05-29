@@ -12,7 +12,7 @@
 
 int maxfind(FILE*f, int *mx)
 {
-    bool flag_1 = false, flag_2 = false;
+    bool flag_1 = false;
     int number,  number_old = -1;
     
     
