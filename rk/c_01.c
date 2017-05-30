@@ -37,28 +37,28 @@ return FILE_ERROR;
 
 int check_array(int *a, int size_a, int *b, int size_b, int *c)
 {
-	int size_c = 0, k;
+    int size_c = 0, k;
 
 
-	for (int i = 0; i < size_a; i++)
-	{
-		k = 0;
-		for (int j = 0; j < size_b; j++)
-		{
-			if (b[j] == a[i])
-			{
-				k = 1;
-				break;
-			}
-		}
+    for (int i = 0; i < size_a; i++)
+    {
+        k = 0;
+        for (int j = 0; j < size_b; j++)
+        {
+            if (b[j] == a[i])
+            {
+                k = 1;
+                break;
+            }
+        }
 
-		if (k == 0)
-		{
-			c[size_c] = a[i];
-			size_c++;
-		}
+        if (k == 0)
+        {
+            c[size_c] = a[i];
+            size_c++;
+        }
         
-	}
+    }
     if (size_c == 0)
     {
         return ZERO_ELEMESTS;
@@ -72,12 +72,12 @@ int check_array(int *a, int size_a, int *b, int size_b, int *c)
 
 void print_array(int *array, int size)
 {
-	for (int i = 0; i < size; i++)
-	{
-		printf("%4d", array[i]);
-	}
+    for (int i = 0; i < size; i++)
+    {
+        printf("%4d", array[i]);
+    }
 
-	printf("\n\n");
+    printf("\n\n");
 }
 
 
@@ -86,8 +86,8 @@ void print_array(int *array, int size)
 
 int main(int argc, char **argv)
 {
-	int a[100], b[100], c[100];
-	int size_a = 0; 
+    int a[100], b[100], c[100];
+    int size_a = 0; 
     int size_b = 0; 
     int size_c = 0;
     FILE *file;
@@ -126,11 +126,11 @@ int main(int argc, char **argv)
                 else
                 {
                     printf("Array x: ");
-	                print_array(a, size_a);
+                    print_array(a, size_a);
                     printf("Array y: ");
-	                print_array(b, size_b);
+                    print_array(b, size_b);
                     printf("Array z: ");
-	                print_array(c, size_c);
+                    print_array(c, size_c);
                 }
             }
             
@@ -140,9 +140,6 @@ int main(int argc, char **argv)
     {
         printf("Print only 2 filese and exe file");
     }
-	
-
 }
-
 
 
