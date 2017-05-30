@@ -1,0 +1,21 @@
+1)File 'c_01.c'
+Lines executed:22.81% of 57
+Creating 'c_01.c.gcov'
+
+2)File 'c_01.c'
+Lines executed:33.33% of 57
+Creating 'c_01.c.gcov'
+
+3)File 'c_01.c'
+Lines executed:43.86% of 57
+Creating 'c_01.c.gcov'
+
+4)File 'c_01.c'
+Lines executed:68.42% of 57
+Creating 'c_01.c.gcov'
+
+5)File 'c_01.c'
+Lines executed:96.49% of 57
+Creating 'c_01.c.gcov'
+
+
