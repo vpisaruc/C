@@ -101,7 +101,6 @@ int main(int argc, char **argv)
         }
     }
     i = 0;
-    printf("\nRaznosti massivov: ");
     for(i=0;i<k;i++)
         printf("%d ",differ[i]);
     printf("\n\n");
