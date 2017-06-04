@@ -1,0 +1,27 @@
+Входные:                             Выходные:
+
+Input X: 2                          Summa reada s tocinostiu 0.001000 ravna 7.388995
+Input epsilion: 1e-3                e ^ x = 7.389056 
+                                    Absoliutnaia oshibka: 0.000061
+                                    Otnositelinaia oshibka: 0.000008
+_____________________________________________________________________________________
+
+Input X: 1                          Summa reada s tocinostiu 0.100000 ravna 2.708333
+Input epsilion: 0.1                 e ^ x = 2.718282 
+                                    Absoliutnaia oshibka: 0.009948
+                                    Otnositelinaia oshibka: 0.003660
+
+_____________________________________________________________________________________
+Input X: 1                          Summa reada s tocinostiu 0.000000 ravna 2.718282
+Input epsilion: 1e-10               e ^ x = 2.718282 
+                                    Absoliutnaia oshibka: 0.000000
+                                    Otnositelinaia oshibka: 0.000000
+                                    
+P.s Относительная и абсолютная ошибки есть ,но они крайне малы
+______________________________________________________________________________________
+
+
+
+
+
+
