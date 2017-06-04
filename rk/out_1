@@ -1,6 +1,11 @@
-Array x:    2  45  63   4
+Array x: 
+   2  45  63  71
 
-Array y:    2   3   4   7
 
-Array z:   45  63
+Array y: 
+   2   3   4   7
+
+
+Count of numbers in both arrays = 1
+
 
