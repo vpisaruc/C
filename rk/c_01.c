@@ -35,40 +35,42 @@ return FILE_ERROR;
 }
 
 
-int check_array(int *a, int size_a, int *b, int size_b, int *c)
+
+int check_array(int *a, int size_a, int *b, int size_b, int *cntEqual)
 {
-    int size_c = 0, k;
-
-
-    for (int i = 0; i < size_a; i++)
+    int i1 = 0, i2 = 0, cnt = 0;
+    if(size_a != 0)
     {
-        k = 0;
-        for (int j = 0; j < size_b; j++)
+        if(size_b!= 0)
         {
-            if (b[j] == a[i])
+            while (i1 < size_a && i2 < size_b)
             {
-                k = 1;
-                break;
+                if (a[i1] < b[i2])
+                {
+                    i1++;
+                }
+                else if (a[i1] == b[i2])
+                {
+                    cnt++;
+                    i1++;
+                    i2++;
+                }
+                else if (a[i1] > b[i2])
+                {
+                    i2++;
+                }
+                
             }
+        *cntEqual = cnt;
+        return OK;
         }
+    return ZERO_ELEMESTS;
+    }
+return ZERO_ELEMESTS;
 
-        if (k == 0)
-        {
-            c[size_c] = a[i];
-            size_c++;
-        }
-        
-    }
-    if (size_c == 0)
-    {
-        return ZERO_ELEMESTS;
-    }
-    else
-    {
-        return size_c;
-    }
-    assert(size_c <= size_a + size_b);
 }
+
+
 
 void print_array(int *array, int size)
 {
@@ -86,10 +88,11 @@ void print_array(int *array, int size)
 
 int main(int argc, char **argv)
 {
-    int a[100], b[100], c[100];
-    int size_a = 0; 
+    int a[100], b[100];
+    int size_a = 0;
+    int retVal;
     int size_b = 0; 
-    int size_c = 0;
+    int cntEqual = 0;
     FILE *file;
     FILE *file1;
     file = fopen(argv[argc - 1], "r");  
@@ -118,19 +121,18 @@ int main(int argc, char **argv)
             }
             else
             {
-                size_c = check_array(a, size_a, b, size_b, c);
-                if (size_c ==ZERO_ELEMESTS)
+                retVal = check_array(a, size_a, b, size_b, &cntEqual);
+                if (retVal == 0)
                 {
-                    printf("\nZero elements array \n");
+                    printf("\nArray x: \n");
+                    print_array(a, size_a);
+                    printf("\nArray y: \n");
+                    print_array(b, size_b);
+                    printf("\nCount of numbers in both arrays = %d\n", cntEqual);
                 }
                 else
                 {
-                    printf("Array x: ");
-                    print_array(a, size_a);
-                    printf("Array y: ");
-                    print_array(b, size_b);
-                    printf("Array z: ");
-                    print_array(c, size_c);
+                    printf("Size of one array == 0");
                 }
             }
             
@@ -141,5 +143,4 @@ int main(int argc, char **argv)
         printf("Print only 2 filese and exe file");
     }
 }
-
 
