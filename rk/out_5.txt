@@ -1,0 +1,9 @@
+Array x: 
+   2   2   2
+
+
+Array y: 
+   2   2   2   2
+
+
+Count of numbers in both arrays = 3
