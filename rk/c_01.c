@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <assert.h>
 
@@ -122,7 +121,7 @@ int main(int argc, char **argv)
             else
             {
                 retVal = check_array(a, size_a, b, size_b, &cntEqual);
-                if (retVal == 0)
+                if (retVal == OK)
                 {
                     printf("\nArray x: \n");
                     print_array(a, size_a);
