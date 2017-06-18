@@ -1,0 +1,153 @@
+        -:    0:Source:c_01.c
+        -:    0:Graph:c_01.gcno
+        -:    0:Data:c_01.gcda
+        -:    0:Runs:5
+        -:    0:Programs:1
+        -:    1:
+        -:    2:#include <stdio.h>
+        -:    3:#include <assert.h>
+        -:    4:
+        -:    5:#define OK 0
+        -:    6:#define FILE_ERROR -1
+        -:    7:#define ZERO_ELEMESTS -2
+        -:    8:
+        -:    9:
+        -:   10:
+        -:   11:
+        8:   12:int fill_arrays(FILE *file,int *size, int *array)
+        -:   13:{
+        -:   14:    int s;
+        8:   15:    int i = 0 ;
+        -:   16:
+        8:   17:    if (fscanf(file, "%d", size) == 1)
+        -:   18:    {
+        6:   19:        s = *size;
+        6:   20:        assert(s < 100);
+       33:   21:        while (fscanf(file, "%d", &array[i]) == 1)
+        -:   22:        {
+       21:   23:            i++;
+        -:   24:        }
+        6:   25:        if (s > 0)
+        -:   26:        {
+        5:   27:            return s;
+        -:   28:        }
+        -:   29:        else
+        -:   30:        {
+        1:   31:            return ZERO_ELEMESTS;
+        -:   32:        }
+        -:   33:    }
+        2:   34:return FILE_ERROR;
+        -:   35:}
+        -:   36:
+        -:   37:
+        2:   38:int check_array(int *a, int size_a, int *b, int size_b, int *c)
+        -:   39:{
+        2:   40:	int size_c = 0, k;
+        -:   41:
+        -:   42:
+        8:   43:	for (int i = 0; i < size_a; i++)
+        -:   44:	{
+        6:   45:		k = 0;
+       12:   46:		for (int j = 0; j < size_b; j++)
+        -:   47:		{
+       10:   48:			if (b[j] == a[i])
+        -:   49:			{
+        4:   50:				k = 1;
+        4:   51:				break;
+        -:   52:			}
+        -:   53:		}
+        -:   54:
+        6:   55:		if (k == 0)
+        -:   56:		{
+        2:   57:			c[size_c] = a[i];
+        2:   58:			size_c++;
+        -:   59:		}
+        -:   60:        
+        -:   61:	}
+        2:   62:    if (size_c == 0)
+        -:   63:    {
+        1:   64:        return ZERO_ELEMESTS;
+        -:   65:    }
+        -:   66:    else
+        -:   67:    {
+        1:   68:        return size_c;
+        -:   69:    }
+        -:   70:    assert(size_c <= size_a + size_b);
+        -:   71:}
+        -:   72:
+        3:   73:void print_array(int *array, int size)
+        -:   74:{
+        7:   75:	for (int i = 0; i < size; i++)
+        -:   76:	{
+        4:   77:		printf("%4d", array[i]);
+        -:   78:	}
+        -:   79:
+        3:   80:	printf("\n\n");
+        3:   81:}
+        -:   82:
+        -:   83:
+        -:   84:
+        -:   85:
+        -:   86:
+        5:   87:int main(int argc, char **argv)
+        -:   88:{
+        -:   89:	int a[100], b[100], c[100];
+        5:   90:	int size_a = 0; 
+        5:   91:    int size_b = 0; 
+        5:   92:    int size_c = 0;
+        -:   93:    FILE *file;
+        -:   94:    FILE *file1;
+        5:   95:    file = fopen(argv[argc - 1], "r");  
+        5:   96:    file1 = fopen(argv[argc - 2], "r"); 
+        5:   97:    size_a = fill_arrays(file,&size_a,a);
+        5:   98:    if (argc == 3)
+        -:   99:    {
+        3:  100:        if (size_a == ZERO_ELEMESTS)
+        -:  101:        {
+    #####:  102:            printf("\nArray is empty\n");
+        -:  103:        }
+        3:  104:        if (size_a == FILE_ERROR)
+        -:  105:        {
+    #####:  106:            printf("\nWrong data in file\n");
+        -:  107:        }
+        -:  108:        else
+        -:  109:        {
+        3:  110:            size_b = fill_arrays(file1,&size_b,b);
+        3:  111:            if (size_b == ZERO_ELEMESTS)
+        -:  112:            {
+        1:  113:                printf("\nArray is empty\n");
+        -:  114:            }
+        3:  115:            if (size_b == FILE_ERROR)
+        -:  116:            {
+        1:  117:                printf("\nWrong data in file\n");
+        -:  118:            }
+        -:  119:            else
+        -:  120:            {
+        2:  121:                size_c = check_array(a, size_a, b, size_b, c);
+        2:  122:                if (size_c ==ZERO_ELEMESTS)
+        -:  123:                {
+        1:  124:                    printf("\nZero elements array \n");
+        -:  125:                }
+        -:  126:                else
+        -:  127:                {
+        1:  128:                    printf("Array x: ");
+        1:  129:	                print_array(a, size_a);
+        1:  130:                    printf("Array y: ");
+        1:  131:	                print_array(b, size_b);
+        1:  132:                    printf("Array z: ");
+        1:  133:	                print_array(c, size_c);
+        -:  134:                }
+        -:  135:            }
+        -:  136:            
+        -:  137:        }
+        -:  138:    }
+        -:  139:    else
+        -:  140:    {
+        2:  141:        printf("Print only 2 filese and exe file");
+        -:  142:    }
+        -:  143:	
+        -:  144:
+        -:  145:}
+        -:  146:
+        -:  147:
+        -:  148:
