@@ -6,44 +6,55 @@
 
 #define INPUT_ERROR 1
 
-double line(double x)
+double f1(double x)
 {
-    return x;
+    return 3 * x + 2;
 }
 
 
-double parabola(double x)
+double f2(double x)
 {
-    return x * x;
+    return exp(x);
 }
 
-double sq(double x)
+
+double f3(double x)
 {
-    return sqrt(fabs(x));
-} 
+    return exp( -x + 2);
+}
+
 
 
 int main(void)
 {
-    double eps, a, b;
+    double eps, a, b, root, per1, per2, per3;
 
-    printf("Vvedite tocinosti: ");
-    if (scanf("%lf",eps) != 1)
-    {
-        printf("Vvedite chislo ");
-        return INPUT_ERROR;
-    }
-    
+
     printf("Vvedite intervali integrirovaniia: ");
-    if (scanf("%lf %lf",a, b) != 2)
+    if (scanf("%lf %lf", &a, &b) != 2)
     {
         printf("Vvedite dva chisla ");
         return INPUT_ERROR;
     }
 
-    printf("line [0 - 1] %e\n", integral(0.0, 1.0, 0.001, trapezium, line));
-    printf("parabola [0 - 1] %e\n", integral(0.0, 1.0, 0.001, trapezium, parabola));
-    printf("parabola [-1 - 1] %e\n", integral(-1.0, 1.0, 0.001, trapezium, sq));
-    return 0;
-}
+    else
+    {
+        printf("Vvedite tocinosti: ");
+        if (scanf("%lf", &eps) != 1)
+        {
+            printf("Vvedite chislo ");
+            return INPUT_ERROR;
+        }
+        else
+        {
+            per1 = tochkki_peresech(a, b, eps, f1, f3);
+            per3 = tochkki_peresech(a, b, eps, f2, f3);
+            per2 = tochkki_peresech(a, b, eps, f1, f2);
+            
+            root = integral(per1, per2, eps, trapezium, f1) - integral(per1, per3, eps, trapezium, f3) + integral(per2, per3, eps, trapezium, f2);
 
+            printf("%lf", root);
+            return 0;
+        }
+    }
+}
