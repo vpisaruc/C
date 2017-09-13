@@ -8,6 +8,8 @@ typedef double (*func_t)(double);
 typedef double (*method_t)(double, double, int, func_t);
 
 
+
+//Vichisl integral
 double integral(double a, double b, double eps, method_t meth, func_t func)
 {
     assert(a < b);
@@ -33,7 +35,7 @@ double integral(double a, double b, double eps, method_t meth, func_t func)
 }
 
 
-// n - number of points
+//Nahodim ploshiadi
 double trapezium(double a, double b, int n, func_t func)
 {
     assert(a < b);
@@ -55,14 +57,33 @@ double trapezium(double a, double b, int n, func_t func)
 }
 
 
-double FindRoot(double a,double b,double eps, func_t func)
+
+
+
+//Ishim tochkki peresech
+double tochkki_peresech(double a, double b, double eps, func_t f1, func_t f2)
 {
     double c;
-    while((b-a)/2>eps)
+    if (f1(a) == f2(a))
     {
-        c=(a+b)/2;
-        if((f(a)*f(c))>0) a=c;
-        else b=c;
+        return a;
+    }
+    if (f1(b) == f2(b))
+    {
+        return b;
+    }
+    while ((b - a) > eps)
+    {
+        c = (b - a) / 2;
+        printf("%e\n", c);
+        if ((f1(a) > f2(a) && f1(c) < f2(c)) || (f1(a) < f2(a) && f1(c) > f2(c)))
+        {
+            b = c;
+        }
+        else
+        {
+            a = c;
+        }
     }
     return c;
 }
