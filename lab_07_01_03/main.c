@@ -9,6 +9,8 @@ int main(int argc, char **argv)
     FILE *file;
     int retVal, cntElem, cntWorkElem;
     int *arrInp, *arrWork, *idxWork, *afterLastElem, *lastPrintElem;
+    
+    unsigned long long tb, te;
 
     // Открытие файла c тестовыми данными для чтения
     file = fopen("in_z.txt", "r");
@@ -62,8 +64,11 @@ int main(int argc, char **argv)
     printArray(1, arrWork, lastPrintElem);
 
     // Сортировка отфильтрованного массива
+    tb = tick();
     sortArray(arrWork, cntWorkElem, sizeof(int), compareFunc);
-
+    te = tick();
+    
+    printf("\n\ntest 'time': %llu\n\n", (te - tb));
     // Печать отсортированного массива
     lastPrintElem = arrWork + cntWorkElem - 1;
     printArray(1, arrWork, lastPrintElem);

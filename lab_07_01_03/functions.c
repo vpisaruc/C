@@ -6,6 +6,18 @@
 
 
 
+
+unsigned long long tick(void)
+
+{
+    unsigned long long d;
+    __asm__ __volatile__ ("rdtsc" : "=A" (d) );
+    return d;
+}
+
+
+
+
 // Количество элементов в файле
 int countFileData(FILE *file, int *cntElem)
 {
@@ -23,13 +35,13 @@ int countFileData(FILE *file, int *cntElem)
         {
             case 0:
             {
-                      // неправильная структура файла
-                      return ERROR_FILE_DATA_STRUCTURE;
-                      break;
+                 // неправильная структура файла
+                 return ERROR_FILE_DATA_STRUCTURE;
+                 break;
             }
             case 1:
             {
-                      cnt++;
+                 cnt++;
             }
         }
     }
@@ -55,7 +67,7 @@ int loadFileData(FILE *file, int *arrInp)
 
     idx = arrInp;
 
-    // считывание файла  
+    // считывание файла
     while (retVal == 1)
     {
         retVal = fscanf(file, "%d", &value);
@@ -72,7 +84,7 @@ int loadFileData(FILE *file, int *arrInp)
             {
                       *idx = value;
                       idx++;
-                      cnt++;
+                      cnt++;  //МОжно и без этого, но это на случай, если файл изменился
             }
         }
     }
@@ -99,7 +111,7 @@ void filterData(int *arrInp, int *afterLastElem,  int *arrWork, int *cntWorkElem
         if (*idxInp < 0)
         {
             // все положительные - будут перезаписаны все элементы
-            cntToLastNegative = cnt;
+            cntToLastNegative = cnt; // индекс последнего отрицательного элемента
         }
         idxInp++;
     }

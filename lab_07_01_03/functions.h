@@ -24,3 +24,7 @@ int compareFunc(const void *a, const void *b);
 
 // функция сортировки массива
 void sortArray(void * arrSort, size_t cntElem, size_t sizeElem, int(* compareFunc) (const void *, const void *));
+
+// функция подсчета времени
+
+unsigned long long tick(void);
