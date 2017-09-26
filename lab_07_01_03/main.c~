@@ -1,0 +1,104 @@
+// Vitya_7_X_Y.cpp: определяет точку входа для консольного приложения.
+//
+
+
+#include <stdio.h>
+#include <malloc.h>
+
+#include "functions.h"
+
+
+int main(int argc, char **argv)
+{
+    FILE *file;
+    int retVal, cntElem, cntWorkElem;
+    int *arrInp, *arrWork, *idxWork, *afterLastElem, *lastPrintElem;
+
+    // Открытие файла c тестовыми данными для чтения
+    file = fopen("in_z.txt", "r");
+    if (file == NULL)
+    {
+        printf("Error: File in_z.txt not exists");
+        getchar();
+
+        return ERROR_FILE_NOT_EXISTS;
+    }
+
+    // Подсчет количества элементов
+    retVal = countFileData(file, &cntElem);
+    if (retVal < 0)
+    {
+        // Вовзрат кода ошибки
+        printf("Error = %d\n\nInput any key for Exit", retVal);
+        getchar();
+
+        return retVal;
+    }
+
+    // Выделение памяти
+    arrInp = (int*)malloc(cntElem * sizeof(int));
+    arrWork = (int*)malloc(cntElem * sizeof(int));
+    afterLastElem = arrInp + cntElem;
+    
+    // Загрузка данных
+    retVal = loadFileData(file, arrInp);
+    if (retVal < 0)
+    {
+        // Вовзрат кода ошибки
+        printf("Error = %d\n\nInput any key for Exit", retVal);
+        getchar();
+
+        return retVal;
+    }
+
+    // Закрытие файла
+    fclose(file);
+
+    // Печать входного массива
+    lastPrintElem = afterLastElem - 1;
+    printArray(0, arrInp, lastPrintElem);
+
+    // Фильтрация и перезапись данных в рабочий массив
+    filterData(arrInp, afterLastElem, arrWork, &cntWorkElem);
+
+    // Печать отфильтрованного массива
+    lastPrintElem = arrWork + cntWorkElem - 1;
+    printArray(1, arrWork, lastPrintElem);
+
+    // Сортировка отфильтрованного массива
+    sortArray(arrWork, cntWorkElem, sizeof(int), compareFunc);
+
+    // Печать отсортированного массива
+    lastPrintElem = arrWork + cntWorkElem - 1;
+    printArray(1, arrWork, lastPrintElem);
+
+    // Запись данных в файл
+    file = fopen("out_z.txt", "w");
+    if (file == NULL)
+    {
+        printf("Error: Can't open file out_z.txt for write");
+        getchar();
+
+        return ERROR_FILE_OPEN_WRITE;
+    }
+    // запись массива
+    idxWork = arrWork;
+    lastPrintElem = arrWork + cntWorkElem - 1;
+    while (idxWork <= lastPrintElem)
+    {
+        fprintf(file, "%d ", *idxWork);
+        idxWork++;
+    }
+    fclose(file);
+
+    // Очистка массивов
+    free(arrWork);
+    free(arrInp);
+
+    printf("Ok. Input any key for Exit");
+    getchar();
+
+    return 0;
+}
+
+
