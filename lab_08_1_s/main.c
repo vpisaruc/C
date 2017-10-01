@@ -41,5 +41,6 @@ int main(int argc, char **argv)
         printf("Chto-to ne tak s failom");
     }
     
+    fclose(file);
     
 }
