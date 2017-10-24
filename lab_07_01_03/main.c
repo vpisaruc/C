@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <string.h>
 #include <malloc.h>
+#include <stdlib.h>
 
 #include "functions.h"
 
@@ -7,16 +9,28 @@
 int main(int argc, char **argv)
 {
     FILE *file;
-    int retVal, cntElem, cntWorkElem;
-    int *arrInp, *arrWork, *idxWork, *afterLastElem, *lastPrintElem;
+    int retVal, cntElem, cntWorkElem, cntQsort;
+    int *arrInp, *arrWork, *arrQsort, *idxWork, *afterLastElem, *lastPrintElem;
+    unsigned long long tb_mySort, te_mySort, tb_qSort, te_qSort;
     
-    unsigned long long tb, te;
-
+    
     // Открытие файла c тестовыми данными для чтения
-    file = fopen("in_z.txt", "r");
+    if(argc == 4)
+    {
+        file = fopen(argv[argc - 3], "r");
+    }
+    else if(argc == 3)
+    {
+        file = fopen(argv[argc - 2], "r");
+    }
+    else
+    {
+        printf("Must be 3 or 4 argumets of command line");
+        return COMMAND_LINE_ERROR;
+    }
     if (file == NULL)
     {
-        printf("Error: File in_z.txt not exists");
+        printf("Error: File  not exists");
         getchar();
 
         return ERROR_FILE_NOT_EXISTS;
@@ -35,7 +49,6 @@ int main(int argc, char **argv)
 
     // Выделение памяти
     arrInp = (int*)malloc(cntElem * sizeof(int));
-    arrWork = (int*)malloc(cntElem * sizeof(int));
     afterLastElem = arrInp + cntElem;
     
     // Загрузка данных
@@ -57,27 +70,69 @@ int main(int argc, char **argv)
     printArray(0, arrInp, lastPrintElem);
 
     // Фильтрация и перезапись данных в рабочий массив
-    filterData(arrInp, afterLastElem, arrWork, &cntWorkElem);
+    if(argc == 4)
+    {
+        if (*argv[argc - 1] == 'f')
+        {
+        
+            int **arrWorkPtr, **cntWorkElemPtr;
+            arrWorkPtr = (int**)malloc(sizeof(int*));
+            cntWorkElemPtr = (int**)malloc(sizeof(int*));
+            retVal = key(arrInp, afterLastElem, arrWorkPtr, cntWorkElemPtr);
 
-    // Печать отфильтрованного массива
-    lastPrintElem = arrWork + cntWorkElem - 1;
-    printArray(1, arrWork, lastPrintElem);
-
-    // Сортировка отфильтрованного массива
-    tb = tick();
-    sortArray(arrWork, cntWorkElem, sizeof(int), compareFunc);
-    te = tick();
+            // Присвоение данных из функции
+            arrWork = *arrWorkPtr;
+            cntWorkElem = **cntWorkElemPtr;
+            arrQsort = *arrWorkPtr;
+            cntQsort = **cntWorkElemPtr;
+            
+            // Печать отфильтрованного массива
+            lastPrintElem = arrWork + cntWorkElem - 1;
+            printArray(1, arrWork, lastPrintElem);
+        }
+    }
+    else
+    {
+        // Без фильтрации
+        arrWork = arrInp;
+        cntWorkElem = cntElem;
+        arrQsort = arrInp;
+        cntQsort = cntElem;
+    }
     
-    printf("\n\ntest 'time': %llu\n\n", (te - tb));
+    
+
+
+
+    // Сортировка отфильтрованного/неотфильтрованного массива и замер времени
+    tb_mySort = tick();
+    mySort(arrWork, cntWorkElem, sizeof(int), compareFunc);
+    te_mySort = tick();
+    printf("\nTime of mySort func: %llu\n ", (te_mySort - tb_mySort));
+    
+    
+    tb_qSort = tick();
+    qsort(arrQsort, cntQsort, sizeof(int), compareFunc);
+    te_qSort = tick();
+    printf("\nTime of qSort func: %llu\n\n ", (te_qSort - tb_qSort));
+
     // Печать отсортированного массива
     lastPrintElem = arrWork + cntWorkElem - 1;
-    printArray(1, arrWork, lastPrintElem);
+    printArray(2, arrWork, lastPrintElem);
+    printArray(3, arrQsort, lastPrintElem);
 
     // Запись данных в файл
-    file = fopen("out_z.txt", "w");
+    if(argc == 4 )
+    {
+        file = fopen(argv[argc - 2], "w");
+    }
+    else if(argc == 3)
+    {
+        file = fopen(argv[argc - 1], "w");
+    }
     if (file == NULL)
     {
-        printf("Error: Can't open file out_z.txt for write");
+        printf("Error: Can't open file for write");
         getchar();
 
         return ERROR_FILE_OPEN_WRITE;
@@ -93,8 +148,15 @@ int main(int argc, char **argv)
     fclose(file);
 
     // Очистка массивов
-    free(arrWork);
     free(arrInp);
+    if(argc == 4)
+    {
+        if (argv[argc - 1] == 0)
+        {
+            // Очищается только при фильтрации
+            free(arrWork);
+        }
+    }
 
     printf("Ok. Input any key for Exit");
     getchar();
