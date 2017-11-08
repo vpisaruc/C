@@ -73,17 +73,17 @@ int loadFileData(FILE *file, int *arrInp)
         switch (retVal)
         {
             case 0:
-            {
-                      //   
-                      return ERROR_FILE_DATA_STRUCTURE;
-                      break;
-            }
+                {
+                          //   
+                          return ERROR_FILE_DATA_STRUCTURE;
+                          break;
+                }
             case 1:
-            {
-                      *idx = value;
-                      idx++;
-                      cnt++;
-            }
+                {
+                          *idx = value;
+                          idx++;
+                          cnt++;
+                }
         }
     }
     if (cnt == 0)
