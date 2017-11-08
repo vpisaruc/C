@@ -69,11 +69,10 @@ int main(int argc, char **argv)
     printArray(0, arrInp, lastPrintElem);
 
     //       
-    if(argc == 4)
+    if (argc == 4)
     {
         if (*argv[argc - 1] == 'f')
         {
-        
             int **arrWorkPtr, **cntWorkElemPtr;
             arrWorkPtr = (int**)malloc(sizeof(int*));
             cntWorkElemPtr = (int**)malloc(sizeof(int*));
@@ -121,11 +120,11 @@ int main(int argc, char **argv)
     printArray(3, arrQsort, lastPrintElem);
 
     //    
-    if(argc == 4 )
+    if (argc == 4 )
     {
         file = fopen(argv[argc - 2], "w");
     }
-    else if(argc == 3)
+    else if (argc == 3)
     {
         file = fopen(argv[argc - 1], "w");
     }
