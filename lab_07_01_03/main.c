@@ -8,13 +8,13 @@
 
 int main(int argc, char **argv)
 {
-    FILE *file;
+    FILE * file;
     int retVal, cntElem, cntWorkElem, cntQsort;
     int *arrInp, *arrWork, *arrQsort, *idxWork, *afterLastElem, *lastPrintElem;
     unsigned long long tb_mySort, te_mySort, tb_qSort, te_qSort;
     
     
-    // Открытие файла c тестовыми данными для чтения
+    //   c    
     if(argc == 4)
     {
         file = fopen(argv[argc - 3], "r");
@@ -36,40 +36,40 @@ int main(int argc, char **argv)
         return ERROR_FILE_NOT_EXISTS;
     }
 
-    // Подсчет количества элементов
+    //   
     retVal = countFileData(file, &cntElem);
     if (retVal < 0)
     {
-        // Вовзрат кода ошибки
+        //   
         printf("Error = %d\n\nInput any key for Exit", retVal);
         getchar();
 
         return retVal;
     }
 
-    // Выделение памяти
+    //  
     arrInp = (int*)malloc(cntElem * sizeof(int));
     afterLastElem = arrInp + cntElem;
     
-    // Загрузка данных
+    //  
     retVal = loadFileData(file, arrInp);
     if (retVal < 0)
     {
-        // Вовзрат кода ошибки
+        //   
         printf("Error = %d\n\nInput any key for Exit", retVal);
         getchar();
 
         return retVal;
     }
 
-    // Закрытие файла
+    //  
     fclose(file);
 
-    // Печать входного массива
+    //   
     lastPrintElem = afterLastElem - 1;
     printArray(0, arrInp, lastPrintElem);
 
-    // Фильтрация и перезапись данных в рабочий массив
+    //       
     if(argc == 4)
     {
         if (*argv[argc - 1] == 'f')
@@ -80,20 +80,20 @@ int main(int argc, char **argv)
             cntWorkElemPtr = (int**)malloc(sizeof(int*));
             retVal = key(arrInp, afterLastElem, arrWorkPtr, cntWorkElemPtr);
 
-            // Присвоение данных из функции
+            //    
             arrWork = *arrWorkPtr;
             cntWorkElem = **cntWorkElemPtr;
             arrQsort = *arrWorkPtr;
             cntQsort = **cntWorkElemPtr;
             
-            // Печать отфильтрованного массива
+            //   
             lastPrintElem = arrWork + cntWorkElem - 1;
             printArray(1, arrWork, lastPrintElem);
         }
     }
     else
     {
-        // Без фильтрации
+        //  
         arrWork = arrInp;
         cntWorkElem = cntElem;
         arrQsort = arrInp;
@@ -104,7 +104,7 @@ int main(int argc, char **argv)
 
 
 
-    // Сортировка отфильтрованного/неотфильтрованного массива и замер времени
+    //  /    
     tb_mySort = tick();
     mySort(arrWork, cntWorkElem, sizeof(int), compareFunc);
     te_mySort = tick();
@@ -116,12 +116,12 @@ int main(int argc, char **argv)
     te_qSort = tick();
     printf("\nTime of qSort func: %llu\n\n ", (te_qSort - tb_qSort));
 
-    // Печать отсортированного массива
+    //   
     lastPrintElem = arrWork + cntWorkElem - 1;
     printArray(2, arrWork, lastPrintElem);
     printArray(3, arrQsort, lastPrintElem);
 
-    // Запись данных в файл
+    //    
     if(argc == 4 )
     {
         file = fopen(argv[argc - 2], "w");
@@ -137,7 +137,7 @@ int main(int argc, char **argv)
 
         return ERROR_FILE_OPEN_WRITE;
     }
-    // запись массива
+    //  
     idxWork = arrWork;
     lastPrintElem = arrWork + cntWorkElem - 1;
     while (idxWork <= lastPrintElem)
@@ -147,13 +147,13 @@ int main(int argc, char **argv)
     }
     fclose(file);
 
-    // Очистка массивов
+    //  
     free(arrInp);
     if(argc == 4)
     {
         if (argv[argc - 1] == 0)
         {
-            // Очищается только при фильтрации
+            //    
             free(arrWork);
         }
     }
