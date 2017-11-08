@@ -14,12 +14,11 @@ int main(int argc, char **argv)
     unsigned long long tb_mySort, te_mySort, tb_qSort, te_qSort;
     
     
-    //   c    
-    if(argc == 4)
+    if (argc == 4)
     {
         file = fopen(argv[argc - 3], "r");
     }
-    else if(argc == 3)
+    else if (argc == 3)
     {
         file = fopen(argv[argc - 2], "r");
     }
