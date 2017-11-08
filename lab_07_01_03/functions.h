@@ -8,7 +8,6 @@
 
 unsigned long long tick(void);
 
-
 int countFileData(FILE *file, int *cntElem);
 
 int loadFileData(FILE *file, int *arrInp);
