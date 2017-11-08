@@ -34,12 +34,12 @@ int countFileData(FILE *file, int *cntElem)
         {
             case 0:
             {
-                  return ERROR_FILE_DATA_STRUCTURE;
-                  break;
+                return ERROR_FILE_DATA_STRUCTURE;
+                break;
             }
             case 1:
             {
-                  cnt++;
+                cnt++;
             }
         }
     }
