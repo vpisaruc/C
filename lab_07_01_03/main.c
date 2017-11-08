@@ -120,7 +120,7 @@ int main(int argc, char **argv)
     printArray(3, arrQsort, lastPrintElem);
 
     //    
-    if (argc == 4 )
+    if (argc == 4)
     {
         file = fopen(argv[argc - 2], "w");
     }
@@ -147,7 +147,7 @@ int main(int argc, char **argv)
 
     //  
     free(arrInp);
-    if(argc == 4)
+    if (argc == 4)
     {
         if (argv[argc - 1] == 0)
         {
