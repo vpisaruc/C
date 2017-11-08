@@ -16,7 +16,6 @@ int loadFileData(FILE *file, int *arrInp);
 
 int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst);
 
-
 void printArray(int typeHead, int *arrPrint, int *lastPrintElem);
 
 int compareFunc(const void *a, const void *b);
