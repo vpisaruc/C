@@ -151,25 +151,25 @@ void printArray(int typeHead, int *arrPrint, int *lastPrintElem)
     switch (typeHead)
     {
         case 0:
-        {
-            printf("Input Array\n");
-            break;
-        }
+            {
+                printf("Input Array\n");
+                break;
+            }
         case 1:
-        {
-            printf("Filtered Array\n");
-            break;
-        }
+            {
+                printf("Filtered Array\n");
+                break;
+            }
         case 2:
-        {
-            printf("Sorting Array with mysort\n");
-            break;
-        }
+            {
+                printf("Sorting Array with mysort\n");
+                break;
+            }
         case 3:
-        {
-            printf("Sorting Array with Qsort\n");
-            break;
-        }
+            {
+                printf("Sorting Array with Qsort\n");
+                break;
+            }
     }
 
     while (idx <= lastPrintElem)
