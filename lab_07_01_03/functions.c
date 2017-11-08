@@ -188,7 +188,7 @@ int compareFunc(const void *a, const void *b)
 
 
 //   
-void mySort(void * arrSort, size_t cntElem, size_t sizeElem, int(*compareFunc) (const void *, const void *))
+void mySort(void *arrSort, size_t cntElem, size_t sizeElem, int(*compareFunc)(const void *, const void *))
 {
     int *idx, *lastElem, *maxElem, *startElem;
     int tmpValue;
