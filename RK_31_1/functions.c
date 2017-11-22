@@ -132,7 +132,7 @@ void sr_element(double **matrix, int n, int m)
 
 
 	
-	printf("\nNaibolee blizkie k sr arif znacheniiu:\n\n");
+	printf("\nNaibolee blizkaia raznica znachenii k sr arif znacheniiu:\n\n");
 	for(int i =0; i < n; i++)
 	{
 		min_el = arr2[i][0];
