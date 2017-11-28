@@ -59,7 +59,7 @@ int compare_arrays_1(int cnt, int array_1[], int *array_2)
 void test_mySort()
 {
 
-    printf("TESTS FOR mySort: \n\n" 
+    printf("TESTS FOR mysort: \n\n" 
     "Test №1: \n"
     "array = {1, 1, 1, -1, 1} \n"
     "result = {-1, 1, 1, 1, 1} \n"
@@ -69,14 +69,14 @@ void test_mySort()
     int arr_t_1[5] = {1, 1, 1, -1, 1};
     int arr_r_1[5] = {-1, 1, 1, 1, 1};
     
-    mySort(arr_t_1, 5, sizeof(int), compareFunc);
+    mysort(arr_t_1, 5, sizeof(int), compareFunc);
     
     if (compare_arrays(5, arr_t_1, arr_r_1) == OK)
         printf("Passed\n");
     else
         printf("Failed\n");
     
-    printf("TESTS FOR mySort: \n\n" 
+    printf("TESTS FOR mysort: \n\n" 
     "Test №2: \n"
     "Array = {1} \n"
     "Result = {1} \n"
@@ -85,14 +85,14 @@ void test_mySort()
     int arr_t_2[1] = {0};
     int arr_r_2[1] = {0};
     
-    mySort(arr_t_2, 1, sizeof(int), compareFunc);
+    mysort(arr_t_2, 1, sizeof(int), compareFunc);
     
     if (compare_arrays(1, arr_t_2, arr_r_2) == OK)
         printf("Passed\n");
     else
         printf("Failed\n");
 
-    printf("TESTS FOR mySort: \n\n" 
+    printf("TESTS FOR mysort: \n\n" 
     "Test №3: \n"
     "Array = {17 -256  -68  455   98 -155   11  243  -70  111 17 -256  -68  455   98 -155   11  243  -70  111} \n"
     "Result = {-256 -256 -155 -155  -70  -70  -68  -68   11   11   17   17   98   98  111  111  243  243  455  455} \n"
@@ -101,7 +101,7 @@ void test_mySort()
     int arr_t_3[20] = {17, -256,  -68,  455,   98, -155,   11,  243,  -70,  111, 17, -256,  -68,  455,   98, -155,   11,  243,  -70,  111};
     int arr_r_3[20] = {-256,-256, -155, -155,  -70,  -70,  -68,  -68,   11,   11,   17,   17,   98,   98,  111,  111,  243,  243,  455,  455};
     
-    mySort(arr_t_3, 20, sizeof(int), compareFunc);
+    mysort(arr_t_3, 20, sizeof(int), compareFunc);
     
     if (compare_arrays(20, arr_t_3, arr_r_3) == OK)
         printf("Passed\n");
@@ -288,7 +288,7 @@ void test_load_file_data()
     arrInp1 = (int*)malloc(2 * sizeof(int));
     arrInp2 = (int*)malloc(20 * sizeof(int));
     
-    retVal = loadFileData(file, arrInp);
+    retVal = loadFileData(file, arrInp, 5);
     printf("TESTS FOR loadFileData: \n\n" 
     "Test №1: \n"
     "File  = {1, 1, 1, -1, 1} \n"
@@ -312,7 +312,7 @@ void test_load_file_data()
     
 
     
-    retVal = loadFileData(file1, arrInp1);
+    retVal = loadFileData(file1, arrInp1, 2);
     
     
     if ((compare_arrays_1(2, arr_t_2, arrInp1) == OK) && (retVal == OK))
@@ -328,7 +328,7 @@ void test_load_file_data()
     "Result = {17 -256  -68  455   98 -155   11  243  -70  111 17 -256  -68  455   98 -155   11  243  -70  111} \n"
     "Check:: ");
     
-    retVal = loadFileData(file2, arrInp2);
+    retVal = loadFileData(file2, arrInp2, 20);
     
     if ((compare_arrays_1(20, arr_t_3, arrInp2) == OK) && (retVal == OK))
         printf("Passed\n");
