@@ -123,7 +123,7 @@ void test_key()
     int arr_result_1 [5] = {-12, -3, 7, 5};
     
     int arr_test_2 [5] = {-12, 3, 7, 5, 1};
-    int arr_result_2 [1] = {-12};
+
     
     int arr_test_3 [5] = {12, 3, -7, 5, 1};
     int arr_result_3 [5] = {12, 3};
@@ -132,7 +132,7 @@ void test_key()
     int arr_result_4 [5] = {12, 3, 7, 5, 1};
 
     int arr_test_5 [5] = {12, 3, 7, 5, 1};
-    int arr_result_5 [5] = {12, 3, 7, 5, 1};
+
     
     int *end_arr_1 = arr_test_1 + cnt_1;
     int *start_arr_1, *en_arr_1;
