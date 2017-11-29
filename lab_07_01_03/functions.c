@@ -103,6 +103,7 @@ int loadFileData(FILE *file, int *arrInp, int *cntElem)
 }
 
 
+
 int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 {
     int *idxInp, *idxWork, *lastNegativeElem, *arrWork;
@@ -168,11 +169,17 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
         }
     }
 
-    *pe_dst = &cntToLastNegative;
     *pb_dst = arrWork;
+    *pe_dst = arrWork + cntToLastNegative;
+
+    if(pb_dst > pe_dst)
+    {
+        return SIZE_ERROR;
+    }
 
     return 0;
 }
+
 
 
 
@@ -233,18 +240,21 @@ void mysort(void * arrSort, size_t cntElem, size_t sizeElem, int(*compareFunc) (
         if (maxElemAddr != lastElemAddr)
         {
             // Замена максимального и последнего элементов
+            idxAddr = lastElemAddr;
             for (size_t i = 0; i < sizeElem; i++)
             {
-                tmpValue      = *maxElemAddr;
-                *maxElemAddr  = *lastElemAddr;
-                *lastElemAddr = tmpValue;
+                tmpValue     = *maxElemAddr;
+                *maxElemAddr = *idxAddr;
+                *idxAddr     = tmpValue;
                 maxElemAddr++;
-                lastElemAddr++;
+                idxAddr++;
             }
         }
         lastElemAddr = lastElemAddr - sizeElem;
     }
 }
+
+
 
 
 void write_file(FILE *file, int *arrWork, int *lastPrintElem)
