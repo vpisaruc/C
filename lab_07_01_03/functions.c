@@ -32,14 +32,14 @@ int countFileData(FILE *file, int *cntElem)
         switch (retVal)
         {
             case 0:
-            {
-                return ERROR_FILE_DATA_STRUCTURE;
-                break;
-            }
+                {
+                    return ERROR_FILE_DATA_STRUCTURE;
+                    break;
+                }
             case 1:
-            {
-                cnt++;
-            }
+                {
+                    cnt++;
+                }
         }
     }
     if (cnt == 0)
@@ -73,21 +73,21 @@ int loadFileData(FILE *file, int *arrInp, int *cntElem)
         switch (retVal)
         {
             case 0:
-            {
+                {
                       // ������������ ��������� �����
-                      return ERROR_FILE_DATA_STRUCTURE;
-                      break;
-            }
+                    return ERROR_FILE_DATA_STRUCTURE;
+                    break;
+                }
             case 1:
-            {
-                      *idx = value;
-                      idx++;
-                      cnt++;
-                      if(cnt > *cntElem)
-                      {
+                {
+                    *idx = value;
+                    idx++;
+                    cnt++;
+                    if(cnt > *cntElem)
+                    {
                         return BUFFER_ERROR;
-                      }
-            }
+                    }
+                }
         }
     }
 
@@ -112,7 +112,7 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
         return INCORRECT_PARAM;
     }
     
-    if(pb_src == pe_src)
+    if (pb_src == pe_src)
     {
         return INCORRECT_PARAM;
     }
@@ -142,9 +142,7 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
         // Создаем Array c 1 элементом
         //cntToLastNegative = 1;
         cntToLastNegative = cnt;
-        
     }
-    
     else
     {
         cntToLastNegative--;
