@@ -104,25 +104,24 @@ int loadFileData(FILE *file, int *arrInp, int *cntElem)
 
 
 
-// ����� ������ ����������(�� �������) 
 int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 {
     int *idxInp, *idxWork, *lastNegativeElem, *arrWork;
     int cnt = 0, cntToLastNegative = 0, cnt_neg = 0;
 
-    // ��������� ������� ������� - ������
     if(!pb_src || !pe_src)
     {
         return INCORRECT_PARAM;
     }
-    
-    idxInp =  (int *)pb_src;
 
+    // Начальный элемент массива - ссылка
+    idxInp = (int *)pb_src;
     while (idxInp < pe_src)
     {
         cnt++;
         if (*idxInp < 0)
         {
+            // все положительные - будут перезаписаны все элементы
             cntToLastNegative = cnt;
             cnt_neg++;
         }
@@ -134,54 +133,44 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
         return NONE_ELEMENTS;
     }
 
+    if (cntToLastNegative == 0)
+    {
+        cntToLastNegative = cnt;
+    }
+    else
+    {
+        cntToLastNegative--;
+    }
+
     arrWork = (int*)malloc(cntToLastNegative * sizeof(int));
-    
     if (!arrWork)
     {
         return MEMMORY_ERROR;
     }
 
-    // ��������� ������� ������� - ������
+    // Начальный элемент массива - ссылка
     idxInp = (int*)pb_src;
     idxWork = arrWork;
+    lastNegativeElem = idxInp + cntToLastNegative - 1;
 
-    if(cnt_neg != 0)
-    {
-        lastNegativeElem = idxInp + cntToLastNegative - 1;
-    }
-
-    else
-    {
-        lastNegativeElem = idxInp + cnt - 1;
-    }
-
-    while (idxInp < lastNegativeElem)
+    while (idxInp <= lastNegativeElem)
     {
         *idxWork = *idxInp;
         idxInp++;
         idxWork++;
     }
 
-    if(cnt_neg != 0)
-    {
-        *pe_dst = &cntToLastNegative;
-    }
-
-    else
-    {
-        *pe_dst = &cnt;
-    }
-
+    *pe_dst = &cntToLastNegative;
     *pb_dst = arrWork;
-    
+
     if(pe_dst < pb_dst)
     {
         return SIZE_ERROR;
     }
 
-
     return 0;
 }
+
 
 
 // ������ ������� ������
@@ -195,7 +184,7 @@ void printArray(const char *headString, int *arrPrint, int *lastPrintElem)
     printf("%s\n", headString);
 
 
-    while (idx < lastPrintElem - 1 )
+    while (idx < lastPrintElem)
     {
         printf("%5d", *idx);
         idx++;
@@ -258,7 +247,7 @@ void write_file(FILE *file, int *arrWork, int *lastPrintElem)
 {
     int *idxWork = arrWork;
 
-    while (idxWork < lastPrintElem - 1)
+    while (idxWork < lastPrintElem)
     {
         fprintf(file, "%d ", *idxWork);
         idxWork++;
