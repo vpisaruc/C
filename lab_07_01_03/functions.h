@@ -8,6 +8,7 @@
 #define INCORRECT_PARAM              -6
 #define MEMMORY_ERROR               -7
 #define NONE_ELEMENTS               -8
+#define SIZE_ERROR                  -9
 
 // ���������� �������
 
