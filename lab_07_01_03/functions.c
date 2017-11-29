@@ -137,11 +137,12 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     {
         cntToLastNegative = cnt;
     }
+    /*
     else
     {
         cntToLastNegative--;
     }
-
+    */
     arrWork = (int*)malloc(cntToLastNegative * sizeof(int));
     if (!arrWork)
     {
