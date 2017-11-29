@@ -7,6 +7,7 @@
 #define BUFFER_ERROR                -5
 #define INCORRECT_PARAM              -6
 #define MEMMORY_ERROR               -7
+#define NONE_ELEMENTS               -8
 
 // ���������� �������
 
