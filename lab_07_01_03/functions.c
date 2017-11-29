@@ -128,7 +128,12 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
         idxInp++;
     }
 
-    if ((cntToLastNegative == 1 && cnt_neg == 1) || (cntToLastNegative == 0))
+    if (cntToLastNegative == 1 && cnt_neg == 1)
+    {
+        return NONE_ELEMENTS;
+    }
+
+    if (cntToLastNegative == 0)
     {
         cntToLastNegative = cnt;
     }
@@ -136,7 +141,7 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     {
         cntToLastNegative--;
     }
-    
+
     arrWork = (int*)malloc(cntToLastNegative * sizeof(int));
     if (!arrWork)
     {
