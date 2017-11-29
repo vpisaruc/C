@@ -103,13 +103,12 @@ int loadFileData(FILE *file, int *arrInp, int *cntElem)
 }
 
 
-
 int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 {
     int *idxInp, *idxWork, *lastNegativeElem, *arrWork;
     int cnt = 0, cntToLastNegative = 0, cnt_neg = 0;
 
-    if(!pb_src || !pe_src)
+    if (!pb_src || !pe_src)
     {
         return INCORRECT_PARAM;
     }
@@ -135,7 +134,8 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 
     if (cntToLastNegative == 0)
     {
-        cntToLastNegative = cnt;
+        // Создаем Array c 1 элементом
+        cntToLastNegative = 1;
     }
     else
     {
@@ -153,11 +153,19 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     idxWork = arrWork;
     lastNegativeElem = idxInp + cntToLastNegative - 1;
 
-    while (idxInp <= lastNegativeElem)
+    if (cnt_neg == 0)
     {
-        *idxWork = *idxInp;
-        idxInp++;
-        idxWork++;
+        // negative number not exists
+        *idxWork = cnt;
+    }
+    else
+    {
+        while (idxInp <= lastNegativeElem)
+        {
+            *idxWork = *idxInp;
+            idxInp++;
+            idxWork++;
+        }
     }
 
     *pe_dst = &cntToLastNegative;
@@ -165,6 +173,7 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 
     return 0;
 }
+
 
 
 
