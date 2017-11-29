@@ -114,7 +114,7 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
         return INCORRECT_PARAM;
     }
     
-    if(pb_scrc == pe_src)
+    if(pb_src == pe_src)
     {
         return INCORRECT_PARAM;
     }
