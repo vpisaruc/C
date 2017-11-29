@@ -108,12 +108,12 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 {
     int *idxInp, *idxWork, *lastNegativeElem, *arrWork;
     int cnt = 0, cntToLastNegative = 0, cnt_neg = 0;
-
+/*
     if (!pb_src || !pe_src)
     {
         return INCORRECT_PARAM;
     }
-
+*/
     // Начальный элемент массива - ссылка
     idxInp = (int *)pb_src;
     while (idxInp < pe_src)
@@ -127,12 +127,12 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
         }
         idxInp++;
     }
-/*
+
     if (cntToLastNegative == 1 && cnt_neg == 1)
     {
         return NONE_ELEMENTS;
     }
-*/
+
     if (cntToLastNegative == 0)
     {
         // Создаем Array c 1 элементом
