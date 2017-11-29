@@ -108,7 +108,7 @@ int loadFileData(FILE *file, int *arrInp, int *cntElem)
 int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 {
     int *idxInp, *idxWork, *lastNegativeElem, *arrWork;
-    int cnt = 0, cntToLastNegative = 0;
+    int cnt = 0, cntToLastNegative = 0, cnt_neg = 0;
 
     // ��������� ������� ������� - ������
     if(!pb_src || !pe_src)
@@ -117,16 +117,19 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     }
     
     idxInp =  (int *)pb_src;
+
     while (idxInp < pe_src)
     {
         cnt++;
         if (*idxInp < 0)
         {
             cntToLastNegative = cnt - 1;
+            cnt_neg++;
         }
         idxInp++;
     }
-    if (cntToLastNegative == 0 || cnt == 0)
+
+    if (cntToLastNegative == 0 && cnt_neg == 1)
     {
         return NONE_ELEMENTS;
     }
@@ -141,7 +144,16 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     // ��������� ������� ������� - ������
     idxInp = (int*)pb_src;
     idxWork = arrWork;
-    lastNegativeElem = idxInp + cntToLastNegative - 1;
+
+    if(cnt_neg != 0)
+    {
+        lastNegativeElem = idxInp + cntToLastNegative - 1;
+    }
+
+    else
+    {
+        lastNegativeElem = idxInp + cnt - 1;
+    }
 
     while (idxInp < lastNegativeElem)
     {
@@ -150,9 +162,18 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
         idxWork++;
     }
 
-    *pe_dst = &cntToLastNegative;
-    *pb_dst = arrWork;
+    if(cnt_neg != 0)
+    {
+        *pe_dst = &cntToLastNegative;
+    }
 
+    else
+    {
+        *pe_dst = &cnt;
+    }
+
+    *pb_dst = arrWork;
+    
     if(pe_dst < pb_dst)
     {
         return SIZE_ERROR;
