@@ -1,4 +1,4 @@
-#include <stdio.h>
+    #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
 #include <stdlib.h>
@@ -94,6 +94,18 @@ int main(int argc, char **argv)
                 printf("\nIncorrect parametres\n");
                 exit(INCORRECT_PARAM);
             }
+            if(retVal == NONE_ELEMENTS)
+            {
+                printf("\nNone elements before negative\n");
+                exit(NONE_ELEMENTS);
+            }
+
+            if(retVal == SIZE_ERROR)
+            {
+                printf("Size error");
+                exit(SIZE_ERROR);
+            }
+
 
             arrWork = *arrWorkPtr;
             cntWorkElem = **cntWorkElemPtr;
