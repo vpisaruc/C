@@ -122,12 +122,11 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
         cnt++;
         if (*idxInp < 0)
         {
-            // ��� ������������� - ����� ������������ ��� ��������
             cntToLastNegative = cnt;
         }
         idxInp++;
     }
-    if (cntToLastNegative == 0)
+    if (cntToLastNegative == 0 || cnt == 0)
     {
         return NONE_ELEMENTS;
     }
@@ -154,6 +153,10 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     *pe_dst = &cntToLastNegative;
     *pb_dst = arrWork;
 
+    if(pe_dst < pb_dst)
+    {
+        return SIZE_ERROR;
+    }
 
 
     return 0;
