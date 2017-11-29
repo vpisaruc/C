@@ -121,7 +121,6 @@ int main(int argc, char **argv)
         // ��� ����������
         arrWork = arrInp;
         cntWorkElem = cntElem;
-
     }
     mysort(arrWork, cntWorkElem, sizeof(int), compareFunc);
 
@@ -130,7 +129,7 @@ int main(int argc, char **argv)
     printArray("Sorting Array", arrWork, lastPrintElem);
 
     // ������ ������ � ����
-    if (argc == 4 )
+    if (argc == 4)
     {
         file = fopen(argv[argc - 2], "w");
     }
