@@ -8,18 +8,18 @@
 
 int main(int argc, char **argv)
 {
-    FILE *file;
+    FILE * file;
     int retVal, cntElem, cntWorkElem;
-    int *arrInp, *arrWork,  *afterLastElem, *lastPrintElem, *idxWork;
+    int *arrInp, *arrWork, *afterLastElem, *lastPrintElem, *idxWork;
     //unsigned long long tb_mySort, te_mySort, tb_qSort, te_qSort;
     
     
     // �������� ����� c ��������� ������� ��� ������
-    if(argc == 4)
+    if (argc == 4)
     {
         file = fopen(argv[argc - 3], "r");
     }
-    else if(argc == 3)
+    else if (argc == 3)
     {
         file = fopen(argv[argc - 2], "r");
     }
@@ -49,7 +49,7 @@ int main(int argc, char **argv)
 
     // ��������� ������
     arrInp = (int*)malloc(cntElem * sizeof(int));
-    if(!arrInp)
+    if (!arrInp)
     {
         printf("\nMemory allocation error\n");
         exit(MEMMORY_ERROR);
@@ -75,33 +75,32 @@ int main(int argc, char **argv)
     printArray("Input Array", arrInp, lastPrintElem);
 
     // ���������� � ���������� ������ � ������� ������
-    if(argc == 4)
+    if (argc == 4)
     {
         if (*argv[argc - 1] == 'f')
         {
-        
             int **arrWorkPtr, **arrWorkAfterPtr;
             arrWorkPtr = (int**)malloc(sizeof(int*));
             arrWorkAfterPtr = (int**)malloc(sizeof(int*));
             retVal = key(arrInp, afterLastElem, arrWorkPtr, arrWorkAfterPtr);
-            if(retVal == MEMMORY_ERROR)
+            if (retVal == MEMMORY_ERROR)
             {
                 printf("\nMemory error\n");
                 exit(MEMMORY_ERROR);
             }
-            if(retVal == INCORRECT_PARAM)
+            if (retVal == INCORRECT_PARAM)
             {
                 printf("\nIncorrect parametres\n");
                 exit(INCORRECT_PARAM);
             }
 
-            if(retVal == NONE_ELEMENTS)
+            if (retVal == NONE_ELEMENTS)
             {
                 printf("\nNone elements before negative\n");
                 exit(NONE_ELEMENTS);
             }
 
-            if(retVal == SIZE_ERROR)
+            if (retVal == SIZE_ERROR)
             {
                 printf("Size error");
                 exit(SIZE_ERROR);
@@ -124,7 +123,6 @@ int main(int argc, char **argv)
         cntWorkElem = cntElem;
 
     }
-
     mysort(arrWork, cntWorkElem, sizeof(int), compareFunc);
 
     // ������ ���������������� �������
@@ -132,11 +130,11 @@ int main(int argc, char **argv)
     printArray("Sorting Array", arrWork, lastPrintElem);
 
     // ������ ������ � ����
-    if(argc == 4 )
+    if (argc == 4 )
     {
         file = fopen(argv[argc - 2], "w");
     }
-    else if(argc == 3)
+    else if (argc == 3)
     {
         file = fopen(argv[argc - 1], "w");
     }
@@ -156,7 +154,7 @@ int main(int argc, char **argv)
 
     // ������� ��������
     free(arrInp);
-    if(argc == 4)
+    if (argc == 4)
     {
         if (argv[argc - 1] == 0)
         {
