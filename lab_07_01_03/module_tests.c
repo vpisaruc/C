@@ -109,25 +109,30 @@ void test_mySort()
         printf("Failed\n");
 }
 
+
 void test_key()
 {
     int cnt_1 = 5;
     int cnt_2 = 5;
     int cnt_3 = 5;
     int cnt_4 = 5;
+    int retVal;
 
 
     int arr_test_1 [5] = {-12, -3, 7, 5, -1};
-    int arr_result_1 [5] = {-12, -3, 7, 5, -1};
+    int arr_result_1 [5] = {-12, -3, 7, 5};
     
     int arr_test_2 [5] = {-12, 3, 7, 5, 1};
     int arr_result_2 [1] = {-12};
     
     int arr_test_3 [5] = {12, 3, -7, 5, 1};
-    int arr_result_3 [5] = {12, 3, -7};
+    int arr_result_3 [5] = {12, 3};
     
     int arr_test_4 [5] = {12, 3, 7, 5, 1};
     int arr_result_4 [5] = {12, 3, 7, 5, 1};
+
+    int arr_test_5 [5] = {12, 3, 7, 5, 1};
+    int arr_result_5 [5] = {12, 3, 7, 5, 1};
     
     int *end_arr_1 = arr_test_1 + cnt_1;
     int *start_arr_1, *en_arr_1;
@@ -140,17 +145,20 @@ void test_key()
     
     int *end_arr_4 = arr_test_4 + cnt_4;
     int *start_arr_4, *en_arr_4;
+
+    int *end_arr_5 = NULL;
+    int *start_arr_5, *en_arr_5;
     
 
     printf("TESTS FOR KEY: \n\n"
     "Test №1: \n"
     "array = {-12, -3, 7, 5, -1} \n"
-    "result = {-12, -3, 7, 5, -1} \n"
+    "result = {-12, -3, 7, 5} \n"
     "Check: ");
     
     key(arr_test_1, end_arr_1, &start_arr_1, &en_arr_1);
 
-    if (memcmp (start_arr_1, arr_result_1, 5*sizeof(int)) == 0)
+    if (memcmp (start_arr_1, arr_result_1, 4*sizeof(int)) == 0)
         printf("Passed \n\n");
     else
         printf("Failed \n\n");
@@ -158,13 +166,13 @@ void test_key()
     printf("TESTS FOR KEY: \n\n"
     "Test №2: \n"
     "array = {-12, 3, 7, 5, 1} \n"
-    "result = {-12} \n"
+    "result = ERROR \n"
     "Check: ");
     
-    key(arr_test_2, end_arr_2, &start_arr_2, &en_arr_2);
+    retVal =  key(arr_test_2, end_arr_2, &start_arr_2, &en_arr_2);
     
 
-    if (memcmp (start_arr_2, arr_result_2, 5*sizeof(int)) != 0)
+    if (retVal == NONE_ELEMENTS)
         printf("Passed \n\n");
     else
         printf("Failed \n\n");
@@ -172,12 +180,12 @@ void test_key()
     printf("TESTS FOR KEY: \n\n"
     "Test №3: \n"
     "array = {12, 3, -7, 5, 1} \n"
-    "result = {12, 3, -7} \n"
+    "result = {12, 3} \n"
     "Check: ");
     
     key(arr_test_3, end_arr_3, &start_arr_3, &en_arr_3);
 
-    if (memcmp (start_arr_3, arr_result_3, 5*sizeof(int)) == 0)
+    if (memcmp (start_arr_3, arr_result_3, 2*sizeof(int)) == 0)
         printf("Passed \n\n");
     else
         printf("Failed \n\n");
@@ -188,12 +196,42 @@ void test_key()
     "result = {12, 3, 7, 5, 1} \n"
     "Check: ");
     
+    
+    for(int i = 0; i < 4; i++)
+    {
+        printf("%d ",start_arr_4[i]);
+    }
+
     key(arr_test_4, end_arr_4, &start_arr_4, &en_arr_4);
 
     if (memcmp (start_arr_4, arr_result_4, 5*sizeof(int)) == 0)
         printf("Passed \n\n");
     else
         printf("Failed \n\n");
+
+        
+        
+        printf("TESTS FOR KEY: \n\n"
+
+    "Test №5: \n"
+    "array = {12, 3, 7, 5, 1} \n"
+    "result = {12, 3, 7, 5, 1} \n"
+    "pe_dst = NULL\n"
+    "Check: ");
+     
+
+    retVal = key(arr_test_5, end_arr_5, &start_arr_5, &en_arr_5);
+
+    if(retVal == -6)
+    {
+        printf("Passed \n\n");
+    }
+    else
+    {
+        printf("Failed \n\n");
+    }
+
+
         
     
 }
@@ -267,6 +305,7 @@ void test_cnt_file_data()
 }
 
 
+
 void test_load_file_data()
 {
     
@@ -285,10 +324,13 @@ void test_load_file_data()
     int retVal;
     
     arrInp = (int*)malloc(5 * sizeof(int));
+    int cnt = 5;
     arrInp1 = (int*)malloc(2 * sizeof(int));
+    int cnt1 = 2;
     arrInp2 = (int*)malloc(20 * sizeof(int));
+    int cnt2 = 20;
     
-    retVal = loadFileData(file, arrInp, 5);
+    retVal = loadFileData(file, arrInp, &cnt);
     printf("TESTS FOR loadFileData: \n\n" 
     "Test №1: \n"
     "File  = {1, 1, 1, -1, 1} \n"
@@ -312,7 +354,7 @@ void test_load_file_data()
     
 
     
-    retVal = loadFileData(file1, arrInp1, 2);
+    retVal = loadFileData(file1, arrInp1, &cnt1);
     
     
     if ((compare_arrays_1(2, arr_t_2, arrInp1) == OK) && (retVal == OK))
@@ -328,7 +370,7 @@ void test_load_file_data()
     "Result = {17 -256  -68  455   98 -155   11  243  -70  111 17 -256  -68  455   98 -155   11  243  -70  111} \n"
     "Check:: ");
     
-    retVal = loadFileData(file2, arrInp2, 20);
+    retVal = loadFileData(file2, arrInp2, &cnt2);
     
     if ((compare_arrays_1(20, arr_t_3, arrInp2) == OK) && (retVal == OK))
         printf("Passed\n");
@@ -355,3 +397,12 @@ int main(void)
     
     return 0;
 }
+
+
+
+
+
+
+
+
+
