@@ -209,7 +209,7 @@ int compareFunc(const void *a, const void *b)
 
 
 // ������� ���������� �������
-void mysort (void * arrSort, size_t cntElem, size_t sizeElem, int(*compareFunc)(const void *, const void *))
+void mysort(void * arrSort, size_t cntElem, size_t sizeElem, int(*compareFunc)(const void *, const void *))
 {
     char *maxElemAddr, *idxAddr, *startElemAddr, *lastElemAddr;
     char tmpValue;
