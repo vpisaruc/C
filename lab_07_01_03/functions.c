@@ -10,6 +10,7 @@
 
 //������� ������ �������
 unsigned long long tick(void)
+
 {
     unsigned long long d;
     __asm__ __volatile__ ("rdtsc" : "=A" (d) );
@@ -143,7 +144,7 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     idxWork = arrWork;
     lastNegativeElem = idxInp + cntToLastNegative - 1;
 
-    while (idxInp <= lastNegativeElem)
+    while (idxInp < lastNegativeElem)
     {
         *idxWork = *idxInp;
         idxInp++;
@@ -168,7 +169,7 @@ void printArray(const char *headString, int *arrPrint, int *lastPrintElem)
     printf("%s\n", headString);
 
 
-    while (idx < lastPrintElem )
+    while (idx < lastPrintElem - 1 )
     {
         printf("%5d", *idx);
         idx++;
@@ -222,7 +223,7 @@ void write_file(FILE *file, int *arrWork, int *lastPrintElem)
 {
     int *idxWork = arrWork;
 
-    while (idxWork < lastPrintElem)
+    while (idxWork < lastPrintElem - 1)
     {
         fprintf(file, "%d ", *idxWork);
         idxWork++;
