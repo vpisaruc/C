@@ -84,6 +84,11 @@
                 arrWorkPtr = (int**)malloc(sizeof(int*));
                 arrWorkAfterPtr = (int**)malloc(sizeof(int*));
                 retVal = key(arrInp, afterLastElem, arrWorkPtr, arrWorkAfterPtr);
+                if (retVal < 0)
+                {
+                    free(arrInp);
+                    fclose(file);
+                }
                 if(retVal == MEMMORY_ERROR)
                 {
                     printf("\nMemory error\n");
@@ -143,7 +148,8 @@
         if (file == NULL)
         {
             printf("Error: Can't open file for write");
-
+            free(arrInp);
+            free(arrWork);
             exit(ERROR_FILE_OPEN_WRITE);
         }
         // ������ �������
