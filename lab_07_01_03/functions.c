@@ -123,13 +123,13 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
         cnt++;
         if (*idxInp < 0)
         {
-            cntToLastNegative = cnt - 1;
+            cntToLastNegative = cnt;
             cnt_neg++;
         }
         idxInp++;
     }
 
-    if (cntToLastNegative == 0 && cnt_neg == 1)
+    if (cntToLastNegative == 1 && cnt_neg == 1)
     {
         return NONE_ELEMENTS;
     }
@@ -213,34 +213,43 @@ int compareFunc(const void *a, const void *b)
 // ������� ���������� �������
 void mysort(void * arrSort, size_t cntElem, size_t sizeElem, int(*compareFunc) (const void *, const void *))
 {
-    int *idx, *lastElem, *maxElem, *startElem;
-    int tmpValue;
+    char *maxElemAddr, *idxAddr, *startElemAddr, *lastElemAddr;
+    char tmpValue;
 
-    // ��������� ������� ������� - ������
-    startElem = (int*)arrSort;
-    lastElem = startElem + cntElem - 1;
+    // Проверка на необходимость сортировки 
+    if (cntElem == 0 || cntElem == 1)
+        return;
 
-    while (startElem <= lastElem)
+    // Начальный элемент массива - ссылка
+    startElemAddr = (char*)arrSort;
+    lastElemAddr = startElemAddr + (cntElem - 1)*sizeElem;
+
+    while (startElemAddr <= lastElemAddr)
     {
-        idx = startElem;
-        maxElem = idx;
-        while (idx <= lastElem)
+        maxElemAddr = startElemAddr;
+        idxAddr = startElemAddr + sizeElem;
+        while (idxAddr <= lastElemAddr)
         {
-            // ��������� �������� �������� � ������������
-            if (compareFunc(idx, maxElem) > 0)
+            // Сравнение текущего элемента с максимальным
+            if (compareFunc(idxAddr, maxElemAddr) > 0)
             {
-                maxElem = idx;
+                maxElemAddr = idxAddr;
             }
-            idx++;
+            idxAddr = idxAddr + sizeElem;
         }
-        if (maxElem != lastElem)
+        if (maxElemAddr != lastElemAddr)
         {
-            // ������ ������������� � ���������� ���������
-            tmpValue = *maxElem;
-            *maxElem = *lastElem;
-            *lastElem = tmpValue;
+            // Замена максимального и последнего элементов
+            for (size_t i = 0; i < sizeElem; i++)
+            {
+                tmpValue      = *maxElemAddr;
+                *maxElemAddr  = *lastElemAddr;
+                *lastElemAddr = tmpValue;
+                maxElemAddr++;
+                lastElemAddr++;
+            }
         }
-        lastElem--;
+        lastElemAddr = lastElemAddr - sizeElem;
     }
 }
 
