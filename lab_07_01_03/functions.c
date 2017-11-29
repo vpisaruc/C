@@ -150,7 +150,6 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     
     if (!arrWork)
     {
-        free(arrWork);
         return MEMMORY_ERROR;
     }
 
