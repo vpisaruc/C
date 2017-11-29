@@ -129,7 +129,7 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     }
     if (cntToLastNegative == 0)
     {
-        cntToLastNegative = cnt;
+        return NONE_ELEMENTS;
     }
 
     arrWork = (int*)malloc(cntToLastNegative * sizeof(int));
@@ -153,6 +153,8 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 
     *pe_dst = &cntToLastNegative;
     *pb_dst = arrWork;
+
+
 
     return 0;
 }
