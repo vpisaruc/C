@@ -83,7 +83,7 @@ int loadFileData(FILE *file, int *arrInp, int *cntElem)
                     *idx = value;
                     idx++;
                     cnt++;
-                    if(cnt > *cntElem)
+                    if (cnt > *cntElem)
                     {
                         return BUFFER_ERROR;
                     }
@@ -170,7 +170,7 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     *pb_dst = arrWork;
     *pe_dst = arrWork + cntToLastNegative;
 
-    if(pb_dst > pe_dst)
+    if (pb_dst > pe_dst)
     {
         return SIZE_ERROR;
     }
@@ -209,7 +209,7 @@ int compareFunc(const void *a, const void *b)
 
 
 // ������� ���������� �������
-void mysort(void * arrSort, size_t cntElem, size_t sizeElem, int(*compareFunc) (const void *, const void *))
+void mysort (void * arrSort, size_t cntElem, size_t sizeElem, int(*compareFunc)(const void *, const void *))
 {
     char *maxElemAddr, *idxAddr, *startElemAddr, *lastElemAddr;
     char tmpValue;
@@ -220,7 +220,7 @@ void mysort(void * arrSort, size_t cntElem, size_t sizeElem, int(*compareFunc) (
 
     // Начальный элемент массива - ссылка
     startElemAddr = (char*)arrSort;
-    lastElemAddr = startElemAddr + (cntElem - 1)*sizeElem;
+    lastElemAddr = startElemAddr + (cntElem - 1) * sizeElem;
 
     while (startElemAddr <= lastElemAddr)
     {
@@ -241,9 +241,9 @@ void mysort(void * arrSort, size_t cntElem, size_t sizeElem, int(*compareFunc) (
             idxAddr = lastElemAddr;
             for (size_t i = 0; i < sizeElem; i++)
             {
-                tmpValue     = *maxElemAddr;
+                tmpValue = *maxElemAddr;
                 *maxElemAddr = *idxAddr;
-                *idxAddr     = tmpValue;
+                *idxAddr = tmpValue;
                 maxElemAddr++;
                 idxAddr++;
             }
