@@ -145,12 +145,12 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     }
 
     arrWork = (int*)malloc(cntToLastNegative * sizeof(int));
-    /*
+    
     if (!arrWork)
     {
         return MEMMORY_ERROR;
     }
-*/
+
     // Начальный элемент массива - ссылка
     idxInp = (int*)pb_src;
     idxWork = arrWork;
