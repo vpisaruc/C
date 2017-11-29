@@ -157,21 +157,13 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     idxInp = (int*)pb_src;
     idxWork = arrWork;
     lastNegativeElem = idxInp + cntToLastNegative - 1;
-/*
-    if (cnt_neg == 0)
-    {
-        // negative number not exists
-        *idxWork = cnt;
-    }
-    else
-    {*/
+
     while (idxInp <= lastNegativeElem)
     {
         *idxWork = *idxInp;
         idxInp++;
         idxWork++;
     }
-    //}
 
     *pb_dst = arrWork;
     *pe_dst = arrWork + cntToLastNegative;
