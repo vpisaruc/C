@@ -138,11 +138,12 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
         // Создаем Array c 1 элементом
         cntToLastNegative = 1;
     }
+    /*
     else
     {
         cntToLastNegative--;
     }
-
+*/
     arrWork = (int*)malloc(cntToLastNegative * sizeof(int));
     if (!arrWork)
     {
