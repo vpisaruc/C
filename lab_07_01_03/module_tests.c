@@ -211,7 +211,7 @@ void test_key()
 
         
         
-        printf("TESTS FOR KEY: \n\n"
+    printf("TESTS FOR KEY: \n\n"
 
     "Test №5: \n"
     "array = {12, 3, 7, 5, 1} \n"
