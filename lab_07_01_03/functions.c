@@ -57,7 +57,7 @@ int countFileData(FILE *file, int *cntElem)
 // �������� ������
 int loadFileData(FILE *file, int *arrInp, int *cntElem)
 {
-    int retVal = 1, cnt = 0, value, *idx;
+    int retVal = 1, cnt = 0, value, *idx = NULL;
     
 
     // ��������� ��������� �� ������ �����
@@ -104,7 +104,7 @@ int loadFileData(FILE *file, int *arrInp, int *cntElem)
 
 int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 {
-    int *idxInp, *idxWork, *lastNegativeElem, *arrWork;
+    int *idxInp = NULL, *idxWork = NULL, *lastNegativeElem = NULL, *arrWork = NULL;
     int cnt = 0, cntToLastNegative = 0, cnt_neg = 0;
 
     if (!pb_src || !pe_src)
@@ -185,7 +185,7 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 // ������ ������� ������
 void printArray(const char *headString, int *arrPrint, int *lastPrintElem)
 {
-    int *idx;
+    int *idx = NULL;
 
     // ��������� ������� ������� - ������
     idx = arrPrint;
@@ -211,7 +211,7 @@ int compareFunc(const void *a, const void *b)
 // ������� ���������� �������
 void mysort(void *arrSort, size_t cntElem, size_t sizeElem, int(*compareFunc)(const void *, const void *))
 {
-    char *maxElemAddr, *idxAddr, *startElemAddr, *lastElemAddr;
+    char *maxElemAddr = NULL, *idxAddr = NULL, *startElemAddr = NULL, *lastElemAddr = NULL;
     char tmpValue;
 
     // Проверка на необходимость сортировки 
