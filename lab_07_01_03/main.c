@@ -8,7 +8,7 @@
 
 int main(int argc, char **argv)
 {
-    FILE * file;
+    FILE * file = NULL;
     int retVal, cntElem, cntWorkElem;
     int *arrInp = NULL, *arrWork = NULL, *afterLastElem = NULL, *lastPrintElem = NULL, *idxWork = NULL;
     //unsigned long long tb_mySort, te_mySort, tb_qSort, te_qSort;
