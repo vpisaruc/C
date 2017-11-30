@@ -162,8 +162,7 @@ int main(int argc, char **argv)
         }
     }
 
-    printf("Ok. Input any key for Exit");
-    
+
 
     return 0;
 }

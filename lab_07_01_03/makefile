@@ -12,6 +12,12 @@ test.exe : functions.o module_tests.o
 
 module_tests.o: module_tests.c functions.h
 	gcc -std=c99 -Wall -Werror -pedantic -c module_tests.c -lm -ggdb
+	
+timer.exe : functions.o timer.o
+	gcc -o timer.exe functions.o timer.o -lm -ggdb
+
+timer.o: timer.c functions.h
+	gcc -std=c99 -Wall -Werror -pedantic -c timer.c -lm -ggdb
 
 clean :
 	rm *.o *.exe
