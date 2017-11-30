@@ -7,14 +7,14 @@
 
 
 
-int main (void)
+int main(void)
 {
     unsigned long long tb, te, te_1, tb_1;
-    int test_array[16] = {12, 3, 7, 5, 1, 12, 3, 7, 5, 1, -5, 12, -45, 1 ,0, 0}; 
+    int test_array[16] = { 12, 3, 7, 5, 1, 12, 3, 7, 5, 1, -5, 12, -45, 1 ,0, 0 }; 
     int sort_array[16];
     
     te = tick();
-    for(int i = 0; i < 5; i++)
+    for (int i = 0; i < 5; i++)
     {
         memcpy(sort_array, test_array, sizeof(sort_array));
         mysort(sort_array, 16, sizeof(int), compareFunc);
@@ -22,7 +22,7 @@ int main (void)
     tb = tick();
 
     te_1 = tick();
-    for(int i = 0; i < 5; i++)
+    for (int i = 0; i < 5; i++)
     {
         memcpy(sort_array, test_array, sizeof(sort_array));
         qsort(sort_array, 16, sizeof(int), compareFunc);
