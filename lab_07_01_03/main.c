@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 {
     FILE * file;
     int retVal, cntElem, cntWorkElem;
-    int *arrInp, *arrWork, *afterLastElem, *lastPrintElem, *idxWork;
+    int *arrInp = NULL, *arrWork = NULL, *afterLastElem = NULL, *lastPrintElem = NULL, *idxWork = NULL;
     //unsigned long long tb_mySort, te_mySort, tb_qSort, te_qSort;
     
     
