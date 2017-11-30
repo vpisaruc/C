@@ -79,7 +79,7 @@ int main(int argc, char **argv)
     {
         if (*argv[argc - 1] == 'f')
         {
-            int **arrWorkPtr, **arrWorkAfterPtr;
+            int **arrWorkPtr = NULL, **arrWorkAfterPtr = NULL;
             arrWorkPtr = (int**)malloc(sizeof(int*));
             arrWorkAfterPtr = (int**)malloc(sizeof(int*));
             retVal = key(arrInp, afterLastElem, arrWorkPtr, arrWorkAfterPtr);
