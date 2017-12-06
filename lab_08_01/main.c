@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 {
     //Create first file variable
 
-    FILE *file1;
+    FILE *file1 = NULL;
 
     //Compare arguments of command line
     if(argc == 5)
@@ -21,14 +21,14 @@ int main(int argc, char **argv)
         if (file1 != NULL)
         {
             //Create second file variable
-            FILE *file2;
+            FILE *file2 = NULL;
             
             //Open second file2
             file2 = fopen(argv[argc - 2], "r");
             if (file2 != NULL)
             {
                 //Create desired variables
-                double **matrix_1, **matrix_2, **matrix_3;
+                double **matrix_1 = NULL, **matrix_2 = NULL, **matrix_3 = NULL;
                 int row_1, column_1, row_2, column_2;
                 matrix_1 = fill_matrix(file1, &row_1, &column_1, argc);
                 //Analize errors
@@ -47,6 +47,7 @@ int main(int argc, char **argv)
                     if (matrix_2 == NULL)
                     {
                         printf("Input error.");
+                        free(matrix_1);
                         return INPUT_ERROR;
                     }
                     else
@@ -69,6 +70,9 @@ int main(int argc, char **argv)
                             if(matrix_3 == NULL)
                             {
                                 printf("\n\nRows and colums of both matrix must be simmilar.\n\n");
+                                free(matrix_1);
+                                free(matrix_2);
+                                free(matrix_3);
                                 return SUMM_ERROR;
                             }
                             else
@@ -98,7 +102,7 @@ int main(int argc, char **argv)
                         //Compare action and choose one
                         else if(strcmp(argv[argc - 4], "m") == 0)
                         {
-                            FILE *file3;
+                            FILE *file3 = NULL;
                             file3 = fopen(argv[argc - 1], "w");
                             //Multiply of matrix_1 and matrix_2
                             matrix_3 = MatrixMult(row_1, column_1, row_2, column_2, matrix_1, matrix_2);
@@ -106,6 +110,9 @@ int main(int argc, char **argv)
                             if(matrix_3 == NULL)
                             {
                                 printf("\n\nCounts of colums of first matrix must be simmilar as counts of rows in second matrix.\n\n");
+                                free(matrix_1);
+                                free(matrix_2);
+                                free(matrix_3);
                                 return MULTIPLY_ERROR;
                             }
                             else
@@ -134,6 +141,9 @@ int main(int argc, char **argv)
                         else
                         {
                             printf("\nInput 'm' or 'a' in action\n");
+                            free(matrix_1);
+                            free(matrix_2);
+                            free(matrix_3);
                             return ACTION_ERROR;
                         }
                     }
@@ -159,7 +169,7 @@ int main(int argc, char **argv)
         file1 = fopen(argv[argc - 2], "r");
         if(file1 != NULL)
         {
-            double **matrix_1;
+            double **matrix_1 = NULL;
             int row_1, column_1, retVal;
             matrix_1 = fill_matrix(file1, &row_1, &column_1, argc);
             if(matrix_1 == NULL)
@@ -171,7 +181,7 @@ int main(int argc, char **argv)
             {
                 if(strcmp(argv[argc - 3], "o") == 0)
                 {
-                    FILE *file3;
+                    FILE *file3 = NULL;
                     file3 = fopen(argv[argc - 1], "w");
 
                     printf("\n\nFirst matrix: \n\n");
@@ -185,12 +195,14 @@ int main(int argc, char **argv)
                     if(retVal != 0)
                     {
                         printf("\nRows and colums of out matrix must be simmilar\n");
+                        free(matrix_1);
                         return GAUS_ERROR;
                     }
                 }
                 else
                 {
                     printf("\nInput 'o' in action\n");
+                    free(matrix_1);
                     return ACTION_ERROR;
                 }
             }
