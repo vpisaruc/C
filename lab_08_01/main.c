@@ -64,9 +64,9 @@ int main(int argc, char **argv)
                             file3 = fopen(argv[argc - 1], "w");
 
                             //Matrix_3 is summ of matrix_1 and matrix_2
-                            /*
+                            
                             matrix_3 = MatrixSumm(row_1, column_1, row_2, column_2, matrix_1, matrix_2);
-                                */
+        
                             //Error analization
                             if(matrix_3 == NULL)
                             {
