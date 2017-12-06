@@ -85,7 +85,9 @@ int main(int argc, char **argv)
                                     }
                                     fprintf(file3, "\n");
                                 }
-
+                                free(matrix_1);
+                                free(matrix_2);
+                                free(matrix_3);
                                 fclose(file1);
                                 fclose(file2);
                                 fclose(file3);
@@ -120,7 +122,9 @@ int main(int argc, char **argv)
                                     }
                                     fprintf(file3, "\n");
                                 }
-
+                                free(matrix_1);
+                                free(matrix_2);
+                                free(matrix_3);
                                 fclose(file1);
                                 fclose(file2);
                                 fclose(file3);
@@ -177,6 +181,7 @@ int main(int argc, char **argv)
                     retVal = GausMethod(row_1, column_1, matrix_1, file3);
                     fclose(file1);
                     fclose(file3);
+                    free(matrix_1);
                     if(retVal != 0)
                     {
                         printf("\nRows and colums of out matrix must be simmilar\n");
