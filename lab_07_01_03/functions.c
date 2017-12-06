@@ -104,6 +104,7 @@ int loadFileData(FILE *file, int *arrInp, int *cntElem)
 
 int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 {
+    /*
     int *idxInp = NULL, *idxWork = NULL, *lastNegativeElem = NULL, *arrWork = NULL;
     int cnt = 0, cntToLastNegative = 0, cnt_neg = 0;
 
@@ -176,7 +177,8 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
     }
 
 
-    return 0;
+    return 0;*/
+    return NULL;
 }
 
 
