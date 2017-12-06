@@ -1,216 +1,223 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-
-#define OK 0
-#define GAUS_ERROR -1
+#include <string.h>
+#include "functions.h"
 
 
 
 
 
-
-//Allocation of dynamic memory to a matrix
-
-double **allocate_matrix_solid(int n, int m)
+int main(int argc, char **argv)
 {
-    double **data = malloc(n * sizeof(double *) + n * m * sizeof(double));
-    if (!data)
-        return NULL;
+    //Create first file variable
 
-    for (int i = 0; i < n; i++)
-        data[i] = (double *)((char *)data + n * sizeof(double *) + i * m * sizeof(double));
-    return data;
-}
+    FILE *file1 = NULL;
 
-
-//Initialization of matrix
-double **init(double **matrix, int n, int m)
-{
-    for (int i = 0; i < n; i++)
+    //Compare arguments of command line
+    if(argc == 5)
     {
-        for (int j = 0; j < m; j++)
+        // Open first file
+        file1 = fopen(argv[argc - 3], "r");
+        if (file1 != NULL)
         {
-            // Обращение к элементу i, j
-            matrix[i][j] = 0.0;
-        }
-    }
-    return matrix;
-}
-
-//Filling matrix
-
-double **fill_matrix(FILE *file, int *size1, int *size2, int argc, double **matrix)
-{
-    int n, m;
-
-    if (fscanf(file, "%d", size1) == 1)
-    {
-        n = *size1;
-        if (fscanf(file, "%d", size2) == 1)
-        {
-            if (argc == 5)
+            //Create second file variable
+            FILE *file2 = NULL;
+            
+            //Open second file2
+            file2 = fopen(argv[argc - 2], "r");
+            if (file2 != NULL)
             {
-                m = *size2;
-            }
-            else
-            {
-                m = *size2;
-                m++;
-            }
-            matrix = allocate_matrix_solid(n, m);
-            matrix = init(matrix, n, m);
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < m; j++)
+                //Create desired variables
+                double **matrix_1 = NULL, **matrix_2 = NULL, **matrix_3 = NULL;
+                int row_1, column_1, row_2, column_2;
+                matrix_1 = fill_matrix(file1, &row_1, &column_1, argc);
+                //Analize errors
+                if (matrix_1 == NULL)
                 {
-                    if (fscanf(file, "%lf", &matrix[i][j]) == 1)
+                    printf("\n\nInput error.\n\n");
+                    return INPUT_ERROR;
+                }
+
+                else
+                {
+
+                    //Fill our matrix
+                    matrix_2 = fill_matrix(file2, &row_2, &column_2, argc);
+                    
+                    if (matrix_2 == NULL)
                     {
-                        printf(" ");
+                        printf("Input error.");
+                        free(matrix_1);
+                        return INPUT_ERROR;
                     }
                     else
                     {
-                        free(matrix);
-                        return NULL;
+                        printf("\n\nFirst matrix: \n\n");
+                        print_matrix(matrix_1, row_1, column_1);
+                        printf("\n\nSecond matrix: \n\n");
+                        print_matrix(matrix_2, row_2, column_2);
+                        
+                        //Compare action and choose one
+                        if(strcmp(argv[argc - 4], "a") == 0)
+                        {
+                            FILE *file3;
+                            file3 = fopen(argv[argc - 1], "w");
+
+                            //Matrix_3 is summ of matrix_1 and matrix_2
+                            matrix_3 = MatrixSumm(row_1, column_1, row_2, column_2, matrix_1, matrix_2);
+
+                            //Error analization
+                            if(matrix_3 == NULL)
+                            {
+                                printf("\n\nRows and colums of both matrix must be simmilar.\n\n");
+                                free(matrix_1);
+                                free(matrix_2);
+                                free(matrix_3);
+                                return SUMM_ERROR;
+                            }
+                            else
+                            {
+                                printf("\n\nSumm of matrix_1 and matrix_2\n\n");
+                                print_matrix(matrix_3, row_1, column_1);
+
+                                fprintf(file3, "%d %d\n", row_1, column_1);
+                                for (int i = 0; i < row_1; i++)
+                                {
+                                    for(int j = 0; j < column_1; j++)
+                                    {
+                                        fprintf(file3, "%lf  ", matrix_3[i][j]);
+                                    }
+                                    fprintf(file3, "\n");
+                                }
+                                free(matrix_1);
+                                free(matrix_2);
+                                free(matrix_3);
+                                fclose(file1);
+                                fclose(file2);
+                                fclose(file3);
+                                return OK;
+                            }
+                        }
+
+                        //Compare action and choose one
+                        else if(strcmp(argv[argc - 4], "m") == 0)
+                        {
+                            FILE *file3 = NULL;
+                            file3 = fopen(argv[argc - 1], "w");
+                            //Multiply of matrix_1 and matrix_2
+                            matrix_3 = MatrixMult(row_1, column_1, row_2, column_2, matrix_1, matrix_2);
+
+                            if(matrix_3 == NULL)
+                            {
+                                printf("\n\nCounts of colums of first matrix must be simmilar as counts of rows in second matrix.\n\n");
+                                free(matrix_1);
+                                free(matrix_2);
+                                free(matrix_3);
+                                return MULTIPLY_ERROR;
+                            }
+                            else
+                            {
+                                printf("\n\nMultiply of matrix_1 and matrix_2\n\n");
+                                print_matrix(matrix_3, row_1, column_2);
+
+                                fprintf(file3, "%d %d\n", row_1, column_2);
+                                for (int i = 0; i < row_1; i++)
+                                {
+                                    for(int j = 0; j < column_2; j++)
+                                    {
+                                        fprintf(file3, "%lf  ", matrix_3[i][j]);
+                                    }
+                                    fprintf(file3, "\n");
+                                }
+                                free(matrix_1);
+                                free(matrix_2);
+                                free(matrix_3);
+                                fclose(file1);
+                                fclose(file2);
+                                fclose(file3);
+                                return OK;
+                            }
+                        }
+                        else
+                        {
+                            printf("\nInput 'm' or 'a' in action\n");
+                            free(matrix_1);
+                            free(matrix_2);
+                            free(matrix_3);
+                            return ACTION_ERROR;
+                        }
                     }
                 }
             }
-            printf("\n\n");
-            return matrix;
+            else
+            {
+                printf("\nCan't find second file.\n");
+                return FILE_ERROR;
+            }
+        
         }
         else
         {
-            return NULL;
+            printf("\nCan't find first file\n");
+            return FILE_ERROR;
         }
     }
-    return NULL;
-}
-
-
-//Print matrix
-
-void print_matrix(double **matrix, int n, int m)
-{
-    for (int i = 0; i < n; i++)
+    //If command line have 3 arguments
+    else if(argc == 4)  
     {
-        for (int j = 0; j < m; j++)
-            printf("%lf ", matrix[i][j]);
-        printf("\n");
-    }
-    printf("\n");
-}
 
-
-
-//Function that Summ 2 matrix
-
-double **MatrixSumm(int row_1, int column_1, int row_2, int column_2, double **matrix_1, double **matrix_2, double **matrix_3)
-{
-    if (row_1 == row_2 && column_1 == column_2)
-    {
-        matrix_3 = allocate_matrix_solid(row_1, column_1);
-        matrix_3 = init(matrix_3, row_1, column_1);
-        for (int i = 0; i < row_1; i++)
+        file1 = fopen(argv[argc - 2], "r");
+        if(file1 != NULL)
         {
-            for (int j = 0; j < column_1; j++)
+            double **matrix_1 = NULL;
+            int row_1, column_1, retVal;
+            matrix_1 = fill_matrix(file1, &row_1, &column_1, argc);
+            if(matrix_1 == NULL)
             {
-                matrix_3[i][j] = matrix_1[i][j] + matrix_2[i][j];
+                printf("\nInput error\n");
+                return INPUT_ERROR;
             }
-        }
-        return matrix_3;
-    }
-    return NULL;
-}
-
-
-//Function that Multiply 2 matrix
-double **MatrixMult(int row_1, int column_1, int row_2, int column_2, double **matrix_1, double **matrix_2, double **matrix_3)
-{
-    if (column_1 == row_2)
-    {
-        matrix_3 = allocate_matrix_solid(row_1, column_2);
-        matrix_3 = init(matrix_3, row_1, column_2);
-        for (int i = 0; i < row_1; i++)
-        {
-            for (int j = 0; j < column_2; j++)
+            else
             {
-                matrix_3[i][j] = 0;
-                for (int k = 0; k < row_2; k++)
+                if(strcmp(argv[argc - 3], "o") == 0)
                 {
-                    matrix_3[i][j] += matrix_1[i][k] * matrix_2[k][j];
-                }
-            }
-        }
-        return matrix_3;
-    }
-    return NULL;
-}
+                    FILE *file3 = NULL;
+                    file3 = fopen(argv[argc - 1], "w");
 
+                    printf("\n\nFirst matrix: \n\n");
+                    print_matrix(matrix_1, row_1, column_1);
 
-//Function that contain Gaus Method
-int GausMethod(int row, int column, double **matrix, FILE *file)
-{
-    if(row == column)
-    {
-        int n = row;
-        int L = 0;
-        double max_el = 0.0;
-        
-        double tmpf = 0.0, tmpf2 = 0.0, t3 = 0.0;
-        for(int j = 0; j < n; j++)
-        {
-            for(int h = 0; h < n; h++)
-            {
-                if(fabs(matrix[h][j]) > max_el)
-                {
-                    max_el  = fabs(matrix[h][j]);
-                }
-            }
-            for(int k = 1 + L; k < n; k++)
-            {
-                tmpf = matrix[k][j] / matrix[L][j];
-                for (int i = 0; i <= n; i++)
-                {
-                    if (fabs(tmpf) == 0)
+                    //Gaus Method
+                    retVal = GausMethod(row_1, column_1, matrix_1, file3);
+                    fclose(file1);
+                    fclose(file3);
+                    free(matrix_1);
+                    if(retVal != 0)
                     {
-                        break;
+                        printf("\nRows and colums of out matrix must be simmilar\n");
+                        free(matrix_1);
+                        return GAUS_ERROR;
                     }
-                    tmpf2 = (matrix[L][i] * tmpf);
-                    t3 = matrix[k][i] - tmpf2;
-                    matrix[k][i] = t3;
+                }
+                else
+                {
+                    printf("\nInput 'o' in action\n");
+                    free(matrix_1);
+                    return ACTION_ERROR;
                 }
             }
-            L++;
         }
-        
-        double x[row];
-        int cnt = 0;
-        for (int i = n - 1; i >= 0; i--)
+        else
         {
-            double s = 0;
-            for(int j = n - 1; j > i; j--)
-            {
-                s += x[j] * matrix[i][j];
-            }
-            x[i] = (matrix[i][n] - s) / matrix[i][i];
-            if (x[i] == 0)
-            {
-                x[i] = fabs(x[i]);
-            }
-            cnt++;
+            printf("\nCan't find first file\n");
+            return FILE_ERROR;
         }
 
-        fprintf(file,"%d ", 1);
-        fprintf(file, "%d\n", cnt);
-        for(int i = 0; i < row; i++)
-        {
-            fprintf(file,"%lf\n", x[i]);
-        }
-        return OK;
     }
     else
     {
-        return GAUS_ERROR;
+        printf("\nCommand line must have 3 or 4 arguments.\n");
+        return COMMAND_LINE_ERROR;
     }
-}
 
+}
