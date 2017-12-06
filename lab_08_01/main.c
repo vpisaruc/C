@@ -105,8 +105,9 @@ int main(int argc, char **argv)
                             FILE *file3 = NULL;
                             file3 = fopen(argv[argc - 1], "w");
                             //Multiply of matrix_1 and matrix_2
+                            /*
                             matrix_3 = MatrixMult(row_1, column_1, row_2, column_2, matrix_1, matrix_2);
-
+                            */
                             if(matrix_3 == NULL)
                             {
                                 printf("\n\nCounts of colums of first matrix must be simmilar as counts of rows in second matrix.\n\n");
@@ -170,7 +171,7 @@ int main(int argc, char **argv)
         if(file1 != NULL)
         {
             double **matrix_1 = NULL;
-            int row_1, column_1 /*retVal*/;
+            int row_1, column_1, retVal;
             matrix_1 = fill_matrix(file1, &row_1, &column_1, argc);
             if(matrix_1 == NULL)
             {
@@ -188,19 +189,19 @@ int main(int argc, char **argv)
                     print_matrix(matrix_1, row_1, column_1);
 
                     //Gaus Method
-                    /*
+                    
                     retVal = GausMethod(row_1, column_1, matrix_1, file3);
-                    */
+                    
                     fclose(file1);
                     fclose(file3);
                     free(matrix_1);
-                    /*
+                    
                     if(retVal != 0)
                     {
                         printf("\nRows and colums of out matrix must be simmilar\n");
                         free(matrix_1);
                         return GAUS_ERROR;
-                    }*/
+                    }
                 }
                 else
                 {
