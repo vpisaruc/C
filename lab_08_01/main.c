@@ -188,16 +188,19 @@ int main(int argc, char **argv)
                     print_matrix(matrix_1, row_1, column_1);
 
                     //Gaus Method
+                    /*
                     retVal = GausMethod(row_1, column_1, matrix_1, file3);
+                    */
                     fclose(file1);
                     fclose(file3);
                     free(matrix_1);
+                    /*
                     if(retVal != 0)
                     {
                         printf("\nRows and colums of out matrix must be simmilar\n");
                         free(matrix_1);
                         return GAUS_ERROR;
-                    }
+                    }*/
                 }
                 else
                 {
