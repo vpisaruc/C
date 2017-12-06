@@ -114,6 +114,9 @@ int main(int argc, char **argv)
             // ������ ���������������� �������
             lastPrintElem = arrWork + cntWorkElem;
             printArray("Filtered Array", arrWork, lastPrintElem);
+
+            free(arrWorkPtr);
+            free(arrWorkAfterPtr);
         }
     }
     else
@@ -152,6 +155,7 @@ int main(int argc, char **argv)
     fclose(file);
 
     // ������� ��������
+
     free(arrInp);
     if (argc == 4)
     {
