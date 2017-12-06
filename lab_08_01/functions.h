@@ -17,5 +17,3 @@ double **init(double **matrix, int n, int m);
 double** MatrixSumm(int row_1, int column_1, int row_2, int column_2, double **matrix_1, double **matrix_2);
 double** MatrixMult (int row_1, int column_1, int row_2, int column_2, double **matrix_1, double **matrix_2);
 int GausMethod(int row, int column, double **matrix, FILE *file);
-void free_matrix_rows(double **data, int n);
-
