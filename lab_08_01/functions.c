@@ -7,14 +7,7 @@
 
 
 
-void free_matrix_rows(double **data, int n)
-{
-    for (int i = 0; i < n; i++)
-       // free можно передать NULL
-       free(data[i]);
 
-    free(data);
-}
 
 
 //Allocation of dynamic memory to a matrix
@@ -77,6 +70,7 @@ double **fill_matrix(FILE *file, int *size1, int *size2, int argc, double **matr
                     }
                     else
                     {
+                        free(matrix);
                         return NULL;
                     }
                 }
