@@ -169,11 +169,11 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 
     *pb_dst = arrWork;
     *pe_dst = arrWork + cntToLastNegative;
-    /*
+    
     if (pb_dst > pe_dst)
     {
         return SIZE_ERROR;
-    }*/
+    }
     return 0;
 }
 
