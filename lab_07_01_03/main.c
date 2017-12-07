@@ -127,6 +127,7 @@ int main(int argc, char **argv)
     {
         // ��� ����������
         cntWorkElem = cntElem;
+        exit(COMMAND_LINE_ERROR);
     }
 
     //Sort array
