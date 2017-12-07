@@ -260,7 +260,7 @@ void write_file(FILE *file, int *arrWork, int *lastPrintElem)
 
     while (idxWork < lastPrintElem)
     {
-        fprintf(file, " %d", *idxWork);
+        fprintf(file, "%d ", *idxWork);
         idxWork++;
     }
 }
