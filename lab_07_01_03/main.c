@@ -86,23 +86,31 @@ int main(int argc, char **argv)
             if (retVal == MEMMORY_ERROR)
             {
                 printf("\nMemory error\n");
+                free(arrWorkPtr);
+                free(arrWorkAfterPtr);
                 exit(MEMMORY_ERROR);
             }
             if (retVal == INCORRECT_PARAM)
             {
                 printf("\nIncorrect parametres\n");
+                free(arrWorkPtr);
+                free(arrWorkAfterPtr);
                 exit(INCORRECT_PARAM);
             }
 
             if (retVal == NONE_ELEMENTS)
             {
                 printf("\nNone elements before negative\n");
+                free(arrWorkPtr);
+                free(arrWorkAfterPtr);
                 exit(NONE_ELEMENTS);
             }
 
             if (retVal == SIZE_ERROR)
             {
                 printf("Size error");
+                free(arrWorkPtr);
+                free(arrWorkAfterPtr);
                 exit(SIZE_ERROR);
             }
 
