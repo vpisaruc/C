@@ -6,7 +6,7 @@
 #define ERROR_FILE_OPEN_WRITE       -10
 #define BUFFER_ERROR                -5
 #define INCORRECT_PARAM              -6
-#define MEMORY_ERROR               -7
+#define MEMMORY_ERROR               -7
 #define NONE_ELEMENTS               -8
 #define SIZE_ERROR                  -9
 
