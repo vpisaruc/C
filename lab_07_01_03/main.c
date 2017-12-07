@@ -127,7 +127,6 @@ int main(int argc, char **argv)
     {
         // ��� ����������
         cntWorkElem = cntElem;
-        exit(COMMAND_LINE_ERROR);
     }
 
     //Sort array
@@ -165,11 +164,7 @@ int main(int argc, char **argv)
     free(arrInp);
     if (argc == 4)
     {
-        if (argv[argc - 1] == 0)
-        {
-            // ��������� ������ ��� ����������
-            free(arrWork);
-        }
+        free(arrWork);
     }
 
 
