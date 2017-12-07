@@ -106,12 +106,12 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 {
     int *idxInp = NULL, *idxWork = NULL, *lastNegativeElem = NULL, *arrWork = NULL;
     int cnt = 0, cntToLastNegative = 0, cnt_neg = 0;
-
+    /*
     if (!pb_src || !pe_src)
     {
         return INCORRECT_PARAM;
     }
-    
+    */
     if (pb_src == pe_src)
     {
         return INCORRECT_PARAM;
