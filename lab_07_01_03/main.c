@@ -116,6 +116,12 @@ int main(int argc, char **argv)
             lastPrintElem = arrWork + cntWorkElem;
             printArray("Filtered Array", arrWork, lastPrintElem);
         }
+        else
+        {
+            free(arrInp);
+            printf("To use filter print [f]");
+            exit(COMMAND_LINE_ERROR);
+        }
     }
     else
     {
