@@ -148,7 +148,11 @@ int main(int argc, char **argv)
     if (file == NULL)
     {
         printf("Error: Can't open file for write");
-
+        free(arrInp);
+        if (argc == 4)
+        {
+            free(arrWork);
+        }
         exit(ERROR_FILE_OPEN_WRITE);
     }
     // ������ �������
@@ -158,7 +162,6 @@ int main(int argc, char **argv)
     write_file(file, arrWork, lastPrintElem);
 
     fclose(file);
-
     // ������� ��������
 
     free(arrInp);
