@@ -87,6 +87,7 @@ int main(int argc, char **argv)
             {
                 printf("\nMemory error\n");
                 free(arrInp);
+                free(arrWork);
                 exit(MEMMORY_ERROR);
             }
             if (retVal == INCORRECT_PARAM)
