@@ -104,7 +104,7 @@ int loadFileData(FILE *file, int *arrInp, int *cntElem)
 
 int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
 {
-    int *idxInp = NULL, *idxWork = NULL, *lastNegativeElem = NULL;
+    int *idxInp = NULL, *idxWork = NULL, *lastNegativeElem = NULL, *arrWork = NULL;
     int cnt = 0, cntToLastNegative = 0, cnt_neg = 0;
 
     if (!pb_src || !pe_src)
@@ -148,9 +148,16 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
         cntToLastNegative--;
     }
 
+    arrWork = (int*)malloc(cntToLastNegative * sizeof(int));
+    
+    if (!arrWork)
+    {
+        return MEMMORY_ERROR;
+    }
+
     // Начальный элемент массива - ссылка
     idxInp = (int*)pb_src;
-    idxWork = *pb_dst;
+    idxWork = arrWork;
     lastNegativeElem = idxInp + cntToLastNegative - 1;
 
     while (idxInp <= lastNegativeElem)
@@ -160,13 +167,13 @@ int key(const int *pb_src, const int *pe_src, int **pb_dst, int **pe_dst)
         idxWork++;
     }
 
-    *pe_dst = *pb_dst + cntToLastNegative;
-
-    if (*pb_dst > *pe_dst)
+    *pb_dst = arrWork;
+    *pe_dst = arrWork + cntToLastNegative;
+    
+    if (pb_dst > pe_dst)
     {
         return SIZE_ERROR;
     }
-
     return 0;
 }
 
