@@ -8,7 +8,7 @@
 
 int main(int argc, char **argv)
 {
-    FILE * file = NULL;
+    FILE * file = NULL, * file1 = NULL;
     int retVal, cntElem, cntWorkElem;
     int *arrInp = NULL, *arrWork = NULL, *afterLastElem = NULL, *lastPrintElem = NULL, *afterLastElemWork = NULL;
     int out;
@@ -64,7 +64,6 @@ int main(int argc, char **argv)
                     else
                     {
                         // �������� �����
-                        fclose(file);
 
                         // ������ �������� �������
                         lastPrintElem = afterLastElem;
@@ -85,26 +84,26 @@ int main(int argc, char **argv)
                                     free(arrWork);
                                     out = MEMMORY_ERROR;
                                 }
-                                if (out == INCORRECT_PARAM)
+                                else if (out == INCORRECT_PARAM)
                                 {
                                     printf("\nIncorrect parametres\n");
                                     free(arrInp);
                                     out = INCORRECT_PARAM;
                                 }
-                                if (out == NONE_ELEMENTS)
+                                else if (out == NONE_ELEMENTS)
                                 {
                                     printf("\nNone elements before negative\n");
                                     free(arrInp);
                                     out = NONE_ELEMENTS;
                                 }
-                                if (out == SIZE_ERROR)
+                                else if (out == SIZE_ERROR)
                                 {
                                     printf("Size error");
                                     free(arrInp);
                                     free(arrWork);
                                     out = SIZE_ERROR;
                                 }
-                                if(out == OK)
+                                else
                                 {
                                     cntWorkElem = afterLastElemWork - arrWork;
 
@@ -133,13 +132,13 @@ int main(int argc, char **argv)
                             // ������ ������ � ����
                             if (argc == 4)
                             {
-                                file = fopen(argv[argc - 2], "w");
+                                file1 = fopen(argv[argc - 2], "w");
                             }
                             else if (argc == 3)
                             {
-                                file = fopen(argv[argc - 1], "w");
+                                file1 = fopen(argv[argc - 1], "w");
                             }
-                            if (file == NULL)
+                            if (file1 == NULL)
                             {
                                 printf("Error: Can't open file for write");
                                 free(arrInp);
@@ -155,7 +154,7 @@ int main(int argc, char **argv)
 
                             write_file(file, arrWork, lastPrintElem);
 
-                            fclose(file);
+                            fclose(file1);
                             // ������� ��������
 
                             free(arrInp);
@@ -168,7 +167,9 @@ int main(int argc, char **argv)
                 }
             }    
         }
-    }       
+        fclose(file);
+    }
+    printf("\nProgram finished with exit code = %i\n", out);
     return out;
 }
 
