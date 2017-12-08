@@ -73,6 +73,8 @@ int main(int argc, char **argv)
                     lastPrintElem = afterLastElem;
                     printArray("Input Array", arrInp, lastPrintElem);
 
+                    cntWorkElem = cntElem;
+
                     // ���������� � ���������� ������ � ������� ������
                     if (argc == 4)
                     {
@@ -105,7 +107,7 @@ int main(int argc, char **argv)
                                 free(arrWork);
                                 out = SIZE_ERROR;
                             }
-                            if (out == OK)
+                            if(out == OK)
                             {
                                 cntWorkElem = afterLastElemWork - arrWork;
 
@@ -121,13 +123,8 @@ int main(int argc, char **argv)
                             out = COMMAND_LINE_ERROR;
                         }
                     }
-                    else
-                    {
-                        // ��� ����������
-                        cntWorkElem = cntElem;
-                    }
 
-                    if (out == OK)
+                    if(out == OK)
                     {
                         //Sort array
                         mysort(arrWork, cntWorkElem, sizeof(int), compareFunc);
