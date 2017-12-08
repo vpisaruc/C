@@ -148,19 +148,19 @@ int main(int argc, char **argv)
                                 }
                                 out = ERROR_FILE_NOT_EXISTS;
                             }
-                            // ������ �������
-
-                            lastPrintElem = arrWork + cntWorkElem;
-
-                            write_file(file, arrWork, lastPrintElem);
-
-                            fclose(file1);
-                            // ������� ��������
-
-                            free(arrInp);
-                            if (argc == 4)
+                            else
                             {
-                                free(arrWork);
+
+                                lastPrintElem = arrWork + cntWorkElem;
+
+                                write_file(file, arrWork, lastPrintElem);
+
+                                fclose(file1);
+                                free(arrInp);
+                                if (argc == 4)
+                                {
+                                    free(arrWork);
+                                }
                             }
                         }
                     }
