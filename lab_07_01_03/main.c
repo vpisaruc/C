@@ -40,7 +40,6 @@ int main(int argc, char **argv)
         {
             // ������� ���� ������
             printf("Error = %d\n\nInput any key for Exit", out);
-
         }
         else
         {
@@ -151,11 +150,9 @@ int main(int argc, char **argv)
                             }
                             out = ERROR_FILE_NOT_EXISTS;
                         }
-
                         else
                         {
                             // ������ �������
-
                             lastPrintElem = arrWork + cntWorkElem;
 
                             write_file(file1, arrWork, lastPrintElem);
