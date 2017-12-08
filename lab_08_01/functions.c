@@ -40,7 +40,7 @@ double **init(double **matrix, int n, int m)
 
 //Filling matrix
 
-double **fill_matrix(FILE *file, int *size1, int *size2, int argc, double **matrix)
+double **fill_matrix(FILE *file, int *size1, int *size2, double **matrix)
 {
     int n, m;
 
@@ -49,15 +49,7 @@ double **fill_matrix(FILE *file, int *size1, int *size2, int argc, double **matr
         n = *size1;
         if (fscanf(file, "%d", size2) == 1)
         {
-            if (argc == 5)
-            {
-                m = *size2;
-            }
-            else
-            {
-                m = *size2;
-                m++;
-            }
+            m = *size2;
             matrix = allocate_matrix_solid(n, m);
             matrix = init(matrix, n, m);
             for (int i = 0; i < n; i++)
@@ -89,13 +81,22 @@ double **fill_matrix(FILE *file, int *size1, int *size2, int argc, double **matr
 
 //Print matrix
 
-void print_matrix(double **matrix, int n, int m)
+void print_matrix(double **matrix, int n, int m, int argc)
 {
     for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < m; j++)
-            printf("%lf ", matrix[i][j]);
-        printf("\n");
+        if(argc == 5)
+        {
+            for (int j = 0; j < m; j++)
+                printf("%lf ", matrix[i][j]);
+            printf("\n");
+        }
+        else
+        {
+            for (int j = 0; j < m - 1; j++)
+                printf("%lf ", matrix[i][j]);
+            printf("\n");
+        }
     }
     printf("\n");
 }
@@ -150,7 +151,7 @@ double **MatrixMult(int row_1, int column_1, int row_2, int column_2, double **m
 //Function that contain Gaus Method
 int GausMethod(int row, int column, double **matrix, FILE *file)
 {
-    if(row == column)
+    if(row == column - 1)
     {
         int n = row;
         int L = 0;
