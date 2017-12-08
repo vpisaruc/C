@@ -9,167 +9,173 @@
 int main(int argc, char **argv)
 {
     FILE * file = NULL, * file1 = NULL;
-    int retVal, cntElem, cntWorkElem;
+    int cntElem, cntWorkElem;
     int *arrInp = NULL, *arrWork = NULL, *afterLastElem = NULL, *lastPrintElem = NULL, *afterLastElemWork = NULL;
     int out;
     // �������� ����� c ��������� ������� ��� ������
-    if (argc < 3 || argc > 4)
+    if (argc == 4)
     {
-        out = COMMAND_LINE_ERROR;
-        printf("Incorrect data was entered");
+        file = fopen(argv[argc - 3], "r");
+    }
+    else if (argc == 3)
+    {
+        file = fopen(argv[argc - 2], "r");
     }
     else
     {
-        file =  fopen(argv[1], "r");
-        if (file == NULL)
+        printf("Must be 3 or 4 argumets of command line, elements of cammand line(app.exe in_file out_file [f])");
+        out = COMMAND_LINE_ERROR;
+    }
+    if (file == NULL)
+    {
+        printf("Error: File  not exists");
+        out = ERROR_FILE_NOT_EXISTS;
+    }
+    else
+    {
+
+        // ������� ���������� ���������
+        out = countFileData(file, &cntElem);
+        if (out < 0)
         {
-            printf("Error: File  not exists");
-            out = ERROR_FILE_NOT_EXISTS;
+            // ������� ���� ������
+            printf("Error = %d\n\nInput any key for Exit", out);
+
         }
         else
         {
-            // ������� ���������� ���������
-            retVal = countFileData(file, &cntElem);
-            if (retVal < 0)
+            // ��������� ������
+            arrInp = (int*)malloc(cntElem * sizeof(int));
+            if (!arrInp)
             {
-                // ������� ���� ������
-                printf("Error = %d\n\nInput any key for Exit", retVal);
-                out = retVal;
+                printf("\nMemory allocation error\n");
+                out = MEMMORY_ERROR;
             }
             else
             {
-                // ��������� ������
-                arrInp = (int*)malloc(cntElem * sizeof(int));
-                if (!arrInp)
+                afterLastElem = arrInp + cntElem;
+                arrWork = arrInp;
+                afterLastElemWork = afterLastElem;
+
+                // �������� ������
+                out = loadFileData(file, arrInp, &cntElem);
+                if (out < 0)
                 {
-                    printf("\nMemory allocation error\n");
-                    free(arrInp);
-                    out = MEMMORY_ERROR;
+                    // ������� ���� ������
+                    printf("Error = %d\n\nInput any key for Exit", out);
                 }
                 else
                 {
-                    afterLastElem = arrInp + cntElem;
-                    arrWork = arrInp;
-                    afterLastElemWork = afterLastElem;
+                    // �������� �����
 
-                    // �������� ������
-                    retVal = loadFileData(file, arrInp, &cntElem);
-                    if (retVal < 0)
+
+                    // ������ �������� �������
+                    lastPrintElem = afterLastElem;
+                    printArray("Input Array", arrInp, lastPrintElem);
+
+                    // ���������� � ���������� ������ � ������� ������
+                    if (argc == 4)
                     {
-                        // ������� ���� ������
-                        printf("Error = %d\n\nInput any key for Exit", retVal);
-                        free(arrInp);
-                        out = retVal;
+                        if (*argv[argc - 1] == 'f')
+                        {
+                            out = key(arrInp, afterLastElem, &arrWork, &afterLastElemWork);
+                            if (out == MEMMORY_ERROR)
+                            {
+                                printf("\nMemory error\n");
+                                free(arrInp);
+                                free(arrWork);
+                            }
+                            else if (out == INCORRECT_PARAM)
+                            {
+                                printf("\nIncorrect parametres\n");
+                                free(arrInp);
+                            }
+                            else if (out == NONE_ELEMENTS)
+                            {
+                                printf("\nNone elements before negative\n");
+                                free(arrInp);
+                            }
+                            else if (out == SIZE_ERROR)
+                            {
+                                printf("Size error");
+                                free(arrInp);
+                                free(arrWork);
+                            }
+                            else
+                            {
+                                cntWorkElem = afterLastElemWork - arrWork;
+
+                                // ������ ���������������� �������
+                                lastPrintElem = arrWork + cntWorkElem;
+                                printArray("Filtered Array", arrWork, lastPrintElem);
+                            }
+                        }
+                        else
+                        {
+                            free(arrInp);
+                            printf("To use filter print [f]");
+                            exit(COMMAND_LINE_ERROR);
+                        }
                     }
                     else
                     {
-                        // �������� �����
-
-                        // ������ �������� �������
-                        lastPrintElem = afterLastElem;
-                        printArray("Input Array", arrInp, lastPrintElem);
-
+                        // ��� ����������
                         cntWorkElem = cntElem;
+                    }
 
-                        // ���������� � ���������� ������ � ������� ������
+                    if (out == OK)
+                    {
+                        //Sort array
+                        mysort(arrWork, cntWorkElem, sizeof(int), compareFunc);
+
+                        // ������ ���������������� �������
+                        lastPrintElem = arrWork + cntWorkElem;
+                        printArray("Sorting Array", arrWork, lastPrintElem);
+
+                        // ������ ������ � ����
                         if (argc == 4)
                         {
-                            if (*argv[argc - 1] == 'f')
-                            {
-                                out = key(arrInp, afterLastElem, &arrWork, &afterLastElemWork);
-                                if (out == MEMMORY_ERROR)
-                                {
-                                    printf("\nMemory error\n");
-                                    free(arrInp);
-                                    free(arrWork);
-                                    out = MEMMORY_ERROR;
-                                }
-                                else if (out == INCORRECT_PARAM)
-                                {
-                                    printf("\nIncorrect parametres\n");
-                                    free(arrInp);
-                                    out = INCORRECT_PARAM;
-                                }
-                                else if (out == NONE_ELEMENTS)
-                                {
-                                    printf("\nNone elements before negative\n");
-                                    free(arrInp);
-                                    out = NONE_ELEMENTS;
-                                }
-                                else if (out == SIZE_ERROR)
-                                {
-                                    printf("Size error");
-                                    free(arrInp);
-                                    free(arrWork);
-                                    out = SIZE_ERROR;
-                                }
-                                else
-                                {
-                                    cntWorkElem = afterLastElemWork - arrWork;
-
-                                    // ������ ���������������� �������
-                                    lastPrintElem = arrWork + cntWorkElem;
-                                    printArray("Filtered Array", arrWork, lastPrintElem);
-                                }
-                            }
-                            else
-                            {
-                                free(arrInp);
-                                printf("To use filter print [f]");
-                                out = COMMAND_LINE_ERROR;
-                            }
+                            file1 = fopen(argv[argc - 2], "w");
                         }
-
-                        if(out == OK)
+                        else if (argc == 3)
                         {
-                            //Sort array
-                            mysort(arrWork, cntWorkElem, sizeof(int), compareFunc);
-
-                            // ������ ���������������� �������
-                            lastPrintElem = arrWork + cntWorkElem;
-                            printArray("Sorting Array", arrWork, lastPrintElem);
-
-                            // ������ ������ � ����
+                            file1 = fopen(argv[argc - 1], "w");
+                        }
+                        if (file1 == NULL)
+                        {
+                            printf("Error: Can't open file for write");
+                            free(arrInp);
                             if (argc == 4)
                             {
-                                file1 = fopen(argv[argc - 2], "w");
+                                free(arrWork);
                             }
-                            else if (argc == 3)
-                            {
-                                file1 = fopen(argv[argc - 1], "w");
-                            }
-                            if (file1 == NULL)
-                            {
-                                printf("Error: Can't open file for write");
-                                free(arrInp);
-                                if (argc == 4)
-                                {
-                                    free(arrWork);
-                                }
-                                out = ERROR_FILE_NOT_EXISTS;
-                            }
-                            else
-                            {
+                            out = ERROR_FILE_NOT_EXISTS;
+                        }
 
-                                lastPrintElem = arrWork + cntWorkElem;
+                        else
+                        {
+                            // ������ �������
 
-                                write_file(file, arrWork, lastPrintElem);
+                            lastPrintElem = arrWork + cntWorkElem;
 
-                                fclose(file1);
-                                free(arrInp);
-                                if (argc == 4)
-                                {
-                                    free(arrWork);
-                                }
+                            write_file(file1, arrWork, lastPrintElem);
+
+                            fclose(file1);
+                            // ������� ��������
+
+                            free(arrInp);
+                            if (argc == 4)
+                            {
+                                free(arrWork);
                             }
                         }
                     }
                 }
-            }    
+            }
         }
         fclose(file);
     }
-    printf("\nProgram finished with exit code = %i\n", out);
-    return out;
+
+    return 0;
 }
 
