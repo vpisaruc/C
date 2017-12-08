@@ -30,7 +30,7 @@ int main(int argc, char **argv)
                 //Create desired variables
                 double **matrix_1 = NULL, **matrix_2 = NULL, **matrix_3 = NULL;
                 int row_1, column_1, row_2, column_2;
-                matrix_1 = fill_matrix(file1, &row_1, &column_1, argc);
+                matrix_1 = fill_matrix(file1, &row_1, &column_1);
                 //Analize errors
                 if (matrix_1 == NULL)
                 {
@@ -42,7 +42,7 @@ int main(int argc, char **argv)
                 {
 
                     //Fill our matrix
-                    matrix_2 = fill_matrix(file2, &row_2, &column_2, argc);
+                    matrix_2 = fill_matrix(file2, &row_2, &column_2);
                     
                     if (matrix_2 == NULL)
                     {
@@ -53,9 +53,9 @@ int main(int argc, char **argv)
                     else
                     {
                         printf("\n\nFirst matrix: \n\n");
-                        print_matrix(matrix_1, row_1, column_1);
+                        print_matrix(matrix_1, row_1, column_1, argc);
                         printf("\n\nSecond matrix: \n\n");
-                        print_matrix(matrix_2, row_2, column_2);
+                        print_matrix(matrix_2, row_2, column_2, argc);
                         
                         //Compare action and choose one
                         if(strcmp(argv[argc - 4], "a") == 0)
@@ -64,9 +64,8 @@ int main(int argc, char **argv)
                             file3 = fopen(argv[argc - 1], "w");
 
                             //Matrix_3 is summ of matrix_1 and matrix_2
-                            
                             matrix_3 = MatrixSumm(row_1, column_1, row_2, column_2, matrix_1, matrix_2);
-        
+
                             //Error analization
                             if(matrix_3 == NULL)
                             {
@@ -79,7 +78,7 @@ int main(int argc, char **argv)
                             else
                             {
                                 printf("\n\nSumm of matrix_1 and matrix_2\n\n");
-                                print_matrix(matrix_3, row_1, column_1);
+                                print_matrix(matrix_3, row_1, column_1, argc);
 
                                 fprintf(file3, "%d %d\n", row_1, column_1);
                                 for (int i = 0; i < row_1; i++)
@@ -106,9 +105,8 @@ int main(int argc, char **argv)
                             FILE *file3 = NULL;
                             file3 = fopen(argv[argc - 1], "w");
                             //Multiply of matrix_1 and matrix_2
-                            
                             matrix_3 = MatrixMult(row_1, column_1, row_2, column_2, matrix_1, matrix_2);
-                            
+
                             if(matrix_3 == NULL)
                             {
                                 printf("\n\nCounts of colums of first matrix must be simmilar as counts of rows in second matrix.\n\n");
@@ -120,7 +118,7 @@ int main(int argc, char **argv)
                             else
                             {
                                 printf("\n\nMultiply of matrix_1 and matrix_2\n\n");
-                                print_matrix(matrix_3, row_1, column_2);
+                                print_matrix(matrix_3, row_1, column_2, argc);
 
                                 fprintf(file3, "%d %d\n", row_1, column_2);
                                 for (int i = 0; i < row_1; i++)
@@ -173,7 +171,7 @@ int main(int argc, char **argv)
         {
             double **matrix_1 = NULL;
             int row_1, column_1, retVal;
-            matrix_1 = fill_matrix(file1, &row_1, &column_1, argc);
+            matrix_1 = fill_matrix(file1, &row_1, &column_1);
             if(matrix_1 == NULL)
             {
                 printf("\nInput error\n");
@@ -187,12 +185,10 @@ int main(int argc, char **argv)
                     file3 = fopen(argv[argc - 1], "w");
 
                     printf("\n\nFirst matrix: \n\n");
-                    print_matrix(matrix_1, row_1, column_1);
+                    print_matrix(matrix_1, row_1, column_1, argc);
 
                     //Gaus Method
-                    
                     retVal = GausMethod(row_1, column_1, matrix_1, file3);
-                    
                     fclose(file1);
                     fclose(file3);
                     free(matrix_1);
