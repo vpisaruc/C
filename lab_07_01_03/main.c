@@ -105,7 +105,7 @@ int main(int argc, char **argv)
                                 free(arrWork);
                                 out = SIZE_ERROR;
                             }
-                            if(out == OK)
+                            if (out == OK)
                             {
                                 cntWorkElem = afterLastElemWork - arrWork;
 
@@ -127,7 +127,7 @@ int main(int argc, char **argv)
                         cntWorkElem = cntElem;
                     }
 
-                    if(out == OK)
+                    if (out == OK)
                     {
                         //Sort array
                         mysort(arrWork, cntWorkElem, sizeof(int), compareFunc);
