@@ -11,8 +11,8 @@
 
 
 double** allocate_matrix_solid(int n, int m);
-double** fill_matrix(FILE *file, int *size1, int *size2, int argc);
-void print_matrix(double **matrix, int n, int m);
+double** fill_matrix(FILE *file, int *size1, int *size2);
+void print_matrix(double **matrix, int n, int m, int argc);
 double **init(double **matrix, int n, int m);
 double** MatrixSumm(int row_1, int column_1, int row_2, int column_2, double **matrix_1, double **matrix_2);
 double** MatrixMult (int row_1, int column_1, int row_2, int column_2, double **matrix_1, double **matrix_2);
