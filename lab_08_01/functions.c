@@ -180,7 +180,6 @@ int GausMethod(int row, int column, double **matrix, FILE *file)
                     if (fabs(tmpf) == 0)
                     {
                         return GAUS_ERROR;
-                        //break;
                     }
                     tmpf2 = (matrix[L][i] * tmpf);
                     t3 = matrix[k][i] - tmpf2;
@@ -208,6 +207,10 @@ int GausMethod(int row, int column, double **matrix, FILE *file)
             for(int j = n - 1; j > i; j--)
             {
                 s += x[j] * matrix[i][j];
+            }
+            if(matrix[i][i] == 0)
+            {
+                return GAUS_ERROR;
             }
             x[i] = (matrix[i][n] - s) / matrix[i][i];
             if (x[i] == 0)
