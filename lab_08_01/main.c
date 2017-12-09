@@ -170,7 +170,7 @@ int main(int argc, char **argv)
         if(file1 != NULL)
         {
             double **matrix_1 = NULL;
-            int row_1, column_1 /*retVal*/;
+            int row_1, column_1, retVal;
             matrix_1 = fill_matrix(file1, &row_1, &column_1);
             if(matrix_1 == NULL)
             {
@@ -188,19 +188,19 @@ int main(int argc, char **argv)
                     print_matrix(matrix_1, row_1, column_1, argc);
 
                     //Gaus Method
-                    /*
+                    
                     retVal = GausMethod(row_1, column_1, matrix_1, file3);
-                    */
+                    
                     fclose(file1);
                     fclose(file3);
                     free(matrix_1);
-                    /*
+                    
                     if(retVal != 0)
                     {
                         printf("\nRows and colums of out matrix must be simmilar\n");
                         //free(matrix_1);
                         return GAUS_ERROR;
-                    }*/
+                    }
                 }
                 else
                 {
