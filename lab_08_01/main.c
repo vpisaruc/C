@@ -170,7 +170,7 @@ int main(int argc, char **argv)
         if(file1 != NULL)
         {
             double **matrix_1 = NULL;
-            int row_1, column_1, retVal;
+            int row_1, column_1 /*retVal*/;
             matrix_1 = fill_matrix(file1, &row_1, &column_1);
             if(matrix_1 == NULL)
             {
