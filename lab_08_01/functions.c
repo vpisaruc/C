@@ -156,6 +156,7 @@ int GausMethod(int row, int column, double **matrix, FILE *file)
         int n = row;
         int L = 0;
         double max_el = 0.0;
+        int cnt1 = 0;
         
         double tmpf = 0.0, tmpf2 = 0.0, t3 = 0.0;
         for(int j = 0; j < n; j++)
@@ -178,10 +179,20 @@ int GausMethod(int row, int column, double **matrix, FILE *file)
                     }
                     tmpf2 = (matrix[L][i] * tmpf);
                     t3 = matrix[k][i] - tmpf2;
+                    if(t3 == 0)
+                    {
+                        cnt1++;
+                    }
+                    
                     matrix[k][i] = t3;
                 }
             }
             L++;
+        }
+
+        if(cnt1 == n + 1)
+        {
+            return GAUS_ERROR;
         }
         
         double x[row];
