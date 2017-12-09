@@ -170,6 +170,10 @@ int GausMethod(int row, int column, double **matrix, FILE *file)
             }
             for(int k = 1 + L; k < n; k++)
             {
+                if (matrix[L][j] == 0)
+                {
+                    return GAUS_ERROR;
+                }
                 tmpf = matrix[k][j] / matrix[L][j];
                 for (int i = 0; i <= n; i++)
                 {
