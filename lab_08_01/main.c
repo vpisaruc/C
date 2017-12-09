@@ -196,7 +196,7 @@ int main(int argc, char **argv)
                     if(retVal != 0)
                     {
                         printf("\nRows and colums of out matrix must be simmilar\n");
-                        free(matrix_1);
+                        //free(matrix_1);
                         return GAUS_ERROR;
                     }
                 }
