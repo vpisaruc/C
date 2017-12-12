@@ -56,7 +56,7 @@ int main(int argc, char **argv)
                         print_matrix(matrix_2, row_2, column_2, argc);
                         
                         //Compare action and choose one
-                        if(strcmp(argv[argc - 4], "a") == 0)
+                        if (strcmp(argv[argc - 4], "a") == 0)
                         {
                             FILE * file3;
                             file3 = fopen(argv[argc - 1], "w");
@@ -158,25 +158,24 @@ int main(int argc, char **argv)
         }
     }
     //If command line have 3 arguments
-    else if(argc == 4)  
+    else if (argc == 4)  
     {
-
         file1 = fopen(argv[argc - 2], "r");
-        if(file1 != NULL)
+        if (file1 != NULL)
         {
             double **matrix_1 = NULL;
             int row_1, column_1, retVal;
             matrix_1 = fill_matrix(file1, &row_1, &column_1);
-            if(matrix_1 == NULL)
+            if (matrix_1 == NULL)
             {
                 printf("\nInput error\n");
                 return INPUT_ERROR;
             }
             else
             {
-                if(strcmp(argv[argc - 3], "o") == 0)
+                if (strcmp(argv[argc - 3], "o") == 0)
                 {
-                    FILE *file3 = NULL;
+                    FILE * file3 = NULL;
                     file3 = fopen(argv[argc - 1], "w");
 
                     printf("\n\nFirst matrix: \n\n");
@@ -190,7 +189,7 @@ int main(int argc, char **argv)
                     fclose(file3);
                     free(matrix_1);
                     
-                    if(retVal != 0)
+                    if (retVal != 0)
                     {
                         printf("\nRows and colums of out matrix must be simmilar\n");
                         //free(matrix_1);
@@ -210,12 +209,10 @@ int main(int argc, char **argv)
             printf("\nCan't find first file\n");
             return FILE_ERROR;
         }
-
     }
     else
     {
         printf("\nCommand line must have 3 or 4 arguments.\n");
         return COMMAND_LINE_ERROR;
     }
-
 }
