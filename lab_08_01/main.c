@@ -64,7 +64,7 @@ int main(int argc, char **argv)
                             file3 = fopen(argv[argc - 1], "w");
 
                             //Matrix_3 is summ of matrix_1 and matrix_2
-                            matrix_3 = MatrixSumm(row_1, column_1, row_2, column_2, matrix_1, matrix_2);
+                            matrix_3 = matrixSumm(row_1, column_1, row_2, column_2, matrix_1, matrix_2);
 
                             //Error analization
                             if(matrix_3 == NULL)
@@ -105,7 +105,7 @@ int main(int argc, char **argv)
                             FILE *file3 = NULL;
                             file3 = fopen(argv[argc - 1], "w");
                             //Multiply of matrix_1 and matrix_2
-                            matrix_3 = MatrixMult(row_1, column_1, row_2, column_2, matrix_1, matrix_2);
+                            matrix_3 = matrixMult(row_1, column_1, row_2, column_2, matrix_1, matrix_2);
 
                             if(matrix_3 == NULL)
                             {
@@ -189,7 +189,7 @@ int main(int argc, char **argv)
 
                     //Gaus Method
                     
-                    retVal = GausMethod(row_1, column_1, matrix_1, file3);
+                    retVal = gausMethod(row_1, column_1, matrix_1, file3);
                     
                     fclose(file1);
                     fclose(file3);
