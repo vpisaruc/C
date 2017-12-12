@@ -165,7 +165,7 @@ int gausMethod(int row, int column, double **matrix, FILE *file)
             {
                 if (fabs(matrix[h][j]) > max_el)
                 {
-                    max_el  = fabs(matrix[h][j]);
+                    max_el = fabs(matrix[h][j]);
                 }
             }
             for (int k = 1 + l; k < n; k++)
