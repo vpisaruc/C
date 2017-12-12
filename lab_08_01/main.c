@@ -11,17 +11,17 @@ int main(int argc, char **argv)
 {
     //Create first file variable
 
-    FILE *file1 = NULL;
+    FILE * file1 = NULL;
 
     //Compare arguments of command line
-    if(argc == 5)
+    if (argc == 5)
     {
         // Open first file
         file1 = fopen(argv[argc - 3], "r");
         if (file1 != NULL)
         {
             //Create second file variable
-            FILE *file2 = NULL;
+            FILE * file2 = NULL;
             
             //Open second file2
             file2 = fopen(argv[argc - 2], "r");
@@ -37,10 +37,8 @@ int main(int argc, char **argv)
                     printf("\n\nInput error.\n\n");
                     return INPUT_ERROR;
                 }
-
                 else
                 {
-
                     //Fill our matrix
                     matrix_2 = fill_matrix(file2, &row_2, &column_2);
                     
@@ -60,14 +58,13 @@ int main(int argc, char **argv)
                         //Compare action and choose one
                         if(strcmp(argv[argc - 4], "a") == 0)
                         {
-                            FILE *file3;
+                            FILE * file3;
                             file3 = fopen(argv[argc - 1], "w");
-
                             //Matrix_3 is summ of matrix_1 and matrix_2
                             matrix_3 = matrixSumm(row_1, column_1, row_2, column_2, matrix_1, matrix_2);
 
                             //Error analization
-                            if(matrix_3 == NULL)
+                            if (matrix_3 == NULL)
                             {
                                 printf("\n\nRows and colums of both matrix must be simmilar.\n\n");
                                 free(matrix_1);
@@ -83,7 +80,7 @@ int main(int argc, char **argv)
                                 fprintf(file3, "%d %d\n", row_1, column_1);
                                 for (int i = 0; i < row_1; i++)
                                 {
-                                    for(int j = 0; j < column_1; j++)
+                                    for (int j = 0; j < column_1; j++)
                                     {
                                         fprintf(file3, "%lf  ", matrix_3[i][j]);
                                     }
@@ -98,16 +95,15 @@ int main(int argc, char **argv)
                                 return OK;
                             }
                         }
-
                         //Compare action and choose one
-                        else if(strcmp(argv[argc - 4], "m") == 0)
+                        else if (strcmp(argv[argc - 4], "m") == 0)
                         {
-                            FILE *file3 = NULL;
+                            FILE * file3 = NULL;
                             file3 = fopen(argv[argc - 1], "w");
                             //Multiply of matrix_1 and matrix_2
                             matrix_3 = matrixMult(row_1, column_1, row_2, column_2, matrix_1, matrix_2);
 
-                            if(matrix_3 == NULL)
+                            if (matrix_3 == NULL)
                             {
                                 printf("\n\nCounts of colums of first matrix must be simmilar as counts of rows in second matrix.\n\n");
                                 free(matrix_1);
@@ -123,7 +119,7 @@ int main(int argc, char **argv)
                                 fprintf(file3, "%d %d\n", row_1, column_2);
                                 for (int i = 0; i < row_1; i++)
                                 {
-                                    for(int j = 0; j < column_2; j++)
+                                    for (int j = 0; j < column_2; j++)
                                     {
                                         fprintf(file3, "%lf  ", matrix_3[i][j]);
                                     }
@@ -154,7 +150,6 @@ int main(int argc, char **argv)
                 printf("\nCan't find second file.\n");
                 return FILE_ERROR;
             }
-        
         }
         else
         {
