@@ -184,7 +184,7 @@ void test_matrix_summ()
     arr_m_1 = fill_matr(2, 3, arr_matrix_1);
     arr_m_2 = fill_matr(2, 3, arr_matrix_2);
 
-    arr_m_3 = MatrixSumm(2, 3, 2, 3, arr_m_1, arr_m_2);
+    arr_m_3 = matrixSumm(2, 3, 2, 3, arr_m_1, arr_m_2);
 
     if(compare_arrays(2, 3, arr_m_3, arr_t_1) == OK)
     {
@@ -220,7 +220,7 @@ void test_matrix_summ()
     arr_m_1_1 = fill_matr(3, 3, arr_matrix_1_1);
     arr_m_2_1 = fill_matr(3, 3, arr_matrix_2_1);
 
-    arr_m_3_1 = MatrixSumm(3, 3, 3, 3, arr_m_1_1, arr_m_2_1);
+    arr_m_3_1 = matrixSumm(3, 3, 3, 3, arr_m_1_1, arr_m_2_1);
 
     if(compare_arrays(3, 3, arr_m_3_1, arr_t_1_1) == OK)
     {
@@ -252,7 +252,7 @@ void test_matrix_summ()
     arr_m_1_2 = fill_matr(2, 3, arr_matrix_1_2);
     arr_m_2_2 = fill_matr(3, 3, arr_matrix_2_2);
 
-    arr_m_3_2 = MatrixSumm(2, 3, 3, 3, arr_m_1_2, arr_m_2_2);
+    arr_m_3_2 = matrixSumm(2, 3, 3, 3, arr_m_1_2, arr_m_2_2);
 
     if(!arr_m_3_2)
     {
@@ -284,7 +284,7 @@ void test_matrix_summ()
     arr_m_1_3 = fill_matr(3, 3, arr_matrix_1_3);
     arr_m_2_3 = fill_matr(2, 3, arr_matrix_2_3);
 
-    arr_m_3_3 = MatrixSumm(3, 3, 2, 3, arr_m_1_3, arr_m_2_3);
+    arr_m_3_3 = matrixSumm(3, 3, 2, 3, arr_m_1_3, arr_m_2_3);
 
     if(!arr_m_3_3)
     {
@@ -316,7 +316,7 @@ void test_matrix_summ()
     arr_m_1_4 = fill_matr(3, 2, arr_matrix_1_4);
     arr_m_2_4 = fill_matr(3, 3, arr_matrix_2_4);
 
-    arr_m_3_4 = MatrixSumm(3, 2, 2, 3, arr_m_1_4, arr_m_2_4);
+    arr_m_3_4 = matrixSumm(3, 2, 2, 3, arr_m_1_4, arr_m_2_4);
 
     if(!arr_m_3_4)
     {
@@ -355,7 +355,7 @@ void test_matrix_mult()
     arr_m_1 = fill_matr(2, 3, arr_matrix_1);
     arr_m_2 = fill_matr(2, 3, arr_matrix_2);
 
-    arr_m_3 = MatrixMult(2, 3, 2, 3, arr_m_1, arr_m_2);
+    arr_m_3 = matrixMult(2, 3, 2, 3, arr_m_1, arr_m_2);
 
     if(!arr_m_3)
     {
@@ -391,7 +391,7 @@ void test_matrix_mult()
     arr_m_1_1 = fill_matr(3, 3, arr_matrix_1_1);
     arr_m_2_1 = fill_matr(3, 3, arr_matrix_2_1);
 
-    arr_m_3_1 = MatrixMult(3, 3, 3, 3, arr_m_1_1, arr_m_2_1);
+    arr_m_3_1 = matrixMult(3, 3, 3, 3, arr_m_1_1, arr_m_2_1);
 
     if(compare_arrays(3, 3, arr_m_3_1, arr_t_1_1) == OK)
     {
@@ -424,7 +424,7 @@ void test_matrix_mult()
     arr_m_1_2 = fill_matr(2, 3, arr_matrix_1_2);
     arr_m_2_2 = fill_matr(3, 3, arr_matrix_2_2);
 
-    arr_m_3_2 = MatrixMult(2, 3, 3, 3, arr_m_1_2, arr_m_2_2);
+    arr_m_3_2 = matrixMult(2, 3, 3, 3, arr_m_1_2, arr_m_2_2);
 
     if(compare_arrays(2, 3, arr_m_3_2, arr_t_1_2) == OK)
     {
