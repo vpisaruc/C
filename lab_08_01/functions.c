@@ -159,16 +159,16 @@ int gausMethod(int row, int column, double **matrix, FILE *file)
         int cnt1 = 0;
         
         double tmpf = 0.0, tmpf2 = 0.0, t3 = 0.0;
-        for(int j = 0; j < n; j++)
+        for (int j = 0; j < n; j++)
         {
-            for(int h = 0; h < n; h++)
+            for (int h = 0; h < n; h++)
             {
-                if(fabs(matrix[h][j]) > max_el)
+                if (fabs(matrix[h][j]) > max_el)
                 {
                     max_el  = fabs(matrix[h][j]);
                 }
             }
-            for(int k = 1 + l; k < n; k++)
+            for (int k = 1 + l; k < n; k++)
             {
                 if (matrix[l][j] == 0)
                 {
@@ -183,7 +183,7 @@ int gausMethod(int row, int column, double **matrix, FILE *file)
                     }
                     tmpf2 = (matrix[l][i] * tmpf);
                     t3 = matrix[k][i] - tmpf2;
-                    if(t3 == 0)
+                    if (t3 == 0)
                     {
                         cnt1++;
                     }
@@ -204,11 +204,11 @@ int gausMethod(int row, int column, double **matrix, FILE *file)
         for (int i = n - 1; i >= 0; i--)
         {
             double s = 0;
-            for(int j = n - 1; j > i; j--)
+            for (int j = n - 1; j > i; j--)
             {
                 s += x[j] * matrix[i][j];
             }
-            if(matrix[i][i] == 0)
+            if (matrix[i][i] == 0)
             {
                 return GAUS_ERROR;
             }
@@ -220,16 +220,14 @@ int gausMethod(int row, int column, double **matrix, FILE *file)
             cnt++;
         }
 
-        fprintf(file,"%d ", 1);
+        fprintf(file, "%d ", 1);
         fprintf(file, "%d\n", cnt);
-        for(int i = 0; i < row; i++)
+        for (int i = 0; i < row; i++)
         {
-            fprintf(file,"%lf\n", x[i]);
+            fprintf(file, "%lf\n", x[i]);
         }
         return OK;
-
     }
-
     return GAUS_ERROR;
 }
 
