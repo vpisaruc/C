@@ -85,7 +85,7 @@ void print_matrix(double **matrix, int n, int m, int argc)
 {
     for (int i = 0; i < n; i++)
     {
-        if(argc == 5)
+        if (argc == 5)
         {
             for (int j = 0; j < m; j++)
                 printf("%lf ", matrix[i][j]);
@@ -105,7 +105,7 @@ void print_matrix(double **matrix, int n, int m, int argc)
 
 //Function that Summ 2 matrix
 
-double **MatrixSumm(int row_1, int column_1, int row_2, int column_2, double **matrix_1, double **matrix_2, double **matrix_3)
+double **matrixSumm(int row_1, int column_1, int row_2, int column_2, double **matrix_1, double **matrix_2, double **matrix_3)
 {
     if (row_1 == row_2 && column_1 == column_2)
     {
@@ -125,7 +125,7 @@ double **MatrixSumm(int row_1, int column_1, int row_2, int column_2, double **m
 
 
 //Function that Multiply 2 matrix
-double **MatrixMult(int row_1, int column_1, int row_2, int column_2, double **matrix_1, double **matrix_2, double **matrix_3)
+double **matrixMult(int row_1, int column_1, int row_2, int column_2, double **matrix_1, double **matrix_2, double **matrix_3)
 {
     if (column_1 == row_2)
     {
@@ -149,12 +149,12 @@ double **MatrixMult(int row_1, int column_1, int row_2, int column_2, double **m
 
 
 //Function that contain Gaus Method
-int GausMethod(int row, int column, double **matrix, FILE *file)
+int gausMethod(int row, int column, double **matrix, FILE *file)
 {
-    if(row == column - 1)
+    if (row == column - 1)
     {
         int n = row;
-        int L = 0;
+        int l = 0;
         double max_el = 0.0;
         int cnt1 = 0;
         
@@ -168,20 +168,20 @@ int GausMethod(int row, int column, double **matrix, FILE *file)
                     max_el  = fabs(matrix[h][j]);
                 }
             }
-            for(int k = 1 + L; k < n; k++)
+            for(int k = 1 + l; k < n; k++)
             {
-                if (matrix[L][j] == 0)
+                if (matrix[l][j] == 0)
                 {
                     return GAUS_ERROR;
                 }
-                tmpf = matrix[k][j] / matrix[L][j];
+                tmpf = matrix[k][j] / matrix[l][j];
                 for (int i = 0; i <= n; i++)
                 {
                     if (fabs(tmpf) == 0)
                     {
                         return GAUS_ERROR;
                     }
-                    tmpf2 = (matrix[L][i] * tmpf);
+                    tmpf2 = (matrix[l][i] * tmpf);
                     t3 = matrix[k][i] - tmpf2;
                     if(t3 == 0)
                     {
@@ -191,10 +191,10 @@ int GausMethod(int row, int column, double **matrix, FILE *file)
                     matrix[k][i] = t3;
                 }
             }
-            L++;
+            l++;
         }
 
-        if(cnt1 == n + 1)
+        if (cnt1 == n + 1)
         {
             return GAUS_ERROR;
         }
