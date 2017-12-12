@@ -241,7 +241,11 @@ void test_key()
     free(en_arr_4);
     free(start_arr_5);
     free(en_arr_5);
-        
+    free(end_arr_1);
+    free(end_arr_2);
+    free(end_arr_3);
+    free(end_arr_4);
+    free(end_arr_5);
     
 }
 
