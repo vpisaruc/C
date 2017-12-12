@@ -233,10 +233,14 @@ void test_key()
 
     free(start_arr_1);
     free(en_arr_1);
-        free(start_arr_1);
-    free(en_arr_1);
-        free(start_arr_1);
-    free(en_arr_1);
+    free(start_arr_2);
+    free(en_arr_2);
+    free(start_arr_3);
+    free(en_arr_3);
+    free(start_arr_4);
+    free(en_arr_4);
+    free(start_arr_5);
+    free(en_arr_5);
         
     
 }
