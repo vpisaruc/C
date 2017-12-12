@@ -231,7 +231,12 @@ void test_key()
         printf("Failed \n\n");
     }
 
-
+    free(start_arr_1);
+    free(en_arr_1);
+        free(start_arr_1);
+    free(en_arr_1);
+        free(start_arr_1);
+    free(en_arr_1);
         
     
 }
