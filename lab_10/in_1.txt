@@ -1,0 +1,47 @@
+ 1  IU1-11    Antonov       5  5  4
+ 2  IU1-13    Pisaruc       4  5  4
+ 3  IU1-11    Samoilenko    3  4  4
+ 4  IU1-12    Kutepov       4  3  4
+ 5  IU1-11    Ianchik       5  4  5
+ 6  IU1-12    Prohorov      4  4  3
+ 7  IU1-13    Zaseev        3  3  4
+ 8  IU1-11    Erohin        5  5  5
+ 9  IU1-11    Kuzmin        5  4  4
+10  IU1-13    Pinchuk       5  4  4
+11  IU1-11    Lisovskii     3  4  5
+12  IU1-13    Banschikov    5  3  4
+13  IU1-12    Grebenschikov 5  5  4
+14  IU1-12    Barabanov     3  5  3
+15  IU1-12    Listiev       5  4  3
+16  IU1-11    Demenko       5  3  4
+17  IU1-13    Gureev        5  3  4
+18  IU1-13    Jivogliadov   3  3  5
+19  IU1-12    Druzi         5  3  3
+20  IU1-11    Jerebkov      4  5  3
+21  IU1-13    Polosatyi     4  4  4
+22  IU1-12    Morozevich    4  5  4
+23  IU1-12    Turtyshnyi    5  4  5
+24  IU1-12    Borzykin      5  4  4
+25  IU1-11    Maleev        3  4  4
+26  IU1-13    Bagdasarov    3  3  4
+27  IU1-11    Borman        3  4  4
+28  IU1-13    Ivanova       5  3  5
+29  IU1-11    Brodskaia     4  5  3
+30  IU1-13    Kurtian       4  3  4
+31  IU1-11    Antonenko     5  4  4
+32  IU1-13    Sinegub       5  4  5
+33  IU1-11    Lazareva      4  4  5
+34  IU1-12    Svetlakova    4  4  5
+35  IU1-12    Korotkova     5  4  4
+36  IU1-13    Berejnaia     5  3  3
+37  IU1-13    Kolomiicev    3  4  3
+38  IU1-11    Volobuev      5  4  4
+39  IU1-12    Suslikova     3  3  5
+40  IU1-12    Derevianko    4  5  5
+41  IU1-11    Kostyleva     5  4  4
+42  IU1-12    Arhipova      5  3  5
+43  IU1-13    Donchik       3  5  3
+44  IU1-13    Pereliman     4  4  4
+45  IU1-12    Krivosheev    5  3  5
+46  IU1-12    Mejunova      5  5  5
+47  IU1-12    Kroitor       4  4  4
