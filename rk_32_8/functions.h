@@ -24,3 +24,4 @@ typedef struct Node
 int readFile(FILE *file, node_t **studentList);
 void print_node(node_t *studentList);
 void checkStudents(node_t **studentList);
+node_t *get_last(node_t *studentList);

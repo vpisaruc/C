@@ -82,19 +82,42 @@ void print_node(node_t *studentList)
 	}
 }
 
-nade_t *get_last(node_t *studentList)
+node_t *get_last(node_t *studentList)
+{
+	node_t *tmpNode = NULL;
+	
+	
+	while(1 != 0)
+	{
+		if(tmpNode->next != NULL)
+		{
+			return tmpNode;
+		}
+		else
+		{
+			tmpNode = tmpNode->next;
+		}
+	}
+}
+
+
+
 
 
 void checkStudents(node_t **studentList)
 {
 	node_t *tmpNode = NULL;
+	
 	tmpNode = *studentList;
 	
+	printf("\nSpisok neuspevaiushih: \n");
 	while(1 != 0)
 	{
+		
 		if(tmpNode->data->mark1 < 3 || tmpNode->data->mark2 < 3 || tmpNode->data->mark3 < 3 || tmpNode->data->mark4 < 3)
 		{
-			printf("\n+\n");
+			printf("%20s%4d%4d%4d%4d", tmpNode->data->name, tmpNode->data->mark1, tmpNode->data->mark2, tmpNode->data->mark3, tmpNode->data->mark4);
+			printf("\n\n");
 			
 		}
 		if(tmpNode->next == NULL)
