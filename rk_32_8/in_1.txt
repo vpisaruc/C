@@ -1,0 +1,5 @@
+4
+Pisaruc 4 3 4  5
+Popov 3 1 5 4
+Tiupov 5 5 5 5
+Morokov 3 3 2 5
