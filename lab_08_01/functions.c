@@ -220,8 +220,8 @@ int gausMethod(int row, int column, double **matrix, FILE *file)
             cnt++;
         }
 
-        fprintf(file, "%d ", 1);
-        fprintf(file, "%d\n", cnt);
+        fprintf(file, "%d ", cnt);
+        fprintf(file, "%d\n", 1);
         for (int i = 0; i < row; i++)
         {
             fprintf(file, "%lf\n", x[i]);
