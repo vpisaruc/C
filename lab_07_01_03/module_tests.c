@@ -48,6 +48,7 @@ int compare_arrays_1(int cnt, int array_1[], int *array_2)
             }
             else
             {
+                free(array_2);
                 return OK;
             }
         }
@@ -159,10 +160,15 @@ void test_key()
     key(arr_test_1, end_arr_1, &start_arr_1, &en_arr_1);
 
     if (memcmp (start_arr_1, arr_result_1, 4*sizeof(int)) == 0)
+    {
+        free(start_arr_1);
         printf("Passed \n\n");
+    }
     else
+    {
+        free(start_arr_1);
         printf("Failed \n\n");
-        
+    }    
     printf("TESTS FOR KEY: \n\n"
     "Test №2: \n"
     "array = {-12, 3, 7, 5, 1} \n"
@@ -173,9 +179,15 @@ void test_key()
     
 
     if (retVal == NONE_ELEMENTS)
+    {
+        free(start_arr_2);
         printf("Passed \n\n");
+    }
     else
+    {
+        free(start_arr_2);
         printf("Failed \n\n");
+    }
         
     printf("TESTS FOR KEY: \n\n"
     "Test №3: \n"
@@ -186,9 +198,15 @@ void test_key()
     key(arr_test_3, end_arr_3, &start_arr_3, &en_arr_3);
 
     if (memcmp (start_arr_3, arr_result_3, 2*sizeof(int)) == 0)
+    {
+        free(start_arr_3);
         printf("Passed \n\n");
+    }
     else
+    {
+        free(start_arr_3);
         printf("Failed \n\n");
+    }
         
     printf("TESTS FOR KEY: \n\n"
     "Test №4: \n"
@@ -205,12 +223,16 @@ void test_key()
     key(arr_test_4, end_arr_4, &start_arr_4, &en_arr_4);
 
     if (memcmp (start_arr_4, arr_result_4, 5*sizeof(int)) == 0)
+    {
+        free(start_arr_4);
         printf("Passed \n\n");
+    }
     else
+    {
+        free(start_arr_4);
         printf("Failed \n\n");
+    }
 
-        
-        
     printf("TESTS FOR KEY: \n\n"
 
     "Test №5: \n"
@@ -224,29 +246,15 @@ void test_key()
 
     if(retVal == -6)
     {
+        free(start_arr_5);
         printf("Passed \n\n");
     }
     else
     {
+        free(start_arr_5);
         printf("Failed \n\n");
     }
 
-    free(start_arr_1);
-    free(en_arr_1);
-    free(start_arr_2);
-    free(en_arr_2);
-    free(start_arr_3);
-    free(en_arr_3);
-    free(start_arr_4);
-    free(en_arr_4);
-    free(start_arr_5);
-    free(en_arr_5);
-    free(end_arr_1);
-    free(end_arr_2);
-    free(end_arr_3);
-    free(end_arr_4);
-    free(end_arr_5);
-    
 }
 
 
@@ -410,12 +418,3 @@ int main(void)
     
     return 0;
 }
-
-
-
-
-
-
-
-
-
