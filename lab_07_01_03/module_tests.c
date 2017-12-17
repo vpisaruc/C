@@ -14,11 +14,15 @@ int compare_char(const void *i, const void *j)
 }
 int main(void)
 {
+    unsigned long long tb, te;
     FILE * f1;
     FILE * f2;
     FILE * f3;
     FILE * f4;
     int ko = OK, *lastPrint = NULL;
+
+    tb = tick();
+
     f1 = fopen("in_1.txt", "r");
     f2 = fopen("in_2.txt", "r");
     f3 = fopen("in_3.txt", "r");
@@ -217,6 +221,7 @@ int main(void)
         printf("\nmysort()             ");
         ko = OK;
         arr_filtered_2 = arr_2;
+        tick();
         pointer_on_last_filter_2 = arr_filtered_2 + 8;
         mysort(arr_filtered_2, fabs((size_t)(pointer_on_last_filter_2 - arr_filtered_2)),
             sizeof (int), compare_int);
@@ -302,5 +307,7 @@ int main(void)
     fclose(f4);
 
     printf("\nko = %i", ko);
+    te = tick();
+    printf("Time tests: %llu\n", (te - tb) / 100);
     return ko;
 }
