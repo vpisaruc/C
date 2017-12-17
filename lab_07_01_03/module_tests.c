@@ -224,6 +224,7 @@ int main(void)
         int i = 0;
         lastPrint = arr_true_2_s + 7;
         write_file(file1, arr_filtered_2, lastPrint);
+        printArray("Input Array", arr_true_2_s, lastPrint);
         fclose(file1);
         while (i < 8)
         {
