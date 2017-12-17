@@ -53,7 +53,7 @@ int main(int argc, char **argv)
                     // ������ ��������
                     *lineptr = my_str_replace(*lineptr, strSearch, strReplace);
                     // ����� � ����
-                    fprintf(file_out,"%s",*lineptr);
+                    fprintf(file_out, "%s", *lineptr);
                 }
     
                 fclose(file);
@@ -62,7 +62,7 @@ int main(int argc, char **argv)
                 printf("Ok. Input any key for Exit");
                 break;
             }
-            case 1:
+        case 1:
             {
                 // �������� ��������� �����
                 file = fopen(argv[1], "r");
@@ -167,7 +167,6 @@ int main(int argc, char **argv)
                 fclose(file);
     
                 printf("Ok. Input any key for Exit");
-    
                 break;
             }
     }
