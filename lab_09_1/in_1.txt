@@ -1,0 +1,28 @@
+Structures
+
+Structures aggregate the storage of multiple data items, of potentially differing data types, 
+into one memory block referenced by a single variable.
+The following example declares the data type struct birthday which contains the name and birthday of a person. 
+The structure definition is followed by a declaration of the variable John that allocates the needed storage.
+
+struct birthday {
+    char name[20];
+    int day;
+    int month;
+    int year;
+};
+
+struct birthday John;
+
+The memory layout of a structure is a language implementation issue for each platform, with a with few restrictions.
+The memory address of the first member must be the same as the address of structure itself.
+Structures may be initialized or assigned to using compound literals.
+A function may directly return a structure, although this is often not efficient at run-time. 
+Since C99, a structure may also end with a flexible array member.
+
+A structure containing a pointer to a structure of its own type is commonly used to build linked data structures:
+
+struct node {
+	int val;
+	struct node *next;
+};
