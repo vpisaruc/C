@@ -211,7 +211,7 @@ int main(void)
             printf(" ERROR     ");
         }
 
-        FILE *file1;
+        FILE * file1;
         
         file1 = fopen("out_1.txt", "w");
 
@@ -296,7 +296,6 @@ int main(void)
         {
             printf(" Right     ");
         }
-
     }
     fclose(f1);
     fclose(f2);
