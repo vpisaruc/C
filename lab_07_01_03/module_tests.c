@@ -1,405 +1,300 @@
 #include <stdio.h>
-#include <string.h>
 #include <malloc.h>
-#include <stdlib.h>
-#include <string.h>
-
+#include <math.h>
 #include "functions.h"
 
-#define COMPARE_ERROR -1
-#define OK 0
-
-int compare_arrays(int cnt, int array_1[], int array_2[])
+int compare_int(const void *i, const void *j)
 {
-    int i = 0;
-    while(i < cnt)
-    {
-        if(array_1[i] == array_2[i])
-        {
-            if(i != (cnt -1))
-            {
-                i++;
-            }
-            else
-            {
-                return OK;
-            }
-        }
-    }
-    return COMPARE_ERROR;
+    return *(int*)i - *(int*)j;
 }
 
-
-int compare_arrays_1(int cnt, int array_1[], int *array_2)
+int compare_char(const void *i, const void *j)
 {
-    int i = 0;
-    int *idx;
-    
-    idx = array_2;
-    
-    while(i < cnt)
-    {
-        if(array_1[i] == array_2[i])
-        {
-            if(i != (cnt -1))
-            {
-                i++;
-                idx++;
-            }
-            else
-            {
-                free(array_2);
-                return OK;
-            }
-        }
-    }
-    return COMPARE_ERROR;
+    return *(char*)i - *(char*)j;
 }
-
-
-void test_mySort()
-{
-
-    printf("TESTS FOR mysort: \n\n" 
-    "Test №1: \n"
-    "array = {1, 1, 1, -1, 1} \n"
-    "result = {-1, 1, 1, 1, 1} \n"
-    "Check: ");
-    
-    
-    int arr_t_1[5] = {1, 1, 1, -1, 1};
-    int arr_r_1[5] = {-1, 1, 1, 1, 1};
-    
-    mysort(arr_t_1, 5, sizeof(int), compareFunc);
-    
-    if (compare_arrays(5, arr_t_1, arr_r_1) == OK)
-        printf("Passed\n");
-    else
-        printf("Failed\n");
-    
-    printf("TESTS FOR mysort: \n\n" 
-    "Test №2: \n"
-    "Array = {1} \n"
-    "Result = {1} \n"
-    "Check:: ");
-    
-    int arr_t_2[1] = {0};
-    int arr_r_2[1] = {0};
-    
-    mysort(arr_t_2, 1, sizeof(int), compareFunc);
-    
-    if (compare_arrays(1, arr_t_2, arr_r_2) == OK)
-        printf("Passed\n");
-    else
-        printf("Failed\n");
-
-    printf("TESTS FOR mysort: \n\n" 
-    "Test №3: \n"
-    "Array = {17 -256  -68  455   98 -155   11  243  -70  111 17 -256  -68  455   98 -155   11  243  -70  111} \n"
-    "Result = {-256 -256 -155 -155  -70  -70  -68  -68   11   11   17   17   98   98  111  111  243  243  455  455} \n"
-    "Check:: ");
-    
-    int arr_t_3[20] = {17, -256,  -68,  455,   98, -155,   11,  243,  -70,  111, 17, -256,  -68,  455,   98, -155,   11,  243,  -70,  111};
-    int arr_r_3[20] = {-256,-256, -155, -155,  -70,  -70,  -68,  -68,   11,   11,   17,   17,   98,   98,  111,  111,  243,  243,  455,  455};
-    
-    mysort(arr_t_3, 20, sizeof(int), compareFunc);
-    
-    if (compare_arrays(20, arr_t_3, arr_r_3) == OK)
-        printf("Passed\n");
-    else
-        printf("Failed\n");
-}
-
-
-void test_key()
-{
-    int cnt_1 = 5;
-    int cnt_2 = 5;
-    int cnt_3 = 5;
-    int cnt_4 = 5;
-    int retVal;
-
-
-    int arr_test_1 [5] = {-12, -3, 7, 5, -1};
-    int arr_result_1 [5] = {-12, -3, 7, 5};
-    
-    int arr_test_2 [5] = {-12, 3, 7, 5, 1};
-
-    
-    int arr_test_3 [5] = {12, 3, -7, 5, 1};
-    int arr_result_3 [5] = {12, 3};
-    
-    int arr_test_4 [5] = {12, 3, 7, 5, 1};
-    int arr_result_4 [5] = {12, 3, 7, 5, 1};
-
-    int arr_test_5 [5] = {12, 3, 7, 5, 1};
-
-    
-    int *end_arr_1 = arr_test_1 + cnt_1;
-    int *start_arr_1, *en_arr_1;
-    
-    int *end_arr_2 = arr_test_2 + cnt_2;
-    int *start_arr_2, *en_arr_2;
-    
-    int *end_arr_3 = arr_test_3 + cnt_3;
-    int *start_arr_3, *en_arr_3;
-    
-    int *end_arr_4 = arr_test_4 + cnt_4;
-    int *start_arr_4, *en_arr_4;
-
-    int *end_arr_5 = NULL;
-    int *start_arr_5, *en_arr_5;
-    
-
-    printf("TESTS FOR KEY: \n\n"
-    "Test №1: \n"
-    "array = {-12, -3, 7, 5, -1} \n"
-    "result = {-12, -3, 7, 5} \n"
-    "Check: ");
-    
-    key(arr_test_1, end_arr_1, &start_arr_1, &en_arr_1);
-
-    if (memcmp (start_arr_1, arr_result_1, 4*sizeof(int)) == 0)
-    {
-        free(start_arr_1);
-        printf("Passed \n\n");
-    }
-    else
-    {
-        free(start_arr_1);
-        printf("Failed \n\n");
-    }    
-    printf("TESTS FOR KEY: \n\n"
-    "Test №2: \n"
-    "array = {-12, 3, 7, 5, 1} \n"
-    "result = ERROR \n"
-    "Check: ");
-    
-    retVal =  key(arr_test_2, end_arr_2, &start_arr_2, &en_arr_2);
-    
-
-    if (retVal == NONE_ELEMENTS)
-    {
-        free(start_arr_2);
-        printf("Passed \n\n");
-    }
-    else
-    {
-        free(start_arr_2);
-        printf("Failed \n\n");
-    }
-        
-    printf("TESTS FOR KEY: \n\n"
-    "Test №3: \n"
-    "array = {12, 3, -7, 5, 1} \n"
-    "result = {12, 3} \n"
-    "Check: ");
-    
-    key(arr_test_3, end_arr_3, &start_arr_3, &en_arr_3);
-
-    if (memcmp (start_arr_3, arr_result_3, 2*sizeof(int)) == 0)
-    {
-        free(start_arr_3);
-        printf("Passed \n\n");
-    }
-    else
-    {
-        free(start_arr_3);
-        printf("Failed \n\n");
-    }
-        
-    printf("TESTS FOR KEY: \n\n"
-    "Test №4: \n"
-    "array = {12, 3, 7, 5, 1} \n"
-    "result = {12, 3, 7, 5, 1} \n"
-    "Check: ");
-    
-    
-    for(int i = 0; i < 4; i++)
-    {
-        printf("%d ",start_arr_4[i]);
-    }
-
-    key(arr_test_4, end_arr_4, &start_arr_4, &en_arr_4);
-
-    if (memcmp (start_arr_4, arr_result_4, 5*sizeof(int)) == 0)
-    {
-        free(start_arr_4);
-        printf("Passed \n\n");
-    }
-    else
-    {
-        free(start_arr_4);
-        printf("Failed \n\n");
-    }
-
-    printf("TESTS FOR KEY: \n\n"
-
-    "Test №5: \n"
-    "array = {12, 3, 7, 5, 1} \n"
-    "result = {12, 3, 7, 5, 1} \n"
-    "pe_dst = NULL\n"
-    "Check: ");
-     
-
-    retVal = key(arr_test_5, end_arr_5, &start_arr_5, &en_arr_5);
-
-    if(retVal == -6)
-    {
-        free(start_arr_5);
-        printf("Passed \n\n");
-    }
-    else
-    {
-        free(start_arr_5);
-        printf("Failed \n\n");
-    }
-
-}
-
-
-/*
-void test_cnt_file_data()
-{
-
-    int cntElem, retVal, cntElem_1, retVal_1, cntElem_2, retVal_2;
-    FILE *file, *file1, *file2;
-    int test_cntElem = 10, test_retVal_1 = -3, test_retVal_2 = -2;
-    file = fopen("in_1.txt","r");
-    
-    //file1 = fopen("in_8.txt", "r");
-    file2 = fopen("in_7.txt", "r");
-    
-    retVal = countFileData(file, &cntElem);
-    printf("TESTS FOR countFileData: \n\n" 
-    "Test №1: \n"
-    "File  = {17 -256  -68  455   98 -155   11  243  -70  111} \n"
-    "Result = {10} \n"
-    "Check:: ");
-    
-    if((cntElem == test_cntElem) && (retVal == OK))
-    {
-        printf("Passed\n");
-    }
-    else
-    {
-        printf("Failed\n");
-    }
-    
-
-    
-    
-    printf("TESTS FOR countFileData: \n\n" 
-    "Test №3: \n"
-    "File  = {a 1 24 443 12 4234 123} \n"
-    "Result = {ERROR_FILE_DATA_STRUCTURE} \n"
-    "Check:: ");
-    
-    retVal_2 = countFileData(file2, &cntElem_2);
-    
-    if(retVal_2 == test_retVal_2)
-    {
-        printf("Passed\n");
-    }
-    else
-    {
-        printf("Failed\n");
-    }
-    
-    fclose(file);
-    fclose(file2);
-}
-
-
-*/
-void test_load_file_data()
-{
-    
-    FILE *file, *file1, *file2;
-    int *arrInp, *arrInp1, *arrInp2;
-    
-    
-    file = fopen("in_1.txt","r");
-    file1 = fopen("in_2.txt", "r");
-    file2 = fopen("in_3.txt", "r");
-    
-    
-    int arr_t_1[5] = {1, 1, 1, -1, 1};
-    int arr_t_3[20] = {17, -256,  -68,  455,   98, -155,   11,  243,  -70,  111, 17, -256,  -68,  455,   98, -155,   11,  243,  -70,  111};
-    int arr_t_2[2] = {-3, -1};
-    int retVal;
-    
-    arrInp = (int*)malloc(5 * sizeof(int));
-    int cnt = 5;
-    arrInp1 = (int*)malloc(2 * sizeof(int));
-    int cnt1 = 2;
-    arrInp2 = (int*)malloc(20 * sizeof(int));
-    int cnt2 = 20;
-    
-    retVal = loadFileData(file, arrInp, &cnt);
-    printf("TESTS FOR loadFileData: \n\n" 
-    "Test №1: \n"
-    "File  = {1, 1, 1, -1, 1} \n"
-    "Result = {1, 1, 1, -1, 1} \n"
-    "Check:: ");
-    
-    
-    
-    if ((compare_arrays_1(5, arr_t_1, arrInp) == OK) && (retVal == OK))
-        printf("Passed\n");
-    else
-        printf("Failed\n");
-    
-
-    
-    printf("TESTS FOR loadFileData: \n\n" 
-    "Test №2: \n"
-    "File  = {-3 -1} \n"
-    "Result = {-3 -1} \n"
-    "Check:: ");
-    
-
-    
-    retVal = loadFileData(file1, arrInp1, &cnt1);
-    
-    
-    if ((compare_arrays_1(2, arr_t_2, arrInp1) == OK) && (retVal == OK))
-        printf("Passed\n");
-    else
-        printf("Failed\n");
-    
-    
-    
-    printf("TESTS FOR loadFileData: \n\n" 
-    "Test №3: \n"
-    "File  = {17 -256  -68  455   98 -155   11  243  -70  111 17 -256  -68  455   98 -155   11  243  -70  111} \n"
-    "Result = {17 -256  -68  455   98 -155   11  243  -70  111 17 -256  -68  455   98 -155   11  243  -70  111} \n"
-    "Check:: ");
-    
-    retVal = loadFileData(file2, arrInp2, &cnt2);
-    
-    if ((compare_arrays_1(20, arr_t_3, arrInp2) == OK) && (retVal == OK))
-        printf("Passed\n");
-    else
-        printf("Failed\n");
-        
-    free(arrInp);
-    free(arrInp1);
-    free(arrInp2);
-    
-    fclose(file);
-    fclose(file1);
-    fclose(file2);
-}
-
-
-
 int main(void)
 {
-    test_mySort();
-   // test_cnt_file_data();
-    test_load_file_data();
-    test_key();
-    
-    return 0;
+    FILE * f1;
+    FILE * f2;
+    FILE * f3;
+    FILE * f4;
+    int ko = OK;
+    f1 = fopen("in_1.txt", "r");
+    f2 = fopen("in_2.txt", "r");
+    f3 = fopen("in_3.txt", "r");
+    f4 = fopen("in_4.txt", "r");
+
+    if (f1 == NULL)
+    {
+        printf("1st File does not exist");
+        ko = ERROR_FILE_NOT_EXISTS;
+    }
+    else if (f2 == NULL)
+    {
+        printf("2nd File does not exist");
+        ko = ERROR_FILE_NOT_EXISTS;
+    }
+    else if (f3 == NULL)
+    {
+        printf("3rd File does not exist");
+        ko = ERROR_FILE_NOT_EXISTS;
+    }
+    else if (f4 == NULL)
+    {
+        printf("4th File does not exist");
+        ko = ERROR_FILE_NOT_EXISTS;
+    }
+    else
+    {
+        printf("                    1st file | 2nd file | 3rd file | 4th file\n");
+        int m = 0;
+        ko = countFileData(f1, &m);
+        printf("seekquantity()       ");
+        if (m == 8 && ko == OK)
+        {
+            printf(" Right     ");
+        }
+        else
+        {
+            printf(" ERROR     ");
+        }
+        m = 0;
+        ko = countFileData(f2, &m);
+        if (m == 0 && ko == ERROR_FILE_EMPTY)
+        {
+            printf(" Right     ");
+        }
+        else
+        {
+            printf(" ERROR     ");
+        }
+        m = 0;
+        ko = countFileData(f3, &m);
+        if (m == 7 && ko == OK)
+        {
+            printf(" Right     ");
+        }
+        else
+        {
+            printf(" ERROR     ");
+        }
+        m = 0;
+        ko = countFileData(f4, &m);
+        if (m == 0 && ko == ERROR_FILE_NOT_EXISTS)
+        {
+            printf(" Right     ");
+        }
+        else
+        {
+            printf(" ERROR     ");
+        }
+
+        printf("\nwritearray()         ");
+        int *arr_1;
+        int *pointer_on_last_arr_1;
+
+        int arr_true_1[] = { 1, 2, 3, 4, -5, 3, 2, 1 };
+        arr_1 = (int*)malloc(8 * sizeof(int));
+        pointer_on_last_arr_1 = arr_1 + 8;
+        rewind(f1);
+        ko = loadFileData(f1, arr_1, pointer_on_last_arr_1);
+        if (ko == OK)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                if (arr_1[i] != arr_true_1[i])
+                {
+                    printf(" ERROR     ");
+                    ko = ERR_TEST;
+                    break;
+                }
+            }
+        }
+        if (ko != ERR_TEST)
+        {
+            printf(" Right     ");
+        }
+        free(arr_1);
+
+        printf(" -----     ");
+        printf(" -----     ");
+
+        arr_1 = (int*)malloc(5 * sizeof(int));
+        pointer_on_last_arr_1 = arr_1 + 5;
+        rewind(f4);
+        ko = loadFileData(f4, arr_1, pointer_on_last_arr_1);
+        if (ko == ERROR_FILE_DATA_STRUCTURE)
+        {
+            printf(" Right     ");
+        }
+        else
+        {
+            printf(" ERROR     ");
+        }
+        free(arr_1);
+
+        printf("\nkey()                ");
+        ko = OK;
+        int arr_2[] = { 1, 2, 3, 4, -5, 3, 2, 1 };
+        int *pointer_on_last_arr_2 = arr_2 + 8;
+        int arr_true_2[] = { 1, 2, 3, 4 };
+        int *arr_filtered_2;
+        int *pointer_on_last_filter_2;
+        const int *arr_c_2 = arr_2;
+        const int *pointer_on_last_arr_c_2 = pointer_on_last_arr_2;
+        ko = key(arr_c_2, pointer_on_last_arr_c_2, &arr_filtered_2, &pointer_on_last_filter_2);
+        if (ko == OK)
+        {
+            int i = 0;
+            while (i < 4)
+            {
+                if (arr_filtered_2[i] != arr_true_2[i])
+                {
+                    printf(" ERROR     ");
+                    ko = ERR_TEST;
+                    break;
+                }
+                i++;
+            }
+        }
+        if (ko != ERR_TEST)
+        {
+            printf(" Right     ");
+        }
+
+        printf(" -----     ");
+
+        ko = OK;
+        int arr_3[] = { 5, 4, 4, 3, 2, 1, 0 };
+        int *pointer_on_last_arr_3 = arr_3 + 7;
+        int arr_true_3[] = { 5, 4, 4, 3, 2, 1, 0 };
+        int *arr_filtered_3;
+        int *pointer_on_last_filter_3;
+        const int *arr_c_3 = arr_3;
+        const int *pointer_on_last_arr_c_3 = pointer_on_last_arr_3;
+        ko = key(arr_c_3, pointer_on_last_arr_c_3, &arr_filtered_3, &pointer_on_last_filter_3);
+        if (ko == OK)
+        {
+            int i = 0;
+            while (i < 7)
+            {
+                if (arr_filtered_3[i] != arr_true_3[i])
+                {
+                    printf(" ERROR     ");
+                    ko = ERR_TEST;
+                    break;
+                }
+                i++;
+            }
+        }
+        if (ko != ERR_TEST)
+        {
+            printf(" Right     ");
+        }
+
+
+        ko = OK;
+        int arr_4[] = { -1, 1, 2, 3, -4, 5 };
+        int *pointer_on_last_arr_4 = arr_4 + 6;
+        int *arr_filtered_4;
+        int *pointer_on_last_filter_4;
+        const int *arr_c_4 = arr_4;
+        const int *pointer_on_last_arr_c_4 = pointer_on_last_arr_4;
+        ko = key(arr_c_4, pointer_on_last_arr_c_4, &arr_filtered_4, &pointer_on_last_filter_4);
+        if (ko == NONE_ELEMENTS)
+        {
+            printf(" Right     ");
+        }
+        else
+        {
+            printf(" ERROR     ");
+        }
+
+
+        printf("\nmysort()             ");
+        ko = OK;
+        arr_filtered_2 = arr_2;
+        pointer_on_last_filter_2 = arr_filtered_2 + 8;
+        mysort(arr_filtered_2, fabs((size_t)(pointer_on_last_filter_2 - arr_filtered_2)),
+            sizeof (int), compare_int);
+        int arr_true_2_s[] = { -5, 1, 1, 2, 2, 3, 3, 4 };
+        int i = 0;
+        while (i < 8)
+        {
+            if (arr_filtered_2[i] != arr_true_2_s[i])
+            {
+                printf(" ERROR     ");
+                ko = ERR_TEST;
+                break;
+            }
+            i++;
+        }
+        if (ko != ERR_TEST)
+        {
+            printf(" Right     ");
+        }
+        //
+
+        printf(" -----     ");
+
+        ko = OK;
+        arr_filtered_3 = arr_3;
+        pointer_on_last_filter_3 = arr_filtered_3 + 7;
+        mysort(arr_filtered_3, fabs((size_t)(pointer_on_last_filter_3 - arr_filtered_3)),
+            sizeof (int), compare_int);
+        int arr_true_3_s[] = { 0, 1, 2, 3, 4, 4, 5 };
+        i = 0;
+        while (i < 7)
+        {
+            if (arr_filtered_3[i] != arr_true_3_s[i])
+            {
+                printf(" ERROR     ");
+                ko = ERR_TEST;
+                break;
+            }
+            i++;
+        }
+        if (ko != ERR_TEST)
+        {
+            printf(" Right     ");
+        }
+        //free(arr_filtered_3);
+
+
+        ko = OK;
+        char arr_filtered_5[] = { 'c', 'b', 'd', 'a', 'g', 'f','1', 'e', 'a' };
+        //double arr_filtered_5[] = {5 , 3.55, 5.23, -5.544, 2.6};
+        char *pointer_on_last_filter_5 = arr_filtered_5;
+        //double *pointer_on_last_filter_5 = arr_filtered_5;
+        pointer_on_last_filter_5 += 9;
+        mysort(arr_filtered_5, fabs((size_t)(pointer_on_last_filter_5 - arr_filtered_5)),
+            sizeof(char), compare_char);
+        char arr_true_5_s[] = { '1','a','a', 'b', 'c', 'd', 'e', 'f', 'g' };
+        //double arr_true_5_s[] = {-5.544, 2.6, 3.55, 5, 5.23};
+        i = 0;
+        while (i < 9)
+        {
+            //printf("%c ", arr_filtered_5[i]);
+            if (arr_filtered_5[i] != arr_true_5_s[i])
+            {
+                printf(" ERROR     ");
+                ko = ERR_TEST;
+                break;
+            }
+            i++;
+        }
+        if (ko != ERR_TEST)
+        {
+            printf(" Right     ");
+        }
+        //
+        //free(arr_filtered_2);
+    }
+    fclose(f1);
+    fclose(f2);
+    fclose(f3);
+    fclose(f4);
+
+    printf("\nko = %i", ko);
+    return ko;
 }
