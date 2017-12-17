@@ -3,10 +3,7 @@
 #include <math.h>
 #include "functions.h"
 
-int compare_int(const void *i, const void *j)
-{
-    return *(int*)i - *(int*)j;
-}
+
 
 int compare_char(const void *i, const void *j)
 {
@@ -214,7 +211,7 @@ int main(void)
             printf(" ERROR     ");
         }
 
-        FILE * file1;
+        FILE *file1;
         
         file1 = fopen("out_1.txt", "w");
 
@@ -224,7 +221,7 @@ int main(void)
         tick();
         pointer_on_last_filter_2 = arr_filtered_2 + 8;
         mysort(arr_filtered_2, fabs((size_t)(pointer_on_last_filter_2 - arr_filtered_2)),
-            sizeof (int), compare_int);
+            sizeof (int), compareFunc);
         int arr_true_2_s[] = { -5, 1, 1, 2, 2, 3, 3, 4 };
         int i = 0;
         lastPrint = arr_true_2_s + 7;
@@ -253,7 +250,7 @@ int main(void)
         arr_filtered_3 = arr_3;
         pointer_on_last_filter_3 = arr_filtered_3 + 7;
         mysort(arr_filtered_3, fabs((size_t)(pointer_on_last_filter_3 - arr_filtered_3)),
-            sizeof (int), compare_int);
+            sizeof (int), compareFunc);
         int arr_true_3_s[] = { 0, 1, 2, 3, 4, 4, 5 };
         i = 0;
         while (i < 7)
@@ -299,6 +296,7 @@ int main(void)
         {
             printf(" Right     ");
         }
+
     }
     fclose(f1);
     fclose(f2);
