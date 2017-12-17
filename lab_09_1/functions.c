@@ -109,7 +109,7 @@ size_t my_getline(char **lineptr, size_t *n, FILE *stream)
 
 
 
-char* my_str_replace(const char *source, const char *search, const char *replace)
+char*my_str_replace(const char *source, const char *search, const char *replace)
 {
     int retStrSize = 0, searchLength = 0, replaceLength = 0, delta, signEqual, cnt = 0;
     char *retStr, *strIdx, *strIdxMark, *retStrIdx, *replaceIdx, *searchIdx;
