@@ -9,6 +9,8 @@
 #define MEMMORY_ERROR               -7
 #define NONE_ELEMENTS               -8
 #define SIZE_ERROR                  -9
+#define ERR_TEST                   -11
+
 
 // ���������� �������
 
