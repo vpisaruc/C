@@ -18,7 +18,7 @@ int main(void)
     FILE * f2;
     FILE * f3;
     FILE * f4;
-    int ko = OK;
+    int ko = OK, *lastPrint = NULL;
     f1 = fopen("in_1.txt", "r");
     f2 = fopen("in_2.txt", "r");
     f3 = fopen("in_3.txt", "r");
@@ -210,6 +210,9 @@ int main(void)
             printf(" ERROR     ");
         }
 
+        FILE *file1;
+        
+        file1 = fopen("out_1.txt", "w");
 
         printf("\nmysort()             ");
         ko = OK;
@@ -219,6 +222,9 @@ int main(void)
             sizeof (int), compare_int);
         int arr_true_2_s[] = { -5, 1, 1, 2, 2, 3, 3, 4 };
         int i = 0;
+        lastPrint = arr_true_2_s + 7;
+        write_file(file1, arr_filtered_2, lastPrint);
+        fclose(file1);
         while (i < 8)
         {
             if (arr_filtered_2[i] != arr_true_2_s[i])
@@ -287,8 +293,7 @@ int main(void)
         {
             printf(" Right     ");
         }
-        //
-        //free(arr_filtered_2);
+
     }
     fclose(f1);
     fclose(f2);
