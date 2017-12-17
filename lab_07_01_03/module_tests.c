@@ -258,7 +258,7 @@ void test_key()
 }
 
 
-
+/*
 void test_cnt_file_data()
 {
 
@@ -267,7 +267,7 @@ void test_cnt_file_data()
     int test_cntElem = 10, test_retVal_1 = -3, test_retVal_2 = -2;
     file = fopen("in_1.txt","r");
     
-    file1 = fopen("in_8.txt", "r");
+    //file1 = fopen("in_8.txt", "r");
     file2 = fopen("in_7.txt", "r");
     
     retVal = countFileData(file, &cntElem);
@@ -286,22 +286,7 @@ void test_cnt_file_data()
         printf("Failed\n");
     }
     
-    printf("TESTS FOR countFileData: \n\n" 
-    "Test №2: \n"
-    "File  = {} \n"
-    "Result = {Empty file} \n"
-    "Check:: ");
-    
-    retVal_1 = countFileData(file1, &cntElem_1);
-    
-    if(retVal_1 == test_retVal_1)
-    {
-        printf("Passed\n");
-    }
-    else
-    {
-        printf("Failed\n");
-    }
+
     
     
     printf("TESTS FOR countFileData: \n\n" 
@@ -320,13 +305,13 @@ void test_cnt_file_data()
     {
         printf("Failed\n");
     }
-    fclose(file1);
+    
     fclose(file);
     fclose(file2);
 }
 
 
-
+*/
 void test_load_file_data()
 {
     
@@ -412,7 +397,7 @@ void test_load_file_data()
 int main(void)
 {
     test_mySort();
-    test_cnt_file_data();
+   // test_cnt_file_data();
     test_load_file_data();
     test_key();
     
