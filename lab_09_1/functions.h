@@ -16,7 +16,7 @@
 size_t my_strcspn(const char *str, const char *sym);
 
 // return new string with n first symbols or full str copy
-char *my_strndup(const char *str, size_t n);
+char*my_strndup(const char *str, size_t n);
 
 size_t my_getline(char **lineptr, size_t *n, FILE *stream);
 
