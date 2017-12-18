@@ -48,7 +48,7 @@ int main(int argc, char **argv)
                     // ������ ��������
                     *lineptr = my_str_replace(*lineptr, strSearch, strReplace);
                     // ����� � ����
-                    fprintf(file_out, "%s" ,*lineptr);
+                    fprintf(file_out, "%s", *lineptr);
                 }
     
                 fclose(file);
