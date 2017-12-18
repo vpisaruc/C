@@ -3,7 +3,7 @@
 
 int main(int argc, char **argv)
 {
-    FILE *file, *file_out;
+    FILE * file, * file_out;
     char *strSearch, *strReplace, *strOut;
     size_t retStrLength;
     char str[80], sym[80];
@@ -13,7 +13,7 @@ int main(int argc, char **argv)
     printf("\nIf you want to run functions my_getline and my_str_replace write 0\n");
     scanf("%d", &functionsType);
 
-    switch(functionsType)
+    switch (functionsType)
     {
         case 0:
             {
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
                     // ������ ��������
                     *lineptr = my_str_replace(*lineptr, strSearch, strReplace);
                     // ����� � ����
-                    fprintf(file_out,"%s",*lineptr);
+                    fprintf(file_out, "%s" ,*lineptr);
                 }
     
                 fclose(file);
@@ -162,7 +162,6 @@ int main(int argc, char **argv)
                 fclose(file);
     
                 printf("Ok. Input any key for Exit");
-    
                 break;
             }
     }
