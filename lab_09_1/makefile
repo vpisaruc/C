@@ -7,5 +7,11 @@ functions.o: functions.c functions.h
 main.o: main.c functions.h
 	gcc -std=c99 -Wall -Werror -pedantic -c main.c -lm -ggdb -g
 
+test.exe : functions.o tests.o
+	gcc -o test.exe functions.o tests.o -lm -ggdb -g
+
+tests.o: test.c functions.h
+	gcc -std=c99 -Wall -Werror -pedantic -c tests.c -lm -ggdb -g
+
 clean :
 	rm *.o *.exe
