@@ -10,7 +10,7 @@ main.o: main.c functions.h
 test.exe : functions.o tests.o
 	gcc -o test.exe functions.o tests.o -lm -ggdb -g
 
-tests.o: test.c functions.h
+tests.o: tests.c functions.h
 	gcc -std=c99 -Wall -Werror -pedantic -c tests.c -lm -ggdb -g
 
 clean :
