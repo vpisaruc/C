@@ -30,7 +30,7 @@ struct student_data
 
 // Functions declaration
 // get error message
-char* getErrorMessage(const int errId);
+char*getErrorMessage(const int errId);
 
 // load file data
 int loadFileData(const char *fileName, node_t **listOfStudents);
@@ -42,13 +42,13 @@ void printNodeData(const student_t *studentData);
 void printListOfStudents(const char *headerStr, const node_t *listOfStudents);
 
 // find student by family
-node_t* find(node_t *head, const void *data, int(*comparator)(const void*, const void*));
+node_t*find(node_t *head, const void *data, int(*comparator)(const void*, const void*));
 
 // copy list of students
 int copy(node_t *head, node_t **new_head);
 
 // compare string
-int compareStringData(const void* first, const void* second);
+int compareStringData(const void*first, const void*second);
 
 // insert node before
 void insert(node_t **head, node_t *elem, node_t *before);
@@ -60,4 +60,4 @@ node_t* getInsertNode();
 void sorted_insert(node_t **head, node_t *element, int(*comparator)(const void *, const void *));
 
 // sorting list using function sorted_insert
-node_t* sort(node_t *head, int(*comparator)(const void *, const void *));
+node_t*sort(node_t *head, int(*comparator)(const void *, const void *));
