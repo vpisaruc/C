@@ -54,7 +54,7 @@ int compareStringData(const void*first, const void*second);
 void insert(node_t **head, node_t *elem, node_t *before);
 
 // setup insert node
-node_t* getInsertNode();
+node_t*getInsertNode();
 
 // sorted insert into sorted list
 void sorted_insert(node_t **head, node_t *element, int(*comparator)(const void *, const void *));
