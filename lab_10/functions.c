@@ -44,7 +44,7 @@ char*getErrorMessage(const int errId)
 // load file data
 int loadFileData(const char *fileName, node_t **listOfStudents)
 {
-    FILE *file;
+    FILE * file;
     node_t *newNode = NULL, *lastAdded = NULL;
     student_t *studentData = NULL;
     int retVal = OK, cntNodes = 0, retReadFile;
@@ -135,7 +135,7 @@ int loadFileData(const char *fileName, node_t **listOfStudents)
 }
 
 // print node data 
-void printNodeData(const student_t* studentData)
+void printNodeData(const student_t*studentData)
 {
     printf("%2d  %-10s%-14s%3d%3d%3d\n", studentData->examListId, studentData->group, studentData->family, studentData->examMark1, studentData->examMark2, studentData->examMark3);
 }
@@ -165,7 +165,7 @@ void printListOfStudents(const char *headerStr, const node_t *listOfStudents)
 }
 
 // find sudent by family
-node_t* find(node_t *head, const void *data, int(*comparator)(const void*, const void*))
+node_t*find(node_t *head, const void *data, int(*comparator)(const void*, const void*))
 {
     node_t *tmpNode = NULL, *retNode = NULL;
 
@@ -250,7 +250,7 @@ int copy(node_t *head, node_t **new_head)
 
 
 // compare string
-int compareStringData(const void* first, const void* second)
+int compareStringData(const void*first, const void*second)
 {
     return strcmp((char*)first, (char*)second);
 }
@@ -297,7 +297,7 @@ void insert(node_t **head, node_t *elem, node_t *before)
 }
 
 // setup insert node
-node_t* getInsertNode()
+node_t*getInsertNode()
 {
     node_t *newNode = NULL;
     student_t *studentData = NULL;
@@ -353,7 +353,7 @@ void sorted_insert(node_t **head, node_t *element, int(*comparator)(const void *
     {
         while (1 != 0)
         {
-            if (comparator(((student_t*)element->data)->family, ((student_t*)tmpNode->data)->family)<0)
+            if (comparator(((student_t*)element->data)->family, ((student_t*)tmpNode->data)->family) < 0)
             {
                 element->next = tmpNode;
                 if (tmpNode == *head)
@@ -391,7 +391,7 @@ void sorted_insert(node_t **head, node_t *element, int(*comparator)(const void *
 
 
 // sorting list using function sorted_insert
-node_t* sort(node_t *head, int(*comparator)(const void *, const void *))
+node_t*sort(node_t *head, int(*comparator)(const void *, const void *))
 {
     node_t *tmpNode = NULL, *tmpListNodes = NULL, *newNode = NULL;
 
