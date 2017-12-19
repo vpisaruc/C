@@ -8,7 +8,7 @@ int main(void)
     //int retVal;
     size_t cnt;
     size_t retStrLength;
-    FILE *f1, *f2;
+    FILE * f1, * f2;
     char *strSearch = "Structures";
     char *strReplace = "st";
 
@@ -21,7 +21,7 @@ int main(void)
     printf("\nTest my_strcspn №1\n");
     printf("str1 = 123456 str2 = 56\n");
     cnt = my_strcspn(str1, str2);
-    if((int)cnt == 4)
+    if ((int)cnt == 4)
         printf("Passed\n");
     else
         printf("Failed\n");
@@ -33,7 +33,7 @@ int main(void)
     printf("str1 = 123456 str2 = \n");
     cnt = my_strcspn(str1, str2);
 
-    if((int)cnt == 6)
+    if ((int)cnt == 6)
         printf("Passed\n");
     else
         printf("Failed\n");
@@ -45,7 +45,7 @@ int main(void)
     printf("str1 =  str2 = \n");
     cnt = my_strcspn(str1, str2);
 
-    if((int)cnt == 0)
+    if ((int)cnt == 0)
         printf("Passed\n");
     else
         printf("Failed\n");
@@ -58,7 +58,7 @@ int main(void)
     printf("str1 = 123456 n = 3\n");
     str2 = my_strndup(str1, 3);
 
-    if(strcmp("123", str2) == 0)
+    if (strcmp("123", str2) == 0)
         printf("Passed\n");
     else
         printf("Failed\n");
@@ -68,7 +68,7 @@ int main(void)
     printf("str1 = 123456 n = 7\n");
     str2 = my_strndup(str1, 7);
 
-    if(strcmp("123456", str2) == 0)
+    if (strcmp("123456", str2) == 0)
         printf("Passed\n");
     else
         printf("Failed\n");
@@ -79,7 +79,7 @@ int main(void)
     printf("str1 =  n = 1\n");
     str2 = my_strndup(str1, 7);
 
-    if(strcmp("", str2) == 0)
+    if (strcmp("", str2) == 0)
         printf("Passed\n");
     else
         printf("Failed\n");
@@ -90,7 +90,7 @@ int main(void)
     printf("File: Empty\n");
     cnt = my_getline(lineptr, &retStrLength, f2);
 
-    if((int)cnt == FGETS_EOF)
+    if ((int)cnt == FGETS_EOF)
         printf("Passed\n");
     else
         printf("Failed\n");
@@ -99,7 +99,7 @@ int main(void)
     printf("\nTest my_getline №2\n");
     printf("File: Not Empty\n");
     cnt = my_getline(lineptr, &retStrLength, f1);
-    if((int)cnt != FGETS_EOF)
+    if ((int)cnt != FGETS_EOF)
         printf("Passed\n");
     else
         printf("Failed\n");
@@ -110,7 +110,7 @@ int main(void)
     printf("String: \n");
     *lineptr = my_str_replace(*lineptr, strSearch, strReplace);
 
-    if(strcmp("st str ml st", *lineptr) != 0)
+    if (strcmp("st str ml st", *lineptr) != 0)
         printf("Passed\n");
     else
         printf("Failed\n");
