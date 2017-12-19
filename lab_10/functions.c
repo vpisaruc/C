@@ -70,7 +70,7 @@ int loadFileData(const char *fileName, node_t **listOfStudents)
             family = (char*)malloc(14 * sizeof(char));
             group = (char*)malloc(10 * sizeof(char));
             retReadFile = fscanf(file, "%4d%10s%14s%3d%3d%d", &examListId, group, family, &examMark1, &examMark2, &examMark3);
-            if (retReadFile == EOF)
+            if (retReadFile == -1)
             {
                 // end of file
                 break;
