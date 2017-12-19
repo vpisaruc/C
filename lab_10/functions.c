@@ -1,4 +1,3 @@
-
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -6,38 +5,38 @@
 
 
 // Functions
-char* getErrorMessage(const int errId)
+char*getErrorMessage(const int errId)
 {
     char *errMessage;
     switch (errId)
     {
-    case OK:
-        errMessage = "Normal Exit\n";
-        break;
-    case ERROR_FILE_NOT_EXISTS:
-        errMessage = "File not exists\n";
-        break;
-    case ERROR_FILE_DATA_STRUCTURE:
-        errMessage = "Error file data structure\n";
-        break;
-    case ERROR_FILE_EMPTY:
-        errMessage = "Input file is empty\n";
-        break;
-    case INCORRECT_PARAM:
-        errMessage = "Incorrect param for function\n";
-        break;
-    case NONE_ELEMENTS:
-        errMessage = "List of data is empty\n";
-        break;
-    case MEMMORY_ERROR:
-        errMessage = "Memory initialization error\n";
-        break;
-    case SIZE_ERROR:
-        errMessage = "Size error\n";
-        break;
-    default:
-        errMessage = "Unknown error\n";
-        break;
+        case OK:
+            errMessage = "Normal Exit\n";
+            break;
+        case ERROR_FILE_NOT_EXISTS:
+            errMessage = "File not exists\n";
+            break;
+        case ERROR_FILE_DATA_STRUCTURE:
+            errMessage = "Error file data structure\n";
+            break;
+        case ERROR_FILE_EMPTY:
+            errMessage = "Input file is empty\n";
+            break;
+        case INCORRECT_PARAM:
+            errMessage = "Incorrect param for function\n";
+            break;
+        case NONE_ELEMENTS:
+            errMessage = "List of data is empty\n";
+            break;
+        case MEMMORY_ERROR:
+            errMessage = "Memory initialization error\n";
+            break;
+        case SIZE_ERROR:
+            errMessage = "Size error\n";
+            break;
+        default:
+            errMessage = "Unknown error\n";
+            break;
     }
     return errMessage;
 }
