@@ -18,16 +18,23 @@ int main(int argc, char **argv)
 		out = readFile(file, &studentList);
 		if(out == MEMORY_ERROR)
 		{
+			deleteList(&studentList);
 			printf("\nMemory Error\n");
 		}
 		else if (out == IO_ERROR)
 		{
+			deleteList(&studentList);
 			printf("IO_ERROR");
 		}
 		else
 		{
+			printf("\nList of students before checking\n");
 			print_node(studentList);
 			checkStudents(&studentList);
+
+			printf("\nList of students after checking\n");
+			print_node(studentList);
+			deleteList(&studentList);
 		}
 		
 	}

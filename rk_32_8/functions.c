@@ -82,15 +82,19 @@ void print_node(node_t *studentList)
 	}
 }
 
+
 node_t *get_last(node_t *studentList)
 {
 	node_t *tmpNode = NULL;
 	
-	
+  // start list of students
+  tmpNode = studentList;
+  
 	while(1 != 0)
 	{
-		if(tmpNode->next != NULL)
+		if(tmpNode->next == NULL)
 		{
+      // last element with NULL next
 			return tmpNode;
 		}
 		else
@@ -102,13 +106,16 @@ node_t *get_last(node_t *studentList)
 
 
 
-
-
 void checkStudents(node_t **studentList)
 {
-	node_t *tmpNode = NULL;
+	node_t *tmpNode = NULL, *lastNode = NULL, *lastNodeNew = NULL, *prevNode = NULL;
 	
-	tmpNode = *studentList;
+	// start list node
+  tmpNode = *studentList;
+  // last node of initial list(fixing)
+  lastNode = get_last(tmpNode);
+  // last node new - changed after moving element
+  lastNodeNew = lastNode;
 	
 	printf("\nSpisok neuspevaiushih: \n");
 	while(1 != 0)
@@ -118,18 +125,56 @@ void checkStudents(node_t **studentList)
 		{
 			printf("%20s%4d%4d%4d%4d", tmpNode->data->name, tmpNode->data->mark1, tmpNode->data->mark2, tmpNode->data->mark3, tmpNode->data->mark4);
 			printf("\n\n");
-			
+      
+      if (tmpNode == lastNode)
+      {
+        // lst element of list (not moved) - after him only moved neuspevaiushie
+        break;
+      }
+      
+      // move to the end of list
+      lastNodeNew->next = tmpNode;
+      lastNodeNew = tmpNode;
+      if (prevNode == NULL)
+      {
+         // izmeniaem nachalo spiska ya sleduiushii element
+         *studentList = tmpNode->next;
+      }
+      else
+      {
+         // change next for previous element
+         prevNode->next = tmpNode->next;
+      }
+      // next element
+      tmpNode = lastNodeNew->next;
+      // new last element
+      lastNodeNew->next = NULL;      
 		}
-		if(tmpNode->next == NULL)
-		{
-			break;
-		}
-		else
-		{
-			tmpNode = tmpNode->next;
-		}
+    else
+    {
+      if (tmpNode == lastNode)
+      {
+        // end of initial list of students
+        break;
+      }
+  	  prevNode = tmpNode;
+      tmpNode = tmpNode->next;
+    }
 	}
 }
 
 
-
+void deleteList(node_t **studentList) 
+{
+    node_t* prev = NULL;
+	char *prevData = NULL; 
+    while ((*studentList)->next) 
+	{
+        prev = (*studentList);
+		prevData = ((*studentList)->data->name);
+        (*studentList) = (*studentList)->next;
+		free(prevData);
+        free(prev);
+    }
+    free(*studentList);
+}
