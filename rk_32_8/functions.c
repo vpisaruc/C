@@ -168,13 +168,13 @@ void deleteList(node_t **studentList)
 {
     node_t* prev = NULL;
 	char *prevData = NULL; 
-    while ((*studentList)->next) 
+    while ((*studentList)) 
 	{
         prev = (*studentList);
 		prevData = ((*studentList)->data->name);
         (*studentList) = (*studentList)->next;
 		free(prevData);
+		free(prev->data);
         free(prev);
     }
-    free(*studentList);
 }
