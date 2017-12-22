@@ -20,7 +20,7 @@
 int getFormatData(char *inputStr, int *paramType, int *strLength, int *signRightFormat);
 
 // my snprintf function
-int my_snprintf(char *s, size_t n, const char *format, ...);
+int my_sprintf(char *s, size_t n, const char *format, ...);
 
 // string from int with formatting
 int intToStringFormat(char *outStr, const int maxLen, const int strLength, const int div_10_8, const int signRightFormat, int intValue);
