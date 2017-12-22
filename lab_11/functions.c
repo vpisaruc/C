@@ -120,7 +120,7 @@ int getFormatData(char *inputStr, int *paramType, int *strLength, int *signRight
 
 
 // my snprintf function
-int my_snprintf(char *s, size_t n, const char *format, ...)
+int my_sprintf(char *s, size_t n, const char *format, ...)
 {
     char *formatStr = NULL, *outputStr = NULL, *valueString = NULL, *argValueStr = NULL, *valueStringIdx = NULL;
     int strLength = 0, signRightFormat = 0, retVal = 0, paramType = 0, argValueInt, returnCount = 0, skipCount = 0;
