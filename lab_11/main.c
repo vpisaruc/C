@@ -20,7 +20,7 @@ int main(void)
     }
 
     strcpy(strReturn, "Initial String for testing");
-    retVal = my_snprintf(strReturn, 100, "d=%-10d hd=%-10hd o=%-10o s=%-15s;\n", 123456, 123456, 123456, "9876543210");
+    retVal = my_sprintf(strReturn, 100, "d=%-10d hd=%-10hd o=%-10o s=%-15s;\n", 123456, 123456, 123456, "9876543210");
     if (retVal < 0)
     {
         printf("my funct--- error=%d\n\n", retVal);
@@ -40,7 +40,7 @@ int main(void)
     }
 
     strcpy(strReturn, "Initial String for testing");
-    retVal = my_snprintf(strReturn, 10, "%s", "9876543210");
+    retVal = my_sprintf(strReturn, 10, "%s", "9876543210");
     if (retVal < 0)
     {
         printf("my funct--- error=%d\n\n", retVal);
@@ -60,7 +60,7 @@ int main(void)
     }
 
     strcpy(strReturn, "Initial String for testing");
-    retVal = my_snprintf(strReturn, 0, "%s", "9876543210");
+    retVal = my_sprintf(strReturn, 0, "%s", "9876543210");
     if (retVal < 0)
     {
         printf("my funct--- error=%d\n\n", retVal);
