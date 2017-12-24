@@ -52,7 +52,7 @@ int getFormatData(char *inputStr, int *paramType, int *strLength, int *signRight
             retValue++;
             *paramType = PARAM_OCTAL;
         }
-        else if ((*tmpStr == 'h') && (*(tmpStr+1) == 'd'))
+        else if ((*tmpStr == 'h') && (*(tmpStr + 1) == 'd'))
         {
             // short format
             // skip 2 characters for resultStr
@@ -162,25 +162,25 @@ int my_sprintf(char *s, size_t n, const char *format, ...)
             skipCount = retVal;
             switch (paramType)
             {
-            case PARAM_SHORT:
-                argValueInt = (short)va_arg(argptr, int);
-                retVal = intToStringFormat(valueString, n, strLength, 10, signRightFormat, argValueInt);
-                break;
-            case PARAM_INT:
-                argValueInt = va_arg(argptr, int);
-                retVal = intToStringFormat(valueString, n, strLength, 10, signRightFormat, argValueInt);
-                break;
-            case PARAM_OCTAL:
-                argValueInt = va_arg(argptr, int);
-                retVal = intToStringFormat(valueString, n, strLength, 8, signRightFormat, argValueInt);
-                break;
-            case PARAM_STRING:
-                argValueStr = va_arg(argptr, char*);
-                retVal = stringFormat(valueString, strLength, n, signRightFormat, argValueStr);
-                break;
-            default:
-                retVal = SIZE_ERROR;
-                break;
+                case PARAM_SHORT:
+                    argValueInt = (short)va_arg(argptr, int);
+                    retVal = intToStringFormat(valueString, n, strLength, 10, signRightFormat, argValueInt);
+                    break;
+                case PARAM_INT:
+                    argValueInt = va_arg(argptr, int);
+                    retVal = intToStringFormat(valueString, n, strLength, 10, signRightFormat, argValueInt);
+                    break;
+                case PARAM_OCTAL:
+                    argValueInt = va_arg(argptr, int);
+                    retVal = intToStringFormat(valueString, n, strLength, 8, signRightFormat, argValueInt);
+                    break;
+                case PARAM_STRING:
+                    argValueStr = va_arg(argptr, char*);
+                    retVal = stringFormat(valueString, strLength, n, signRightFormat, argValueStr);
+                    break;
+                default:
+                    retVal = SIZE_ERROR;
+                    break;
             }
             if (retVal < 0)
             {
@@ -298,7 +298,7 @@ int intToStringFormat(char *outStr, const int maxLen, const int strLength, const
 
 
 // string with formatting
-int  stringFormat(char *outStr, const int strLength, const int maxLen, const int signRightFormat, const char *strValue)
+int stringFormat(char *outStr, const int strLength, const int maxLen, const int signRightFormat, const char *strValue)
 {
     int cnt = 0, spacesBefore = 0, spacesAfter = 0, retValue = 0;
     char *tmpStrIdx, *outStrIdx;
