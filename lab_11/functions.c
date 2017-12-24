@@ -121,7 +121,6 @@ int my_sprintf(char *s, size_t n, const char *format, ...)
 {
     char *formatStr = NULL, *outputStr = NULL, *valueString = NULL, *argValueStr = NULL, *valueStringIdx = NULL;
     int strLength = 0, signRightFormat = 0, retVal = 0, paramType = 0, argValueInt, returnCount = 0, skipCount = 0;
-    short argValueShort;
     va_list argptr;
 
     // initialization list of parameters for formatting string
@@ -164,9 +163,7 @@ int my_sprintf(char *s, size_t n, const char *format, ...)
             switch (paramType)
             {
                 case PARAM_SHORT:
-                    argValueInt = va_arg(argptr, int);
-                    argValueShort = (short)argValueInt;
-                    argValueInt = argValueShort;
+                    argValueInt = ( short)va_arg(argptr, int);
                     retVal = intToStringFormat(valueString, n, strLength, 10, signRightFormat, argValueInt);
                     break;
                 case PARAM_INT:
