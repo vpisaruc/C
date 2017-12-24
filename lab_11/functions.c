@@ -165,7 +165,8 @@ int my_sprintf(char *s, size_t n, const char *format, ...)
             {
                 case PARAM_SHORT:
                     argValueInt = va_arg(argptr, int);
-                    argValueShort = (short)argValueInt
+                    argValueShort = (short)argValueInt;
+                    argValueInt = argValueShort;
                     retVal = intToStringFormat(valueString, n, strLength, 10, signRightFormat, argValueInt);
                     break;
                 case PARAM_INT:
