@@ -1,6 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdarg.h>
+
 
 #include "functions.h"
 
@@ -291,6 +289,8 @@ int intToStringFormat(char *outStr, const int maxLen, const int strLength, const
     {
         *outStrIdx++ = ' ';
     }
+    //End of string(0) 
+    *outStrIdx++ = 0;
 
     retValue = (cnt + cntSign + spacesBefore + spacesAfter);
     
@@ -345,7 +345,9 @@ int  stringFormat(char *outStr, const int strLength, const int maxLen, const int
     {
         *outStrIdx++ = ' ';
     }
-
+    //End of string(0) 
+    *outStrIdx++ = 0;
+    
     retValue = cnt + spacesBefore + spacesAfter;
 
     return retValue;
