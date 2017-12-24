@@ -8,8 +8,11 @@
 #define ERROR_FILE_EMPTY            -3
 #define INCORRECT_PARAM             -4
 #define NONE_ELEMENTS               -5
-#define MEMMORY_ERROR               -6
+#define MEMORY_ERROR                -6
 #define SIZE_ERROR                  -7
+#define ERROR_FILES_NOT_EQUAL       -8
+#define DATA_NOT_FOUND              -9
+#define DATA_NOT_EQUAL             -10
 
 
 // structure of list node
@@ -30,7 +33,7 @@ struct student_data
 
 // Functions declaration
 // get error message
-char*getErrorMessage(const int errId);
+char* getErrorMessage(const int errId);
 
 // load file data
 int loadFileData(const char *fileName, node_t **listOfStudents);
@@ -42,22 +45,34 @@ void printNodeData(const student_t *studentData);
 void printListOfStudents(const char *headerStr, const node_t *listOfStudents);
 
 // find student by family
-node_t*find(node_t *head, const void *data, int(*comparator)(const void*, const void*));
+node_t* find(node_t *head, const void *data, int(*comparator)(const void*, const void*));
 
 // copy list of students
 int copy(node_t *head, node_t **new_head);
 
 // compare string
-int compareStringData(const void*first, const void*second);
+int compareStringData(const void* first, const void* second);
 
 // insert node before
 void insert(node_t **head, node_t *elem, node_t *before);
 
 // setup insert node
-node_t*getInsertNode();
+node_t* getInsertNode();
 
 // sorted insert into sorted list
 void sorted_insert(node_t **head, node_t *element, int(*comparator)(const void *, const void *));
 
 // sorting list using function sorted_insert
-node_t*sort(node_t *head, int(*comparator)(const void *, const void *));
+node_t* sort(node_t *head, int(*comparator)(const void *, const void *));
+
+// load file data
+int writeFileData(const char *fileName, node_t *listOfStudents);
+
+// set test node
+node_t* setNodeTest(const int examListId, const char * family, const char * group, const int examMark1, const int examMark2, const int examMark3);
+
+// full compare student_data
+int compareStudentData(const void* first, const void* second);
+
+// compare 2 text file data
+int compareFileData(const char *fileName1, const char *fileName2);

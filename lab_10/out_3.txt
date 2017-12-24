@@ -1,0 +1,11 @@
+ 1  IU1-11    Antonov       5  5  4
+99  TestGrp   Test          3  4  5
+ 2  IU1-13    Pisaruc       4  5  4
+ 3  IU1-11    Samoilenko    3  4  4
+ 4  IU1-12    Kutepov       4  3  4
+ 5  IU1-11    Ianchik       5  4  5
+ 6  IU1-12    Prohorov      4  4  3
+ 7  IU1-13    Zaseev        3  3  4
+ 8  IU1-11    Erohin        5  5  5
+ 9  IU1-11    Kuzmin        5  4  4
+10  IU1-13    Pinchuk       5  4  4
