@@ -30,7 +30,7 @@ int main(void)
 
     printf("\nTest №2\n");
     strcpy(strReturn, "Initial String for testing");
-    retVal = snprintf(strReturn, 10, "%s", "9876543210");
+    retVal = snprintf(strReturn, 11, "%s", "9876543210");
     if (retVal < 0)
     {
         printf("standard--- error=%d\n", retVal);
@@ -41,7 +41,7 @@ int main(void)
     }
 
     strcpy(strReturn, "Initial String for testing");
-    retVal = my_sprintf(strReturn, 10, "%s", "9876543210");
+    retVal = my_sprintf(strReturn, 11, "%s", "9876543210");
     if (retVal < 0)
     {
         printf("my funct--- error=%d\n\n", retVal);
