@@ -76,3 +76,6 @@ int compareStudentData(const void* first, const void* second);
 
 // compare 2 text file data
 int compareFileData(const char *fileName1, const char *fileName2);
+
+// delete list 
+void deleteList(node_t **head, const int signFreeData);
