@@ -82,6 +82,8 @@ int loadFileData(const char *fileName, node_t **listOfStudents)
             if (retReadFile == EOF)
             {
                 // end of file
+                free(family);
+                free(group);
                 break;
             }
             if (retReadFile != 6)
@@ -496,6 +498,7 @@ node_t* setNodeTest(const int examListId, const char * family, const char * grou
 {
     node_t *newNode = NULL;
     student_t *studentData = NULL;
+    char *familyPtr = NULL, *groupPtr = NULL, *familyStr = NULL, *grouoStr = NULL;
 
     //New student_data
     studentData = (student_t*)malloc(sizeof(student_t));
@@ -504,9 +507,15 @@ node_t* setNodeTest(const int examListId, const char * family, const char * grou
         return newNode;
     }
 
+    familyStr = (char*)malloc(14 * sizeof(char));
+    grouoStr = (char*)malloc(10 * sizeof(char));
+
+    familyPtr = strcpy(familyStr, family);
+    groupPtr = strcpy(grouoStr, group);
+
     studentData->examListId = examListId;
-    studentData->family = (char*)family;
-    studentData->group = (char*)group;
+    studentData->family = familyPtr;
+    studentData->group = groupPtr;
     studentData->examMark1 = examMark1;
     studentData->examMark2 = examMark2;
     studentData->examMark3 = examMark3;
@@ -594,4 +603,39 @@ int compareFileData(const char *fileName1, const char *fileName2)
 
     return retVal;
 }
+
+
+
+
+// delete list 
+void deleteList(node_t **head, const int signFreeData)
+{
+    node_t *prevNode = NULL, *listNodes = NULL;
+    // head node of list
+    listNodes = *head;
+    
+    // delete list
+    while (listNodes)
+    {
+
+        prevNode = listNodes;
+        listNodes = prevNode->next;
+
+        if (signFreeData == 1)
+        {
+            free(((student_t*)prevNode->data)->family);
+            free(((student_t*)prevNode->data)->group);
+            free(prevNode->data);
+        }
+        prevNode->data = NULL;
+        prevNode->next = NULL;
+        free(prevNode);
+
+        prevNode = NULL;
+    }
+    // set null to poiner of list
+    *head = NULL;
+}
+
+
 
