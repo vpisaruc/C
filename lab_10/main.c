@@ -39,6 +39,7 @@ int main(int argc, char **argv)
         findNode = find(listOfStudentsWork, searchStr, compareStringData);
         if (!findNode)
         {
+            deleteList(&newNode, 1);
             printf("Student not found");
         }
         else
@@ -46,10 +47,11 @@ int main(int argc, char **argv)
             printf("Search student - %s", searchStr);
             printNodeData((student_t*)findNode->data);
             printf("\n\n");
+            // insert new student before find
+            insert(&listOfStudentsWork, newNode, findNode);
         }
 
-        // insert new student before find
-        insert(&listOfStudentsWork, newNode, findNode);
+
 
         // print input list with insert
         printListOfStudents("Input data with insert", listOfStudentsWork);
@@ -60,6 +62,13 @@ int main(int argc, char **argv)
         // print sorted list
         printListOfStudents("Sorted list", listOfStudentsWork);
     }
+
+        // free lists of nodes
+    // we don't free data from nodes (these data exist in work list)
+    
+    deleteList(&listOfStudents, 0);
+    deleteList(&listOfStudentsWork, 1);
+    deleteList(&newNode, 0);
 
     //Print error message
     printf("%s", errMsg);
