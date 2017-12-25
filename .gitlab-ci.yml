@@ -1,0 +1,7 @@
+image: testing
+
+test:
+  tags:
+  - testing-docker
+  script:
+  - testing
