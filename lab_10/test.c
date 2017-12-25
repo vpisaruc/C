@@ -102,6 +102,8 @@ Find data
             printf("Test 2 - Failed\n\n\n");
         }
 
+        // free 1 node with free data
+        deleteList(&findNodeSample, 1);
 
         // Test 3 - insert record before rows (not first) 
         retVal = OK;
@@ -210,11 +212,15 @@ Data in file out_5_result.txt
         {
             printf("Test 5 - Failed\n\n\n");
         }
+
+        // free lists of nodes
+        // we don't free data from nodes (these data exist in work list)
+        deleteList(&findNodeSample, 0);
+        deleteList(&listOfStudents, 0);
+        deleteList(&listOfStudentsWork, 1);
+        
     }
 
-
-    //Print error message
-    printf("Exit test");
 
     return retVal;
 
