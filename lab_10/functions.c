@@ -366,7 +366,8 @@ void sorted_insert(node_t **head, node_t *element, int(*comparator)(const void *
     {
         while (1 != 0)
         {
-            if (comparator(((student_t*)element->data)->family, ((student_t*)tmpNode->data)->family)<0)
+//            if (comparator(((student_t*)element->data)->family, ((student_t*)tmpNode->data)->family)<0)
+            if (comparator(element->data, tmpNode->data)<0)
             {
                 element->next = tmpNode;
                 if (tmpNode == *head)
