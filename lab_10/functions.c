@@ -187,7 +187,8 @@ node_t* find(node_t *head, const void *data, int(*comparator)(const void*, const
         while (1 != 0)
         {
             // next element of list
-            if (comparator((char*)data, ((student_t*)tmpNode->data)->family) == 0)
+//            if (comparator((char*)data, ((student_t*)tmpNode->data)->family) == 0)
+            if (comparator(data, tmpNode->data) == 0)
             {
                 retNode = tmpNode;
                 break;
