@@ -1,0 +1,83 @@
+1. Summa 4etnyh i proizvedenie ne4etnyh
+
+Ishodnyi massiv
+
+   3 -13  23  16  -1  33  24  48  33  11
+
+Summa 4etnyh = 82;   Proizvedenie ne4etnyh = -3624192
+
+
+
+2. Elementy bolishe srednego
+
+Ishodnyi massiv
+
+   3 -13  23  16  -1  33  24  48  33  11
+
+Srednee zna4enie =   17.7
+
+Massiv resulitatov
+
+  23  33  24  48  33
+
+3. Udalenie otricatelinyh
+
+Ishodnyi massiv
+
+   3 -13  23  16  -1  33  24  48  33  11
+
+Massiv resulitatov
+
+   3  23  16  33  24  48  33  11
+
+
+
+
+4. Vvedite 4islo dlia sravnenia:
+33
+Dobavlenie summy posle ravnyh
+
+Ishodnyi massiv
+
+   3 -13  23  16  -1  33  24  48  33  11
+
+Massiv resulitatov
+
+   3 -13  23  16  -1  33  28  24  48  33 133  11
+
+
+5. Obmen max 4etnogo i min ne4etnogo
+
+Ishodnyi massiv
+
+   3 -13  23  16  -1  33  24  48  33  11
+
+Massiv resulitatov
+
+   3 -13  23  16  48  33  24  -1  33  11
+
+
+6.Zapisi summy s poslednei 3 vmesto Max kratnogo 3
+
+Ishodnyi massiv
+
+   3 -13  23  16  -1  33  24  48  33  11
+
+Massiv resulitatov
+
+   3 -13  23  16  -1  33  24  79  33  11
+
+
+7.Sortirovka elementov mejdu Min i Max
+
+Ishodnyi massiv
+
+   3 -13  23  16  -1  33  24  48  33  11
+
+Massiv resulitatov
+
+   3 -13  -1  16  23  24  33  48  33  11
+
+
+
+
